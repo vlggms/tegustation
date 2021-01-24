@@ -35,12 +35,12 @@
 /area/shuttle/sbc/med
 	name = "Syndicate Battle Cruiser Medbay"
 	icon_state = "medbay_maint_central"
-	ambientsounds = MEDICAL
+	ambience_index = AMBIENCE_MEDICAL
 
 /area/shuttle/sbc/engi
 	name = "Syndicate Battle Cruiser Engineering"
 	icon_state = "yellow"
-	ambientsounds = ENGINEERING
+	ambience_index = AMBIENCE_ENGINEERING
 
 /area/shuttle/sbc/bay
 	name = "Syndicate Battle Cruiser Shuttle Bay"

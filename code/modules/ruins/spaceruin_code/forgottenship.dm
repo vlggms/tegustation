@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 //Hugbox syndicate mediborg
 
-/obj/item/robot_module/med_cybersun
+/obj/item/robot_model/med_cybersun
 	name = "Cybersun Medical"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
@@ -263,7 +263,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 /mob/living/silicon/robot/modules/medical/cybersun
 	icon_state = "synd_medical"
-	set_module = /obj/item/robot_module/med_cybersun
+	set_module = /obj/item/robot_model/med_cybersun
 
 /obj/item/borg/upgrade/transform/cybersun
 	name = "borg module picker (Cybersun)"

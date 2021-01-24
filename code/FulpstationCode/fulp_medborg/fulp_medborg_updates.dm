@@ -26,7 +26,7 @@
 /obj/item/borg/upgrade/medbeam/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/medbeam/cyborg/MB = new(R.module)
+		var/obj/item/gun/medbeam/cyborg/MB = new R.module
 		R.module.basic_modules += MB
 		R.module.add_module(MB, FALSE, TRUE)
 

@@ -28,16 +28,6 @@
 	if(liver)
 		ADD_TRAIT(liver, TRAIT_COMEDY_METABOLISM, CLOWNOP_TRAIT)
 
-/datum/antagonist/nukeop/clownop/apply_innate_effects(mob/living/mob_override)
-	var/mob/living/L = owner.current || mob_override
-	ADD_TRAIT(L, TRAIT_NAIVE, "clownop")
-	ADD_TRAIT(L, TRAIT_CLOWNLIKE, "clownop")
-
-/datum/antagonist/nukeop/clownop/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/L = owner.current || mob_override
-	REMOVE_TRAIT(L, TRAIT_NAIVE, "clownop")
-	REMOVE_TRAIT(L, TRAIT_CLOWNLIKE, "clownop")
-
 /datum/antagonist/nukeop/leader/clownop/give_alias()
 	title = pick("Head Honker", "Slipmaster", "Clown King", "Honkbearer")
 	if(nuke_team?.syndicate_name)

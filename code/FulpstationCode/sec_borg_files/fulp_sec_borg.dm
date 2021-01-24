@@ -76,7 +76,7 @@
 			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
 			return FALSE
 
-		E = new(R.module)
+		E = new R.module
 		R.module.basic_modules += E
 		R.module.add_module(E, FALSE, TRUE)
 
@@ -161,7 +161,7 @@
 			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
 			return FALSE
 
-		E = new(R.module)
+		E = new R.module
 		R.module.basic_modules += E
 		R.module.add_module(E, FALSE, TRUE)
 

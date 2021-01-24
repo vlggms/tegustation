@@ -295,7 +295,7 @@
 /area/ruin/powered/mechanicus
 	name = "Mechanicum Chapel"
 	icon_state = "chapel"
-	ambientsounds = HOLY
+	ambience_index = AMBIENCE_HOLY
 
 /area/ruin/powered/mechanicus/robotics
 	name = "Mechanicum Robotics"
