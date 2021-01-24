@@ -183,6 +183,9 @@
 ///from base of [/datum/reagent/proc/expose_atom]: (/turf, reac_volume)
 #define COMSIG_REAGENT_EXPOSE_TURF	"reagent_expose_turf"
 
+///from base of [/datum/controller/subsystem/materials/proc/InitializeMaterial]: (/datum/material)
+#define COMSIG_MATERIALS_INIT_MAT	"SSmaterials_init_mat"
+
 ///from base of [/datum/reagents/proc/add_reagent]: (/datum/reagent, amount, reagtemp, data, no_react)
 #define COMSIG_REAGENTS_NEW_REAGENT		"reagents_new_reagent"
 ///from base of [/datum/reagents/proc/add_reagent]: (/datum/reagent, amount, reagtemp, data, no_react)
@@ -395,9 +398,9 @@
 	#define SPEECH_MESSAGE 1
 	// #define SPEECH_BUBBLE_TYPE 2
 	#define SPEECH_SPANS 3
-	// #define SPEECH_SANITIZE 4 // Tegu edit right here.
+	/* #define SPEECH_SANITIZE 4
 	#define SPEECH_LANGUAGE 5
-	/* #define SPEECH_IGNORE_SPAM 6
+	#define SPEECH_IGNORE_SPAM 6
 	#define SPEECH_FORCED 7 */
 
 ///from /mob/say_dead(): (mob/speaker, message)
@@ -604,6 +607,8 @@
 	#define COMPONENT_HANDLED_GRILLING (1<<0)
 ///Called when an object is turned into another item through grilling ontop of a griddle
 #define COMSIG_GRILL_COMPLETED "item_grill_completed"
+///Called when an armor plate is successfully applied to an object
+#define COMSIG_ARMOR_PLATED "armor_plated"
 
 ///from base of [/obj/item/proc/tool_check_callback]: (mob/living/user)
 #define COMSIG_TOOL_IN_USE "tool_in_use"
@@ -638,7 +643,7 @@
 
 // /obj/item/clothing signals
 
-///from base of obj/item/clothing/shoes/proc/step_action(): ()
+///from [/mob/living/carbon/human/Move]: ()
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"
 ///from base of /obj/item/clothing/suit/space/proc/toggle_spacesuit(): (obj/item/clothing/suit/space/suit)
 #define COMSIG_SUIT_SPACE_TOGGLE "suit_space_toggle"
@@ -654,6 +659,13 @@
 	//#define COMPONENT_STOP_IMPLANTING (1<<0) //The name makes sense for both
 	#define COMPONENT_DELETE_NEW_IMPLANT (1<<1)
 	#define COMPONENT_DELETE_OLD_IMPLANT (1<<2)
+
+/// called on implants, after a successful implantation: (mob/living/target, mob/user, silent, force)
+#define COMSIG_IMPLANT_IMPLANTED "implant_implanted"
+
+/// called on implants, after an implant has been removed: (mob/living/source, silent, special)
+#define COMSIG_IMPLANT_REMOVED "implant_removed"
+
 ///called on implants being implanted into someone with an uplink implant: (datum/component/uplink)
 #define COMSIG_IMPLANT_EXISTING_UPLINK "implant_uplink_exists"
 	//This uses all return values of COMSIG_IMPLANT_OTHER
@@ -680,6 +692,8 @@
 
 ///called in /obj/item/gun/process_fire (user, target, params, zone_override)
 #define COMSIG_MOB_FIRED_GUN "mob_fired_gun"
+///called in /obj/item/gun/process_fire (user, target, params, zone_override)
+#define COMSIG_GUN_FIRED "gun_fired"
 
 // /obj/item/grenade signals
 
@@ -934,6 +948,9 @@
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"
 ///from monkey CtrlClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"
+
+//from /turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature)
+#define COMSIG_TURF_EXPOSE "turf_expose"
 
 // /datum/component/container_item
 /// (atom/container, mob/user) - returns bool

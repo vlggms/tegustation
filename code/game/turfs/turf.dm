@@ -104,8 +104,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		add_overlay(/obj/effect/fullbright)
 
 	if(requires_activation)
-		CALCULATE_ADJACENT_TURFS(src)
-		SSair.add_to_active(src)
+		CALCULATE_ADJACENT_TURFS(src, KILL_EXCITED)
 
 	if (light_power && light_range)
 		update_light()
@@ -129,7 +128,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/Initalize_Atmos(times_fired)
-	CALCULATE_ADJACENT_TURFS(src)
+	CALCULATE_ADJACENT_TURFS(src, NORMAL_TURF)
 
 /turf/Destroy(force)
 	. = QDEL_HINT_IWILLGC
@@ -149,7 +148,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		for(var/A in B.contents)
 			qdel(A)
 		return
-	SSair.remove_from_active(src)
 	visibilityChanged()
 	QDEL_LIST(blueprint_data)
 	flags_1 &= ~INITIALIZED_1
@@ -168,15 +166,25 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/multiz_turf_new(turf/T, dir)
 	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
-///returns if the turf has something dense inside it. if exclude_mobs is true, skips dense mobs like fat yoshi. if exclude_object is true, it will exclude the excluded_object you sent through
-/turf/proc/is_blocked_turf(exclude_mobs, excluded_object)
+/**
+ * Check whether the specified turf is blocked by something dense inside it.
+ *
+ * Returns TRUE if the turf is blocked, FALSE otherwise.
+ *
+ * Arguments:
+ * * exclude_mobs - If TRUE, ignores dense mobs on the turf.
+ * * source_atom - If you're checking if the turf an atom is on is blocked, this will let you exclude the atom from this check so it doesn't block itself with its own density.
+ */
+/turf/proc/is_blocked_turf(exclude_mobs, source_atom)
 	if(density)
 		return TRUE
 	for(var/i in contents)
-		var/atom/thing = i
-		if(thing == excluded_object)
+		var/atom/movable/thing = i
+		if(thing == source_atom)
 			continue
-		if(thing.density && (!exclude_mobs || !ismob(thing)))
+		// If the thing is dense AND we're including mobs or the thing isn't a mob AND if there's a source atom and
+		// it cannot pass through the thing on the turf, we consider the turf blocked.
+		if(thing.density && (!exclude_mobs || !ismob(thing)) && (source_atom && !thing.CanPass(source_atom, src)))
 			return TRUE
 	return FALSE
 
