@@ -81,7 +81,10 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	new /obj/machinery/vending/dic(T)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
+
+/obj/structure/closet/secure_closet/detective/PopulateContents()
+	return //So it doesn't spawn anything.
 
 /datum/supply_pack/security/vending/detective
 	name = "DicTech Supply Crate"
