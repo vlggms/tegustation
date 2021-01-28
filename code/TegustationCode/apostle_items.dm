@@ -41,13 +41,62 @@
 	name = "holy scythe"
 	desc = "None shall harm us."
 	hitsound = 'sound/tegu_sounds/antagonist/scythe.ogg'
-	force = 30
-	throwforce = 35
+	force = 32
+	throwforce = 15
 	armour_penetration = 35
 	block_chance = 50
 	wound_bonus = 15
 	bare_wound_bonus = 30
 	sharpness = SHARP_EDGED
+
+/obj/item/nullrod/scythe/apostle/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!("apostle" in user.faction))
+		user.Paralyze(50)
+		user.dropItemToGround(src, TRUE)
+		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
+				"<span class='danger'>\"You shall not attempt to harm us.\"</span>")
+		return
+	else
+		if("apostle" in target.faction)
+			to_chat(user, "<span class='userdanger'>Careful with the holy weapon...</span>")
+			return
+		if(target.health <= HEALTH_THRESHOLD_DEAD || target.stat == DEAD)
+			user.changeNext_move(CLICK_CD_MELEE * 0.4) // Le funny destruction of corpses.
+			user.heal_bodypart_damage(5,5) // Free heals.
+	..()
+
+/obj/item/gun/magic/staff/apostle
+	name = "holy staff"
+	desc = "Let none approach the holy one."
+	icon_state = "staffofchaos"
+	inhand_icon_state = "staffofchaos"
+	ammo_type = /obj/item/ammo_casing/magic/arcane_barrage
+	charges = 150
+	max_charges = 150
+	recharge_rate = 1
+	burst_size = 15
+	fire_delay = 1.5
+	spread = 16
+	var/charge_cooldown // To avoid sound spam.
+
+/obj/item/gun/magic/staff/apostle/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	if(!("apostle" in user.faction))
+		user.Paralyze(50)
+		user.dropItemToGround(src, TRUE)
+		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
+				"<span class='danger'>\"You shall not attempt to harm us.\"</span>")
+		return
+	if(charge_cooldown > world.time)
+		to_chat(user, "<span class='warning'>You are not ready to charge the staff yet.</span>")
+		return
+	charge_cooldown = (world.time + 5 SECONDS)
+	playsound(src, 'sound/tegu_sounds/antagonist/staff_charge.ogg', 150, 1)
+	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(target)
+	user.visible_message("<span class='warning'>[user] points [src] towards [target]!</span>", "<span class='warning'>We start channeling the power of [src].</span>", \
+	"<span class='hear'>You can hear an ominous buzzing.</span>")
+	if(!do_after(user, 30))
+		return
+	return ..()
 
 /datum/outfit/apostle
 	name = "Apostle"
@@ -56,7 +105,3 @@
 
 /datum/outfit/apostle_heretic
 	mask = /obj/item/clothing/mask/gas/apostle
-
-/datum/outfit/apostle/scythe
-	name = "Apostle Scythe"
-	r_hand = /obj/item/nullrod/scythe/apostle

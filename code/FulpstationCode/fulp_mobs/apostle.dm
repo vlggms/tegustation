@@ -112,7 +112,7 @@
 	for(var/datum/antagonist/apostle/A in GLOB.antagonists)
 		var/mob/living/carbon/human/H = A.owner.current
 		to_chat(H, "<span class='userdanger'>The prophet is dead...</span>")
-		visible_message("<span class='danger'>[H.real_name] briefly looks above, then falls silent...</span>", "<span class='userdanger'>[H.real_name] briefly looks above, then falls silent...</span>")
+		H.visible_message("<span class='danger'>[H.real_name] briefly looks above, then falls silent...</span>", "<span class='userdanger'>Suddenly, you fall silent...</span>")
 		playsound(H, 'sound/tegu_sounds/mob/apostle_death_final.ogg')
 		H.emote("scream")
 		H.dust()
@@ -128,7 +128,7 @@
 			new /obj/effect/temp_visual/cult/sparks(i)
 			continue
 		if(ishuman(i))
-			new /obj/effect/temp_visual/curse(i)
+			new /obj/effect/temp_visual/dir_setting/curse(i)
 			var/mob/living/carbon/human/H = i
 			if(!("apostle" in H.faction))
 				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
@@ -144,6 +144,7 @@
 					H.faction |= "apostle"
 					ADD_TRAIT(H, TRAIT_BOMBIMMUNE, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_NOFIRE, SPECIES_TRAIT)
+					ADD_TRAIT(H, TRAIT_NOBREATH, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_RESISTLOWPRESSURE, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_RESISTCOLD, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_NODISMEMBER, SPECIES_TRAIT)
@@ -237,6 +238,7 @@
 	rapture_skill.Remove(src)
 	chosen_attack = 1 // To avoid rapture spam
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
+	SLEEP_CHECK_DEATH(20)
 	holy_revival_cooldown_base = 5 SECONDS
 	fire_field_cooldown_base = 10 SECONDS
 	for(var/mob/M in GLOB.player_list)
@@ -263,6 +265,7 @@
 				A.rapture()
 				H.revive(full_heal = TRUE, admin_revive = FALSE)
 				H.grab_ghost(force = TRUE)
+				shake_camera(H, 2, 1)
 				if(A.number < 12)
 					var/turf/main_loc = get_step(src, pick(0,1,2,4,8))
 					new /obj/effect/temp_visual/cult/blood(get_turf(H))
