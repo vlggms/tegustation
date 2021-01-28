@@ -108,20 +108,15 @@
 				rapture()
 		return
 
-/mob/living/simple_animal/hostile/megafauna/apostle/death(gibbed, list/force_grant)
-	. = ..()
+/mob/living/simple_animal/hostile/megafauna/apostle/death(gibbed)
 	for(var/datum/antagonist/apostle/A in GLOB.antagonists)
 		var/mob/living/carbon/human/H = A.owner.current
 		to_chat(H, "<span class='userdanger'>The prophet is dead...</span>")
 		visible_message("<span class='danger'>[H.real_name] briefly looks above, then falls silent...</span>", "<span class='userdanger'>[H.real_name] briefly looks above, then falls silent...</span>")
 		playsound(H, 'sound/tegu_sounds/mob/apostle_death_final.ogg')
-		sleep(15)
-		for(var/i=0, i<15, i++)
-			H.adjustFireLoss(25)
-			if(prob(20))
-				H.emote("scream")
-			sleep(0.5)
+		H.emote("scream")
 		H.dust()
+	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/revive_humans()
 	if(holy_revival_cooldown > world.time)
