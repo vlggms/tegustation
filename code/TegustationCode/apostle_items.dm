@@ -1,3 +1,39 @@
+/obj/item/dark_bible
+	name = "dark bible"
+	desc = "The darkest of hearts, obtained from the beast made of light. Allows you to perform a ritual to allow other people wield apostle weaponry."
+	icon = 'icons/Fulpicons/fulpitems.dmi'
+	icon_state = "darkbible"
+	item_flags = NOBLUDGEON
+	w_class = WEIGHT_CLASS_NORMAL
+	var/uses = 6
+	var/audio_cd // To prevent sound abuse
+
+/obj/item/dark_bible/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(proximity_flag && ishuman(target))
+		if(user != target)
+			if(uses > 0 && audio_cd < world.time)
+				var/mob/living/carbon/human/H = target
+				if("apostle" in H.faction)
+					to_chat(user, "<span class='info'>[H] is already empowered by dark light.</span>")
+					return
+				user.visible_message("<span class='info'>[user] puts hand on [H]'s shoulder, with [src] in the other hand and starts murmuring something.</span>", "<span class='warning'>You begin spelling the prayer to grant power to [H].</span>", \
+				"<span class='hear'>You can hear sort of a prayer nearby.</span>")
+				audio_cd = (world.time + 15 SECONDS)
+				playsound(src, 'sound/tegu_sounds/antagonist/whisper.ogg', 50, 1)
+				if(!do_after(user, 100))
+					return
+				uses -= 1
+				H.faction |= "apostle"
+				to_chat(user, "<span class='info'>You finish the prayer, and suddenly, [H] starts to glow witn an ominous light.</span>")
+				to_chat(H, "<span class='info'>As soon as [user] finishes reading the prayer, you start glowing with an ominous light.</span>")
+				H.set_light_color(COLOR_RED_LIGHT)
+				H.set_light(2)
+			else
+				to_chat(user, "<span class='info'>Pages in [src] seem blank. Perhaps there will be use for it later?</span>")
+		else
+			to_chat(user, "<span class='info'>You can't offer a prayer for yourself!</span>")
+
 /obj/item/clothing/suit/armor/apostle
 	name = "paradise lost"
 	desc = "Your armor, to protect the holy one."
@@ -9,7 +45,7 @@
 	flags_inv = HIDEJUMPSUIT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
-	slowdown = 0.2
+	slowdown = 0.4
 
 /obj/item/clothing/suit/armor/apostle/Initialize()
 	. = ..()

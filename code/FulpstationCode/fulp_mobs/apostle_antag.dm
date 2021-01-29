@@ -9,6 +9,10 @@
 	var/number = 1 // Number of apostle, obviously. Used for finale
 	show_to_ghosts = TRUE
 
+/datum/antagonist/apostle/New()
+	. = ..()
+	GLOB.apostles += src
+
 /datum/antagonist/apostle/on_gain()
 	. = ..()
 
