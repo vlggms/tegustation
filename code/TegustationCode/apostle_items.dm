@@ -18,7 +18,7 @@
 					to_chat(user, "<span class='info'>[H] is already empowered by dark light.</span>")
 					return
 				user.visible_message("<span class='info'>[user] puts hand on [H]'s shoulder, with [src] in the other hand and starts murmuring something.</span>", "<span class='warning'>You begin spelling the prayer to grant power to [H].</span>", \
-				"<span class='hear'>You can hear sort of a prayer nearby.</span>")
+				"<span class='hear'>You can hear some sort of a prayer nearby.</span>")
 				audio_cd = (world.time + 15 SECONDS)
 				playsound(src, 'sound/tegu_sounds/antagonist/whisper.ogg', 50, 1)
 				if(!do_after(user, 100))
@@ -30,7 +30,7 @@
 				H.set_light_color(COLOR_RED_LIGHT)
 				H.set_light(2)
 			else
-				to_chat(user, "<span class='info'>Pages in [src] seem blank. Perhaps there will be use for it later?</span>")
+				to_chat(user, "<span class='info'>Pages in [src] seem blank. Perhaps there will be a use for it later?</span>")
 		else
 			to_chat(user, "<span class='info'>You can't offer a prayer for yourself!</span>")
 
@@ -40,9 +40,10 @@
 	worn_icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
 	icon_state = "apostlearmor"
 	item_flags = DROPDEL
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor = list(MELEE = 80, BULLET = 60, LASER = 60, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 90, FIRE = 100, ACID = 95, WOUND = 25)
-	flags_inv = HIDEJUMPSUIT
+	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0.4
@@ -61,6 +62,9 @@
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
 	armor = list(MELEE = 80, BULLET = 60, LASER = 60, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 90, FIRE = 100, ACID = 95, WOUND = 25)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	heat_protection = HEAD
+	body_parts_covered = HEAD
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/clothing/mask/gas/apostle/Initialize()
@@ -70,16 +74,15 @@
 /obj/item/nullrod/scythe/apostle
 	icon_state = "ap_scythe"
 	inhand_icon_state = "ap_scythe"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	worn_icon_state = "scythe"
+	lefthand_file = 'icons/Fulpicons/fulpitems_hold_left.dmi'
+	righthand_file = 'icons/Fulpicons/fulpitems_hold_right.dmi'
 	icon = 'icons/Fulpicons/fulpitems.dmi'
 	name = "holy scythe"
 	desc = "None shall harm us."
 	hitsound = 'sound/tegu_sounds/antagonist/scythe.ogg'
-	force = 32
-	throwforce = 15
-	armour_penetration = 35
+	force = 34
+	throwforce = 14 // Why are you throwing scythe anyway?
+	armour_penetration = 40
 	block_chance = 50
 	wound_bonus = 15
 	bare_wound_bonus = 30
@@ -90,7 +93,7 @@
 		user.Paralyze(50)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
-				"<span class='danger'>\"You shall not attempt to harm us.\"</span>")
+		"<span class='danger'>You shall not attempt to harm us</span>")
 		return
 	else
 		if("apostle" in target.faction)
@@ -102,11 +105,11 @@
 	..()
 
 /obj/item/gun/magic/staff/apostle
-	name = "holy staff"
+	name = "staff of light"
 	desc = "Let none approach the holy one."
 	icon_state = "staffofchaos"
 	inhand_icon_state = "staffofchaos"
-	ammo_type = /obj/item/ammo_casing/magic/arcane_barrage
+	ammo_type = /obj/item/ammo_casing/magic/arcane_barrage/apostle
 	charges = 150
 	max_charges = 150
 	recharge_rate = 1
@@ -120,24 +123,122 @@
 		user.Paralyze(50)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
-				"<span class='danger'>\"You shall not attempt to harm us.\"</span>")
+		"<span class='danger'>You shall not attempt to harm us</span>")
 		return
 	if(charge_cooldown > world.time)
 		to_chat(user, "<span class='warning'>You are not ready to charge the staff yet.</span>")
 		return
 	charge_cooldown = (world.time + 5 SECONDS)
-	playsound(src, 'sound/tegu_sounds/antagonist/staff_charge.ogg', 150, 1)
+	playsound(src, 'sound/tegu_sounds/antagonist/staff_charge.ogg', 100, 1)
 	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(target)
 	user.visible_message("<span class='warning'>[user] points [src] towards [target]!</span>", "<span class='warning'>We start channeling the power of [src].</span>", \
 	"<span class='hear'>You can hear an ominous buzzing.</span>")
 	if(!do_after(user, 30))
 		return
+	charge_cooldown = (world.time + 5 SECONDS) // To keep it a proper cooldown
 	return ..()
+
+/obj/item/ammo_casing/magic/arcane_barrage/apostle
+	projectile_type = /obj/projectile/magic/arcane_barrage/apostle
+
+/obj/projectile/magic/arcane_barrage/apostle
+	damage = 16
+	damage_type = BURN
+	armour_penetration = 25
+
+/obj/projectile/magic/arcane_barrage/apostle/on_hit(target)
+	if(ismob(target))
+		var/mob/H = target
+		if("apostle" in H.faction)
+			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/nullrod/spear/apostle
+	name = "heavenly spear"
+	desc = "A holy weapon capable of piercing the sky."
+	icon = 'icons/Fulpicons/fulpitems.dmi'
+	lefthand_file = 'icons/Fulpicons/fulpitems_hold_left.dmi'
+	righthand_file = 'icons/Fulpicons/fulpitems_hold_right.dmi'
+	icon_state = "ap_spear"
+	inhand_icon_state = "ap_spear"
+	hitsound = 'sound/tegu_sounds/antagonist/spear.ogg'
+	force = 20 // Weaker in melee, but kills everyone with its active ability.
+	throwforce = 35 // That's a spear after all.
+	armour_penetration = 15
+	block_chance = 25
+	wound_bonus = 5
+	bare_wound_bonus = 10
+	attack_verb_continuous = list("attacks", "impales", "pierces", "tears", "lacerates", "gores")
+	attack_verb_simple = list("attack", "impale", "pierce", "tear", "lacerate", "gore")
+	sharpness = SHARP_EDGED
+	var/dash_distance = 6
+	var/recharge_time_base = 8 SECONDS // You can dash every 8 seconds.
+	var/recharge_time = 0
+	var/dash_force = 50 // Temporary force for dash ability.
+	var/list/target_turfs = list()
+
+/obj/item/nullrod/spear/apostle/attack_self(mob/living/carbon/user)
+	if(recharge_time > world.time)
+		to_chat(user, "<span class='warning'>You are not ready to dash forward yet.</span>")
+		return
+	var/turf/T = get_step(get_turf(src), user.dir)
+	var/turf/final_T // Where the user will actually teleport.
+	target_turfs = list(T)
+	new /obj/effect/temp_visual/cult/sparks(T)
+	for(var/i in 1 to dash_distance)
+		T = get_step(T, user.dir)
+		new /obj/effect/temp_visual/cult/sparks(T)
+		if(T.density)
+			to_chat(user, "<span class='warning'>There appears to be a wall in your path!</span>")
+			return
+		target_turfs += T
+		if(i == dash_distance)
+			final_T = get_step(T, user.dir)
+	recharge_time = (world.time + (recharge_time_base * 0.5)) // This one here to avoid spam
+	to_chat(user, "<span class='warning'>You change your stance and prepare to dash forward.</span>")
+	playsound(src, 'sound/tegu_sounds/antagonist/spear_charge.ogg', 100, 1)
+	if(!do_after(user, 36))
+		return
+	recharge_time = (world.time + recharge_time_base) // The real cooldown
+	user.forceMove(final_T)
+	playsound(src, 'sound/tegu_sounds/antagonist/spear_dash.ogg', 100, 1)
+	var/actual_force = force // Saving force var.
+	force = dash_force // Changing force to dash_force variable.
+	for(var/turf/open/K in target_turfs)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(K)
+		for(var/mob/living/L in K.contents)
+			if(!("apostle" in L.faction))
+				new /obj/effect/temp_visual/cleave(K)
+				visible_message("<span class='boldwarning'>[user] runs through [L]!</span>")
+				shake_camera(L, 4, 3)
+				melee_attack_chain(user, L)
+	force = actual_force // After dash is complete - change it all back.
+
+/obj/item/nullrod/spear/apostle/attack_hand(mob/living/user)
+	. = ..()
+	if(!("apostle" in user.faction))
+		user.Paralyze(50)
+		user.dropItemToGround(src, TRUE)
+		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [src]!</span>", \
+		"<span class='danger'>You shall not attempt to harm us</span>")
+
+/obj/item/nullrod/spear/apostle/attack(mob/living/target, mob/living/carbon/human/user)
+	if("apostle" in target.faction)
+		to_chat(user, "<span class='userdanger'>Careful with the holy weapon...</span>")
+		return
+	..()
 
 /datum/outfit/apostle
 	name = "Apostle"
 	suit = /obj/item/clothing/suit/armor/apostle
 	mask = /obj/item/clothing/mask/gas/apostle
+
+/datum/outfit/apostle/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.dropItemToGround(H.wear_mask)
+	H.dropItemToGround(H.wear_suit)
+	. = ..()
 
 /datum/outfit/apostle_heretic
 	mask = /obj/item/clothing/mask/gas/apostle

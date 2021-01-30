@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/megafauna/apostle
 	name = "apostle"
 	desc = "The heavens' wrath. You might've fucked up real bad to summon one."
-	health = 1500
-	maxHealth = 1500
+	health = 600
+	maxHealth = 600
 	attack_verb_continuous = "purges"
 	attack_verb_simple = "purge"
 	attack_sound = 'sound/magic/mm_hit.ogg'
@@ -114,13 +114,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/datum/antagonist/apostle/A in GLOB.apostles)
 		if(!A.owner || !ishuman(A.owner.current))
 			continue
-		var/mob/living/carbon/human/H = A.owner.current
-		var/turf/T = get_turf(H)
-		to_chat(H, "<span class='userdanger'>The prophet is dead...</span>")
-		H.visible_message("<span class='danger'>[H.real_name] briefly looks above, then falls silent...</span>", "<span class='userdanger'>Suddenly, you fall silent...</span>")
-		playsound(T, 'sound/tegu_sounds/mob/apostle_death_final.ogg')
-		H.emote("scream")
-		H.dust()
+		A.prophet_death()
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/revive_humans()
@@ -200,7 +194,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					armour_penetration += 5
 					melee_damage_lower += 2
 					melee_damage_upper += 3
-					maxHealth += 200
+					maxHealth += 300
 					health += 400 // Heals
 					holy_revival_damage += 2 // More damage and healing from AOE spell.
 					light_range += 1 // More light, because why not.
@@ -242,12 +236,12 @@ GLOBAL_LIST_EMPTY(apostles)
 	rapture_skill.Remove(src)
 	chosen_attack = 1 // To avoid rapture spam
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
-	SLEEP_CHECK_DEATH(20)
 	holy_revival_cooldown_base = 5 SECONDS
 	fire_field_cooldown_base = 10 SECONDS
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			SEND_SOUND(M, 'sound/tegu_sounds/antagonist/rapture.ogg')
+	SLEEP_CHECK_DEATH(30)
 	for(var/datum/antagonist/apostle/A in GLOB.apostles)
 		if(!A.owner || !ishuman(A.owner.current))
 			continue
@@ -257,11 +251,15 @@ GLOBAL_LIST_EMPTY(apostles)
 		H.grab_ghost(force = TRUE)
 		shake_camera(H, 2, 1)
 		if(A.number < 12)
-			var/turf/main_loc = get_step(src, pick(0,1,2,4,8))
+			var/turf/main_loc = get_step(src, pick(0,1,2,3,4,5,6,7,8))
+			SLEEP_CHECK_DEATH(3)
 			new /obj/effect/temp_visual/cult/blood(get_turf(H))
 			SLEEP_CHECK_DEATH(20)
 			new /obj/effect/temp_visual/cult/blood/out(get_turf(H))
 			H.forceMove(main_loc)
+			new /obj/effect/temp_visual/cult/blood(main_loc)
+		if(A.number == 12)
+			SLEEP_CHECK_DEATH(30)
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z)
 				var/mod = "st"
@@ -277,4 +275,12 @@ GLOBAL_LIST_EMPTY(apostles)
 				to_chat(M, "<span class='userdanger'>[H.real_name], the [A.number][mod]...</span>")
 				SEND_SOUND(M, 'sound/tegu_sounds/mob/apostle_bell.ogg')
 				flash_color(M, flash_color = "#FF4400", flash_time = 50)
-		SLEEP_CHECK_DEATH(40)
+		SLEEP_CHECK_DEATH(60)
+	SSshuttle.adminEmergencyNoRecall = TRUE
+	SSshuttle.emergency.mode = SHUTTLE_IDLE
+	SSshuttle.emergency.request(null, set_coefficient = 1)
+	SLEEP_CHECK_DEATH(300)
+	add_filter("apostle", 1, drop_shadow_filter(color = "#FF3300AA", size = 16))
+	for(var/mob/M in GLOB.player_list)
+		if(M.z == z)
+			SEND_SOUND(M, 'sound/tegu_sounds/antagonist/rapture2.ogg')

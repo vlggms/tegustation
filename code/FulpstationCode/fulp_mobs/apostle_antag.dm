@@ -30,9 +30,6 @@
 	var/mob/living/carbon/human/H = owner.current
 	var/obj/item/wep_type
 	switch(number)
-		if(!12)
-			H.dropItemToGround(H.wear_mask)
-			H.dropItemToGround(H.wear_suit)
 		if(1, 11) // Guardian
 			H.equipOutfit(/datum/outfit/apostle)
 		if(2, 3) // Scythe
@@ -43,6 +40,7 @@
 			wep_type = /obj/item/gun/magic/staff/apostle
 		if(7, 8, 9, 10) // Spear
 			H.equipOutfit(/datum/outfit/apostle)
+			wep_type = /obj/item/nullrod/spear/apostle
 		if(12) // Heretic
 			H.dropItemToGround(H.wear_mask)
 			H.equipOutfit(/datum/outfit/apostle_heretic)
@@ -51,3 +49,18 @@
 		var/obj/item/wep = new wep_type(H, silent)
 		H.dropItemToGround(held) // First - drop current item.
 		H.put_in_hands(wep) // Then put an epic one.
+
+/datum/antagonist/apostle/proc/prophet_death()
+	var/mob/living/carbon/human/H = owner.current
+	var/turf/T = get_turf(H)
+	to_chat(H, "<span class='userdanger'>The prophet is dead...</span>")
+	H.visible_message("<span class='danger'>[H.real_name] briefly looks above, then falls silent...</span>", "<span class='userdanger'>You see the light above...</span>")
+	playsound(H, 'sound/tegu_sounds/mob/apostle_death_final.ogg', 200, TRUE, TRUE)
+	H.emote("scream")
+	H.Immobilize(30)
+	new /obj/effect/temp_visual/cult/sparks(T)
+	sleep(25)
+	for(var/obj/item/W in H)
+		if(!H.dropItemToGround(W))
+			qdel(W)
+	H.dust()
