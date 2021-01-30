@@ -72,6 +72,7 @@
 	ADD_TRAIT(src, TRAIT_NODROP, "apostle")
 
 /obj/item/nullrod/scythe/apostle
+	chaplain_spawnable = FALSE // Mistakes were made.
 	icon_state = "ap_scythe"
 	inhand_icon_state = "ap_scythe"
 	lefthand_file = 'icons/Fulpicons/fulpitems_hold_left.dmi'
@@ -156,6 +157,7 @@
 	. = ..()
 
 /obj/item/nullrod/spear/apostle
+	chaplain_spawnable = FALSE
 	name = "heavenly spear"
 	desc = "A holy weapon capable of piercing the sky."
 	icon = 'icons/Fulpicons/fulpitems.dmi'
