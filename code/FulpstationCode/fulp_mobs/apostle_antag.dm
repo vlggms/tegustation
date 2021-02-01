@@ -81,14 +81,18 @@
 
 /datum/antagonist/apostle/proc/prophet_death()
 	var/mob/living/carbon/human/H = owner.current
-	var/turf/T = get_turf(H)
 	to_chat(H, "<span class='userdanger'>The prophet is dead...</span>")
 	H.visible_message("<span class='danger'>[H.real_name] briefly looks above, then falls silent...</span>", "<span class='userdanger'>You see the light above...</span>")
-	playsound(H, 'sound/tegu_sounds/mob/apostle_death_final.ogg', 200, TRUE, TRUE)
 	H.emote("scream")
-	H.Immobilize(30)
+	H.Immobilize(200)
+	addtimer(CALLBACK(src, .proc/soundd_in), (number * 6))
+
+/datum/antagonist/apostle/proc/soundd_in()
+	var/mob/living/carbon/human/H = owner.current
+	var/turf/T = get_turf(H)
+	playsound(H, 'sound/tegu_sounds/mob/apostle_death_final.ogg', 200, TRUE, TRUE)
 	new /obj/effect/temp_visual/cult/sparks(T)
-	addtimer(CALLBACK(src, .proc/drop_dust), (25 + (number * 3)))
+	addtimer(CALLBACK(src, .proc/drop_dust), 25)
 
 /datum/antagonist/apostle/proc/drop_dust()
 	var/mob/living/carbon/human/H = owner.current

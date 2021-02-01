@@ -227,6 +227,7 @@
 	bare_wound_bonus = 40
 	throw_speed = 4
 	throw_range = 8
+	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)
 	attack_verb_continuous = list("attacks", "impales", "pierces", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "impale", "pierce", "tear", "lacerate", "gore")
 	sharpness = SHARP_EDGED
