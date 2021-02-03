@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	attack_verb_continuous = "purges"
 	attack_verb_simple = "purge"
 	attack_sound = 'sound/magic/mm_hit.ogg'
-	icon = 'icons/Fulpicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "angel"
 	icon_living = "angel"
 	health_doll_icon = "angel"
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	loot = list(/obj/item/dark_bible) // Allows 6 people to use apostle weaponry.
 	gps_name = "Pure Signal"
 	deathmessage = "evaporates in a moment, leaving heavenly light and feathers behind."
-	deathsound = 'sound/tegu_sounds/mob/apostle_death.ogg'
+	deathsound = 'ModularTegustation/Tegusounds/apostle/mob/apostle_death.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/holy_revival,
 							   /datum/action/innate/megafauna_attack/fire_field)
 	small_sprite_type = /datum/action/small_sprite/megafauna/tegu/angel
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	return //Resistant to explosions
 
 /datum/action/small_sprite/megafauna/tegu
-	small_icon = 'icons/Fulpicons/megafauna.dmi'
+	small_icon = 'ModularTegustation/Teguicons/megafauna.dmi'
 
 /datum/action/small_sprite/megafauna/tegu/angel
 	small_icon_state = "angel_small"
@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(holy_revival_cooldown > world.time)
 		return
 	holy_revival_cooldown = (world.time + holy_revival_cooldown_base)
-	playsound(src, 'sound/tegu_sounds/mob/apostle_spell.ogg', 250, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/mob/apostle_spell.ogg', 250, 1)
 	for(var/i in range(3, src))
 		if(isturf(i))
 			new /obj/effect/temp_visual/cult/sparks(i)
@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(apostles)
 						H.set_light_color(COLOR_VERY_SOFT_YELLOW)
 						H.set_light(4)
 						H.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
-						var/mutable_appearance/apostle_halo = mutable_appearance('icons/Fulpicons/32x64.dmi', "halo", -HALO_LAYER)
+						var/mutable_appearance/apostle_halo = mutable_appearance('ModularTegustation/Teguicons/32x64.dmi', "halo", -HALO_LAYER)
 						H.overlays_standing[HALO_LAYER] = apostle_halo
 						H.apply_overlay(HALO_LAYER)
 					SLEEP_CHECK_DEATH(20)
@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					for(var/mob/M in GLOB.player_list)
 						if(M.z == z)
 							to_chat(M, "<span class='userdanger'>[apostle_line]</span>")
-							SEND_SOUND(M, 'sound/tegu_sounds/mob/apostle_bell.ogg')
+							SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/mob/apostle_bell.ogg')
 							flash_color(M, flash_color = "#FF4400", flash_time = 50)
 					var/datum/antagonist/apostle/new_apostle = new /datum/antagonist/apostle
 					new_apostle.number = apostle_num
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	fire_field_cooldown_base = 10 SECONDS
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
-			SEND_SOUND(M, 'sound/tegu_sounds/antagonist/rapture.ogg')
+			SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/antagonist/rapture.ogg')
 	SLEEP_CHECK_DEATH(30)
 	for(var/datum/antagonist/apostle/A in GLOB.apostles)
 		if(!A.owner || !ishuman(A.owner.current))
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					else
 						mod = "th"
 				to_chat(M, "<span class='userdanger'>[H.real_name], the [A.number][mod]...</span>")
-				SEND_SOUND(M, 'sound/tegu_sounds/mob/apostle_bell.ogg')
+				SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/mob/apostle_bell.ogg')
 				flash_color(M, flash_color = "#FF4400", flash_time = 50)
 		SLEEP_CHECK_DEATH(60)
 	SSshuttle.emergency.request(null, set_coefficient = 1) // People still can recall, if they think they can kill it.
@@ -282,4 +282,4 @@ GLOBAL_LIST_EMPTY(apostles)
 	add_filter("apostle", 1, drop_shadow_filter(color = "#FFFF00BA", size = 32))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
-			SEND_SOUND(M, 'sound/tegu_sounds/antagonist/rapture2.ogg')
+			SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/antagonist/rapture2.ogg')

@@ -1,7 +1,7 @@
 /obj/item/dark_bible
 	name = "dark bible"
 	desc = "The darkest of hearts, obtained from the beast made of light. Allows you to perform a ritual to allow other people wield apostle weaponry."
-	icon = 'icons/Fulpicons/fulpitems.dmi'
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "darkbible"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_NORMAL
@@ -21,7 +21,7 @@
 				"<span class='warning'>You begin spelling the prayer to grant power to [H].</span>", \
 				"<span class='hear'>You can hear some sort of a prayer nearby.</span>")
 				audio_cd = (world.time + 15 SECONDS)
-				playsound(src, 'sound/tegu_sounds/antagonist/whisper.ogg', 50, 1)
+				playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/whisper.ogg', 50, 1)
 				if(!do_after(user, 100))
 					return
 				uses -= 1
@@ -38,7 +38,7 @@
 /obj/item/clothing/suit/armor/apostle
 	name = "paradise lost"
 	desc = "Your armor, to protect the holy one."
-	worn_icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 	icon_state = "apostlearmor"
 	item_flags = DROPDEL
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -56,7 +56,7 @@
 /obj/item/clothing/mask/gas/apostle
 	name = "paradise lost"
 	desc = "The eyes of light, the face of holy."
-	worn_icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 	icon_state = "apostlemask"
 	item_flags = DROPDEL
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
@@ -84,12 +84,12 @@
 	chaplain_spawnable = FALSE // Mistakes were made.
 	icon_state = "ap_scythe"
 	inhand_icon_state = "ap_scythe"
-	lefthand_file = 'icons/Fulpicons/fulpitems_hold_left.dmi'
-	righthand_file = 'icons/Fulpicons/fulpitems_hold_right.dmi'
-	icon = 'icons/Fulpicons/fulpitems.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguitems_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguitems_hold_right.dmi'
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	name = "holy scythe"
 	desc = "None shall harm us."
-	hitsound = 'sound/tegu_sounds/antagonist/scythe.ogg'
+	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/scythe.ogg'
 	force = 34
 	throwforce = 14 // Why are you throwing scythe anyway?
 	armour_penetration = 25
@@ -147,7 +147,7 @@
 	force = spin_force
 	user.emote("spin")
 	user.emote("flip")
-	playsound(src, 'sound/tegu_sounds/antagonist/scythe_spell.ogg', 150, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/scythe_spell.ogg', 150, 1)
 	visible_message("<span class='boldwarning'>[user] spins wildly with [src] in hands!</span>")
 	for(var/turf/open/K in target_turfs)
 		new /obj/effect/temp_visual/kinetic_blast(K)
@@ -183,7 +183,7 @@
 		to_chat(user, "<span class='warning'>You are not ready to charge the staff yet.</span>")
 		return
 	charge_cooldown = (world.time + 5 SECONDS)
-	playsound(src, 'sound/tegu_sounds/antagonist/staff_charge.ogg', 100, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/staff_charge.ogg', 100, 1)
 	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(target)
 	user.visible_message("<span class='warning'>[user] points [src] towards [target]!</span>", \
 	"<span class='warning'>We start channeling the power of [src].</span>", \
@@ -214,12 +214,12 @@
 	chaplain_spawnable = FALSE
 	name = "heavenly spear"
 	desc = "A holy weapon capable of piercing the sky."
-	icon = 'icons/Fulpicons/fulpitems.dmi'
-	lefthand_file = 'icons/Fulpicons/fulpitems_hold_left.dmi'
-	righthand_file = 'icons/Fulpicons/fulpitems_hold_right.dmi'
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguitems_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguitems_hold_right.dmi'
 	icon_state = "ap_spear"
 	inhand_icon_state = "ap_spear"
-	hitsound = 'sound/tegu_sounds/antagonist/spear.ogg'
+	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/spear.ogg'
 	force = 17 // Weaker in melee, but kills everyone with its active ability.
 	throwforce = 34 // That's a spear after all.
 	armour_penetration = 15
@@ -256,12 +256,12 @@
 			final_T = get_step(T, user.dir)
 	recharge_time = (world.time + (recharge_time_base * 0.5)) // This one here to avoid spam
 	to_chat(user, "<span class='warning'>You change your stance and prepare to dash forward.</span>")
-	playsound(src, 'sound/tegu_sounds/antagonist/spear_charge.ogg', 100, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/spear_charge.ogg', 100, 1)
 	if(!do_after(user, 36))
 		return
 	recharge_time = (world.time + recharge_time_base) // The real cooldown
 	user.forceMove(final_T)
-	playsound(src, 'sound/tegu_sounds/antagonist/spear_dash.ogg', 100, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/spear_dash.ogg', 100, 1)
 	var/actual_force = force // Saving force var.
 	force = dash_force // Changing force to dash_force variable.
 	for(var/turf/open/K in target_turfs)
