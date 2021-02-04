@@ -417,6 +417,13 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	lace_time = 8 SECONDS
 
+/obj/item/clothing/shoes/swagshoes
+	name = "swag shoes"
+	desc = "They got me for my foams!"
+	icon_state = "SwagShoes"
+	inhand_icon_state = "SwagShoes"
+	lace_time = 8 SECONDS
+
 /obj/item/clothing/shoes/cowboy
 	name = "cowboy boots"
 	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
