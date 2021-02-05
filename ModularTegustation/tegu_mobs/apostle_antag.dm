@@ -12,7 +12,7 @@
 
 /datum/antagonist/apostle/New()
 	. = ..()
-	GLOB.apostles += src
+	GLOB.apostles |= src
 
 /datum/antagonist/apostle/on_gain()
 	. = ..()
@@ -96,6 +96,7 @@
 
 /datum/antagonist/apostle/proc/drop_dust()
 	var/mob/living/carbon/human/H = owner.current
+	GLOB.apostles -= src
 	for(var/obj/item/W in H)
 		if(!H.dropItemToGround(W))
 			qdel(W)
