@@ -43,7 +43,7 @@
 	item_flags = DROPDEL
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list(MELEE = 80, BULLET = 60, LASER = 60, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 90, FIRE = 100, ACID = 95, WOUND = 25)
+	armor = list(MELEE = 70, BULLET = 50, LASER = 50, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 95, WOUND = 15)
 	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
@@ -62,7 +62,7 @@
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
-	armor = list(MELEE = 80, BULLET = 60, LASER = 60, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 90, FIRE = 100, ACID = 95, WOUND = 25)
+	armor = list(MELEE = 70, BULLET = 50, LASER = 50, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 95, WOUND = 45) // Wound bonus so you can't remove their head.
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	heat_protection = HEAD
 	body_parts_covered = HEAD
@@ -152,7 +152,7 @@
 	for(var/turf/open/K in target_turfs)
 		new /obj/effect/temp_visual/kinetic_blast(K)
 		for(var/mob/living/L in K.contents)
-			if(!("apostle" in L.faction) && !(L.health <= HEALTH_THRESHOLD_DEAD)) // Don't attack dead people. Preventing le funny dilation spikes.
+			if(!("apostle" in L.faction) && !(L.health <= -200)) // Don't attack super-dead people. Preventing le funny dilation spikes.
 				shake_camera(L, 2, 1)
 				melee_attack_chain(user, L)
 	recharge_time = (world.time + recharge_base)
@@ -267,7 +267,7 @@
 	for(var/turf/open/K in target_turfs)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(K)
 		for(var/mob/living/L in K.contents)
-			if(!("apostle" in L.faction) && !(L.health <= HEALTH_THRESHOLD_DEAD)) // Don't attack dead people. Preventing le funny dilation spikes.
+			if(!("apostle" in L.faction) && !(L.health <= -200)) // Don't attack super-dead people. Preventing le funny dilation spikes.
 				new /obj/effect/temp_visual/cleave(K)
 				visible_message("<span class='boldwarning'>[user] runs through [L]!</span>")
 				shake_camera(L, 4, 3)
