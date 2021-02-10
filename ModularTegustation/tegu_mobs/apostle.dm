@@ -88,16 +88,8 @@ GLOBAL_LIST_EMPTY(apostles)
 		if("apostle" in E.faction)
 			return
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(!client && ranged && ranged_cooldown <= world.time)
-				OpenFire()
-
-			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
-				devour(L)
-		else
-			devour(L)
+	if(!client && ranged && ranged_cooldown <= world.time)
+		OpenFire() // It doesn't gib people.
 
 /mob/living/simple_animal/hostile/megafauna/apostle/OpenFire()
 	if(client)
@@ -129,7 +121,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(ishuman(i))
 			var/mob/living/carbon/human/H = i
 			if(!("apostle" in H.faction))
-				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
+				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind && H.client)
 					apostle_cooldown = (world.time + apostle_cooldown_base)
 					H.set_species(/datum/species/human, 1)
 					H.regenerate_limbs()
@@ -246,6 +238,8 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(!A.owner || !ishuman(A.owner.current))
 			continue
 		var/mob/living/carbon/H = A.owner.current
+		if(!H.client) // If there is nobody controlling it - offer to ghosts.
+			offer_control(H)
 		A.rapture()
 		H.revive(full_heal = TRUE, admin_revive = FALSE)
 		H.grab_ghost(force = TRUE)
@@ -262,7 +256,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(A.number == 12)
 			SLEEP_CHECK_DEATH(30)
 		for(var/mob/M in GLOB.player_list)
-			if(M.z == z)
+			if(M.z == z && M.client)
 				var/mod = "st"
 				switch(A.number)
 					if(1)
