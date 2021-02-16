@@ -41,6 +41,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/holy_revival_damage = 20 // Amount of damage OR heal, depending on target.
 	var/fire_field_cooldown = 20 SECONDS
 	var/fire_field_cooldown_base = 20 SECONDS
+	var/field_range = 5
 	var/scream_cooldown = 18 SECONDS
 	var/scream_cooldown_base = 18 SECONDS
 	var/scream_power = 50
@@ -230,19 +231,19 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/turf/target_c = get_turf(src)
 	var/list/fire_zone = list()
 	fire_field_cooldown = (world.time + fire_field_cooldown_base)
-	for(i = 1, i++, i < 5)
+	for(var/i = 1 to field_range)
 		playsound(src, 'sound/machines/clockcult/stargazer_activate.ogg', 50, 1)
 		fire_zone = RANGE_TURFS(i, target_c) - RANGE_TURFS(i--, target_c)
 		for(var/turf/open/T in fire_zone)
 			new /obj/effect/temp_visual/cult/turf/floor(T)
 		SLEEP_CHECK_DEATH(4)
 	SLEEP_CHECK_DEATH(8)
-	for(i = 1, i++, i < 5)
+	for(var/i = 1 to field_range)
 		fire_zone = RANGE_TURFS(i, target_c) - RANGE_TURFS(i--, target_c)
 		for(var/turf/open/T in fire_zone)
 			new /obj/effect/temp_visual/cult/turf/floor(T)
 			explosion(T, -1, -1, 0, -1, 0, flame_range = 2)
-			SLEEP_CHECK_DEATH(4)
+		SLEEP_CHECK_DEATH(4)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/deafening_scream()
 	if(scream_cooldown > world.time)
