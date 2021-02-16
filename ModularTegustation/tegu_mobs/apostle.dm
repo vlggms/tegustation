@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/megafauna/apostle
 	name = "apostle"
 	desc = "The heavens' wrath. You might've fucked up real bad to summon one."
-	health = 600
-	maxHealth = 600
+	health = 800
+	maxHealth = 800
 	attack_verb_continuous = "purges"
 	attack_verb_simple = "purge"
 	attack_sound = 'sound/magic/mm_hit.ogg'
@@ -17,8 +17,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	friendly_verb_simple = "stare down"
 	speak_emote = list("proclaims")
 	armour_penetration = 0
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 24
+	melee_damage_upper = 24
 	speed = 3
 	move_to_delay = 8
 	ranged = TRUE
@@ -33,13 +33,17 @@ GLOBAL_LIST_EMPTY(apostles)
 	deathmessage = "evaporates in a moment, leaving heavenly light and feathers behind."
 	deathsound = 'ModularTegustation/Tegusounds/apostle/mob/apostle_death.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/holy_revival,
-							   /datum/action/innate/megafauna_attack/fire_field)
+							   /datum/action/innate/megafauna_attack/fire_field,
+							   /datum/action/innate/megafauna_attack/deafening_scream)
 	small_sprite_type = /datum/action/small_sprite/megafauna/tegu/angel
 	var/holy_revival_cooldown = 10 SECONDS
 	var/holy_revival_cooldown_base = 10 SECONDS
 	var/holy_revival_damage = 20 // Amount of damage OR heal, depending on target.
 	var/fire_field_cooldown = 20 SECONDS
 	var/fire_field_cooldown_base = 20 SECONDS
+	var/scream_cooldown = 18 SECONDS
+	var/scream_cooldown_base = 18 SECONDS
+	var/scream_power = 50
 	var/apostle_cooldown = 20 SECONDS //Cooldown for conversion and revival of non-apostles.
 	var/apostle_cooldown_base = 20 SECONDS
 	var/apostle_num = 1 //Number of apostles. Used for revival and finale.
@@ -63,7 +67,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	name = "Holy Revival"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You are now reviving the dead, to join your cause.</span>"
+	chosen_message = "<span class='colossus'>You are now reviving the dead to join your cause.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/fire_field
@@ -72,6 +76,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	button_icon_state = "fire"
 	chosen_message = "<span class='colossus'>You are now setting the area on explosive fire.</span>"
 	chosen_attack_num = 2
+
+/datum/action/innate/megafauna_attack/deafening_scream
+	name = "Deafening Scream"
+	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "shield"
+	chosen_message = "<span class='colossus'>You will now shout with all your might to shatter enemy's will.</span>"
+	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/rapture
 	name = "Rapture"
@@ -98,6 +109,8 @@ GLOBAL_LIST_EMPTY(apostles)
 				revive_humans()
 			if(2)
 				fire_field()
+			if(3)
+				deafening_scream()
 			if(5)
 				rapture()
 		return
@@ -113,7 +126,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(holy_revival_cooldown > world.time)
 		return
 	holy_revival_cooldown = (world.time + holy_revival_cooldown_base)
-	playsound(src, 'ModularTegustation/Tegusounds/apostle/mob/apostle_spell.ogg', 250, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/mob/apostle_spell.ogg', 150, 1)
 	for(var/i in range(3, src))
 		if(isturf(i))
 			new /obj/effect/temp_visual/cult/sparks(i)
@@ -184,11 +197,12 @@ GLOBAL_LIST_EMPTY(apostles)
 					H.mind.add_antag_datum(new_apostle)
 					apostle_num += 1
 					armour_penetration += 5
-					melee_damage_lower += 2
+					melee_damage_lower += 3
 					melee_damage_upper += 3
 					maxHealth += 300
 					health += 400 // Heals
 					holy_revival_damage += 2 // More damage and healing from AOE spell.
+					scream_power += 5 // Deafen them all. Destroy their ears.
 					light_range += 1 // More light, because why not.
 				else
 					playsound(H.loc, 'sound/machines/clockcult/ark_damage.ogg', 50, TRUE, -1)
@@ -213,23 +227,43 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/fire_field()
 	if(fire_field_cooldown > world.time)
 		return
+	var/target_c = get_turf(src)
 	fire_field_cooldown = (world.time + fire_field_cooldown_base)
-	playsound(src, 'sound/machines/clockcult/stargazer_activate.ogg', 250, 1)
-	var/fire_zone = spiral_range_turfs(4, get_turf(src))
-	for(var/turf/open/T in fire_zone)
-		new /obj/effect/temp_visual/cult/turf/floor(T)
-	SLEEP_CHECK_DEATH(15)
-	for(var/turf/open/T in fire_zone)
-		new /obj/effect/temp_visual/cult/turf/floor(T)
-		SLEEP_CHECK_DEATH(1)
-		explosion(T, -1, -1, 0, -1, 0, flame_range = 2)
+	for(var/i = 1, i++, i < 5)
+		playsound(src, 'sound/machines/clockcult/stargazer_activate.ogg', 50, 1)
+		var/list/fire_zone = RANGE_TURFS(i, target_c) - RANGE_TURFS(i - 1, target_c)
+			for(var/turf/open/T in fire_zone)
+				new /obj/effect/temp_visual/cult/turf/floor(T)
+		SLEEP_CHECK_DEATH(5)
+	SLEEP_CHECK_DEATH(7)
+	for(var/i = 1, i++, i < 5)
+		var/list/fire_zone = RANGE_TURFS(i, target_c) - RANGE_TURFS(i - 1, target_c)
+		for(var/turf/open/T in fire_zone)
+			new /obj/effect/temp_visual/cult/turf/floor(T)
+			explosion(T, -1, -1, 0, -1, 0, flame_range = 2)
+			SLEEP_CHECK_DEATH(5)
+
+/mob/living/simple_animal/hostile/megafauna/apostle/proc/deafening_scream()
+	if(scream_cooldown > world.time)
+		return
+	scream_cooldown = (world.time + scream_cooldown_base)
+	playsound(src, 'ModularTegustation/Tegusounds/apostle/mob/apostle_shout.ogg', 70, 1)
+	for(var/mob/living/carbon/C in get_hearers_in_view(6, src))
+		if("apostle" in C.faction)
+			continue
+		C.soundbang_act(2, scream_power, 4)
+		C.jitteriness += (scream_power * 4)
+		C.do_jitter_animation(jitteriness)
+		C.blur_eyes(scream_power * rand(1.5, 3))
+		C.stuttering += (scream_power * 1.5)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/rapture()
 	rapture_skill.Remove(src)
 	chosen_attack = 1 // To avoid rapture spam
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
-	holy_revival_cooldown_base = 5 SECONDS
-	fire_field_cooldown_base = 10 SECONDS
+	holy_revival_cooldown_base = 8 SECONDS
+	fire_field_cooldown_base = 16 SECONDS
+	scream_cooldown_base = 12 SECONDS
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/antagonist/rapture.ogg')
