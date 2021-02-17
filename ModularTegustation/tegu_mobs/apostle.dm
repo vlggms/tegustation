@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/field_range = 4
 	var/scream_cooldown = 18 SECONDS
 	var/scream_cooldown_base = 18 SECONDS
-	var/scream_power = 40
+	var/scream_power = 25
 	var/apostle_cooldown = 20 SECONDS //Cooldown for conversion and revival of non-apostles.
 	var/apostle_cooldown_base = 20 SECONDS
 	var/apostle_num = 1 //Number of apostles. Used for revival and finale.
@@ -189,7 +189,7 @@ GLOBAL_LIST_EMPTY(apostles)
 							apostle_line = "Have I not chosen you, the Twelve? Yet one of you is a devil."
 							rapture_skill.Grant(src)
 					for(var/mob/M in GLOB.player_list)
-						if(M.z == z)
+						if(M.z == z && M.client)
 							to_chat(M, "<span class='userdanger'>[apostle_line]</span>")
 							SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/mob/apostle_bell.ogg')
 							flash_color(M, flash_color = "#FF4400", flash_time = 50)
@@ -198,12 +198,12 @@ GLOBAL_LIST_EMPTY(apostles)
 					H.mind.add_antag_datum(new_apostle)
 					apostle_num += 1
 					armour_penetration += 5
-					melee_damage_lower += 3
-					melee_damage_upper += 3
+					melee_damage_lower += 2
+					melee_damage_upper += 2
 					maxHealth += 300
 					health += 400 // Heals
 					holy_revival_damage += 2 // More damage and healing from AOE spell.
-					scream_power += 5 // Deafen them all. Destroy their ears.
+					scream_power += 2.5 // Deafen them all. Destroy their ears.
 					light_range += 1 // More light, because why not.
 				else
 					playsound(H.loc, 'sound/machines/clockcult/ark_damage.ogg', 50, TRUE, -1)
@@ -236,8 +236,8 @@ GLOBAL_LIST_EMPTY(apostles)
 		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		for(var/turf/open/T in fire_zone)
 			new /obj/effect/temp_visual/cult/turf/floor(T)
-		SLEEP_CHECK_DEATH(3)
-	SLEEP_CHECK_DEATH(6)
+		SLEEP_CHECK_DEATH(2)
+	SLEEP_CHECK_DEATH(3)
 	for(var/i = 1 to field_range)
 		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		playsound(target_c, "explosion", 80, TRUE)
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					continue
 				L.adjustFireLoss(20)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire field!</span>")
-		SLEEP_CHECK_DEATH(2)
+		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/deafening_scream()
 	if(scream_cooldown > world.time)
@@ -259,11 +259,12 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/mob/living/carbon/C in get_hearers_in_view(6, src))
 		if("apostle" in C.faction)
 			continue
+		shake_camera(C, 1, 2)
 		C.soundbang_act(2, scream_power, 4)
-		C.jitteriness += (scream_power * 1.5)
+		C.jitteriness += (scream_power)
 		C.do_jitter_animation(jitteriness)
-		C.blur_eyes(scream_power * rand(1, 2))
-		C.stuttering += (scream_power * 1.5)
+		C.blur_eyes(scream_power * 0.5, 1)
+		C.stuttering += (scream_power)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/rapture()
 	rapture_skill.Remove(src)
@@ -271,9 +272,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
 	holy_revival_cooldown_base = 8 SECONDS
 	fire_field_cooldown_base = 16 SECONDS
-	scream_cooldown_base = 12 SECONDS
+	field_range += 1 // Powercrepe
 	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
+		if(M.client) // Send it to every player currently active, not just everyone on Z-level
 			SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/antagonist/rapture.ogg')
 	SLEEP_CHECK_DEATH(30)
 	for(var/datum/antagonist/apostle/A in GLOB.apostles)
@@ -315,7 +316,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		SLEEP_CHECK_DEATH(60)
 	SSshuttle.emergency.request(null, set_coefficient = 1) // People still can recall, if they think they can kill it.
 	SLEEP_CHECK_DEATH(300)
-	add_filter("apostle", 1, rays_filter(size = 64, color = "#FFFF00", offset = 6, density = 16))
+	add_filter("apostle", 1, rays_filter(size = 64, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))
 	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
+		if(M.z == z && M.client)
 			SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/antagonist/rapture2.ogg')
