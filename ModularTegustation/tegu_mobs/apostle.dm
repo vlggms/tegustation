@@ -41,10 +41,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/holy_revival_damage = 20 // Amount of damage OR heal, depending on target.
 	var/fire_field_cooldown = 20 SECONDS
 	var/fire_field_cooldown_base = 20 SECONDS
-	var/field_range = 5
+	var/field_range = 4
 	var/scream_cooldown = 18 SECONDS
 	var/scream_cooldown_base = 18 SECONDS
-	var/scream_power = 50
+	var/scream_power = 40
 	var/apostle_cooldown = 20 SECONDS //Cooldown for conversion and revival of non-apostles.
 	var/apostle_cooldown_base = 20 SECONDS
 	var/apostle_num = 1 //Number of apostles. Used for revival and finale.
@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(ishuman(i))
 			var/mob/living/carbon/human/H = i
 			if(!("apostle" in H.faction))
-				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind && H.client)
+				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
 					apostle_cooldown = (world.time + apostle_cooldown_base)
 					H.set_species(/datum/species/human, 1)
 					H.regenerate_limbs()
@@ -233,17 +233,23 @@ GLOBAL_LIST_EMPTY(apostles)
 	fire_field_cooldown = (world.time + fire_field_cooldown_base)
 	for(var/i = 1 to field_range)
 		playsound(src, 'sound/machines/clockcult/stargazer_activate.ogg', 50, 1)
-		fire_zone = RANGE_TURFS(i, target_c) - RANGE_TURFS(i--, target_c)
+		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		for(var/turf/open/T in fire_zone)
 			new /obj/effect/temp_visual/cult/turf/floor(T)
-		SLEEP_CHECK_DEATH(4)
-	SLEEP_CHECK_DEATH(8)
+		SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(6)
 	for(var/i = 1 to field_range)
-		fire_zone = RANGE_TURFS(i, target_c) - RANGE_TURFS(i--, target_c)
+		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
+		playsound(T, "explosion", 80, TRUE)
 		for(var/turf/open/T in fire_zone)
-			new /obj/effect/temp_visual/cult/turf/floor(T)
-			explosion(T, -1, -1, 0, -1, 0, flame_range = 2)
-		SLEEP_CHECK_DEATH(4)
+			new /obj/effect/hotspot(T)
+			T.hotspot_expose(400, 30, 1)
+			for(var/mob/living/L in T.contents)
+				if("apostle" in L.faction)
+					continue
+				L.adjustFireLoss(20)
+				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire field!</span>")
+		SLEEP_CHECK_DEATH(2)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/deafening_scream()
 	if(scream_cooldown > world.time)
@@ -254,9 +260,9 @@ GLOBAL_LIST_EMPTY(apostles)
 		if("apostle" in C.faction)
 			continue
 		C.soundbang_act(2, scream_power, 4)
-		C.jitteriness += (scream_power * 4)
+		C.jitteriness += (scream_power * 1.5)
 		C.do_jitter_animation(jitteriness)
-		C.blur_eyes(scream_power * rand(1.5, 3))
+		C.blur_eyes(scream_power * rand(1, 2))
 		C.stuttering += (scream_power * 1.5)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/rapture()
