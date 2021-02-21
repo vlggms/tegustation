@@ -57,29 +57,29 @@ data["isAdmin"] = check_rights(R_ADMIN)
 /datum/job_report_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
  	. = ..()
  	if(.)
- 		return
+		return
 
  	switch(action)
- 		if("toggle_exempt")
+		if("toggle_exempt")
  			if(!check_rights(R_ADMIN))
- 				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
- 				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
- 				to_chat(usr, "<span class='danger'>ERROR: Insufficient admin rights.</span>", confidential = TRUE)
- 				return TRUE
+				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
+				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
+				to_chat(usr, "<span class='danger'>ERROR: Insufficient admin rights.</span>", confidential = TRUE)
+				return TRUE
 
  			var/datum/admins/viewer_admin_datum = GLOB.admin_datums[usr.ckey]
 
  			if(!viewer_admin_datum)
- 				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
- 				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
- 				to_chat(usr, "<span class='danger'>ERROR: Insufficient admin rights.</span>", confidential = TRUE)
- 				return TRUE
+				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
+				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
+				to_chat(usr, "<span class='danger'>ERROR: Insufficient admin rights.</span>", confidential = TRUE)
+				return TRUE
 
  			var/client/owner_client = locate(owner) in GLOB.clients
 
  			if(!owner_client)
- 				to_chat(usr, "<span class='danger'>ERROR: Client not found.</span>", confidential = TRUE)
- 				return TRUE
+				to_chat(usr, "<span class='danger'>ERROR: Client not found.</span>", confidential = TRUE)
+				return TRUE
 
  			viewer_admin_datum.toggle_exempt_status(owner_client)
  			return TRUE
