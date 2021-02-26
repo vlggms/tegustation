@@ -18,7 +18,7 @@
 	icon_state = "hardsuit0-voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
 	inhand_icon_state = "eng_helm"
-	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 100, ACID = 30, WOUND = 10)
+	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
 	hardsuit_type = "voidtech"
 
 /obj/item/clothing/suit/space/hardsuit/voidtech
@@ -28,7 +28,7 @@
 	icon_state = "hardsuit-voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
 	inhand_icon_state = "eng_hardsuit"
-	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 100, ACID = 30, WOUND = 10)
+	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/voidtech
 	slowdown = 0.35
 
