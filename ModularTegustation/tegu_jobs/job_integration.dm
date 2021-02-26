@@ -30,6 +30,9 @@
 	if (assignment in GLOB.tegu_job_assignment)
 		return 'ModularTegustation/Teguicons/teguhud.dmi'
 
+	if (!linkedJobType || assignment == "Void Technician") // Using the global list here breaks Tegu Job's ID Card Overlays.
+		return 'ModularTegustation/Teguicons/teguhud.dmi'
+
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/mob/hud.dmi'
 
