@@ -8,7 +8,6 @@
 	selection_color = "#fff5cc"
 	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
-	tegu_spawn = /obj/effect/landmark/start/station_engineer
 
 	outfit = /datum/outfit/job/voidtech
 
