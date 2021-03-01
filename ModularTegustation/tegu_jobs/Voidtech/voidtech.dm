@@ -27,7 +27,7 @@
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	l_pocket = /obj/item/pda/engineering
-	ears = /obj/item/radio/headset/subspace
+	ears = /obj/item/radio/headset/subspace/void
 	uniform = /obj/item/clothing/under/rank/engineering/void
 	shoes = /obj/item/clothing/shoes/workboots
 	suit = /obj/item/clothing/suit/space/hardsuit/voidtech
@@ -37,4 +37,15 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/survival/engineer
 	pda_slot = ITEM_SLOT_LPOCKET
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/stack/rods/fifty)
+	backpack_contents = list(/obj/item/stack/rods/fifty)
+
+
+//Spawn Point
+/obj/effect/landmark/start/voidtech
+	name = "Void Technician"
+	icon_state = "Station Engineer"
+
+/obj/effect/landmark/start/station_engineer/Initialize()
+	. = ..()
+	var/turf/T = get_turf(src)
+	new /obj/effect/landmark/start/voidtech(T)

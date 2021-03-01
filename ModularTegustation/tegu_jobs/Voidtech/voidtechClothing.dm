@@ -5,7 +5,9 @@
 	worn_icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech.dmi'
 	icon_state = "voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
-	inhand_icon_state = "engi_suit"
+	inhand_icon_state = "void_suit"
+	lefthand_file = 'ModularTegustation/Teguicons/kirie_stuff/left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/kirie_stuff/right.dmi'
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 10)
 	resistance_flags = NONE
 
@@ -17,7 +19,9 @@
 	worn_icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech.dmi'
 	icon_state = "hardsuit0-voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
-	inhand_icon_state = "eng_helm"
+	inhand_icon_state = "void_hardsuit"
+	lefthand_file = 'ModularTegustation/Teguicons/kirie_stuff/left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/kirie_stuff/right.dmi'
 	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
 	hardsuit_type = "voidtech"
 
@@ -27,18 +31,20 @@
 	worn_icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech.dmi'
 	icon_state = "hardsuit-voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
-	inhand_icon_state = "eng_hardsuit"
+	inhand_icon_state = "void_hardsuit"
+	lefthand_file = 'ModularTegustation/Teguicons/kirie_stuff/left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/kirie_stuff/right.dmi'
 	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/voidtech
 	slowdown = 0.35
 
 
 //Special Subspace Headset
-/obj/item/radio/headset/subspace
-	name = "subspace headset"
+/obj/item/radio/headset/subspace/void
+	name = "voidtech's subspace headset"
 	desc = "A headset made with special tech in mind to explore deep space. A rarity around these parts"
 	icon_state = "subspace_headset"
-	worn_icon_state = null
+	worn_icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech.dmi'
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
 	keyslot = new /obj/item/encryptionkey/headset_void
 	subspace_transmission = FALSE
