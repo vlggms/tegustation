@@ -34,7 +34,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	deathsound = 'ModularTegustation/Tegusounds/apostle/mob/apostle_death.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/holy_revival,
 							   /datum/action/innate/megafauna_attack/fire_field,
-							   /datum/action/innate/megafauna_attack/deafening_scream)
+							   /datum/action/innate/megafauna_attack/deafening_scream,
+							   /datum/action/innate/megafauna_attack/holy_blink)
 	small_sprite_type = /datum/action/small_sprite/megafauna/tegu/angel
 	var/holy_revival_cooldown = 10 SECONDS
 	var/holy_revival_cooldown_base = 10 SECONDS
@@ -85,6 +86,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	chosen_message = "<span class='colossus'>You will now shout with all your might to shatter enemy's will.</span>"
 	chosen_attack_num = 3
 
+/datum/action/innate/megafauna_attack/holy_blink
+	name = "Holy Blink"
+	icon_icon = 'icons/effects/bubblegum.dmi'
+	button_icon_state = "smack ya one"
+	chosen_message = "<span class='colossus'>You will now blink to your target and throw away the heretics.</span>"
+	chosen_attack_num = 4
+
 /datum/action/innate/megafauna_attack/rapture
 	name = "Rapture"
 	icon_icon = 'icons/obj/storage.dmi'
@@ -93,15 +101,15 @@ GLOBAL_LIST_EMPTY(apostles)
 	chosen_attack_num = 5
 
 /mob/living/simple_animal/hostile/megafauna/apostle/AttackingTarget()
-	if(recovery_time >= world.time)
+	if("apostle" in target.faction)
 		return
-	if(ishuman(target))
-		var/mob/living/carbon/human/E = target
-		if("apostle" in E.faction)
-			return
 	. = ..()
-	if(!client && ranged && ranged_cooldown <= world.time)
-		OpenFire() // It doesn't gib people.
+
+/mob/living/simple_animal/hostile/megafauna/hierophant/devour(mob/living/L)
+	if(apostle_num < 13 && L.mind)
+		to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
+		return
+	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/OpenFire()
 	if(client)
@@ -112,6 +120,8 @@ GLOBAL_LIST_EMPTY(apostles)
 				fire_field()
 			if(3)
 				deafening_scream()
+			if(4)
+				holy_blink()
 			if(5)
 				rapture()
 		return
@@ -257,14 +267,37 @@ GLOBAL_LIST_EMPTY(apostles)
 	scream_cooldown = (world.time + scream_cooldown_base)
 	playsound(src, 'ModularTegustation/Tegusounds/apostle/mob/apostle_shout.ogg', 70, 1)
 	for(var/mob/living/carbon/C in get_hearers_in_view(6, src))
+		to_chat(C, "<span class='danger'>[src] shouts incredibly loud!</span>")
 		if("apostle" in C.faction)
 			continue
 		shake_camera(C, 1, 2)
 		C.soundbang_act(2, scream_power, 4)
-		C.jitteriness += (scream_power)
+		C.jitteriness += (scream_power * 0.5)
 		C.do_jitter_animation(jitteriness)
-		C.blur_eyes(scream_power * 0.5, 1)
+		C.blur_eyes(scream_power * 0.3, 0.6)
 		C.stuttering += (scream_power)
+
+/mob/living/simple_animal/hostile/megafauna/apostle/proc/holy_blink(target)
+	var/turf/T = get_turf(target)
+	var/turf/S = get_turf(src)
+	for(var/turf/a in range(1, S))
+		new /obj/effect/temp_visual/cult/sparks(a)
+	SLEEP_CHECK_DEATH(1)
+	for(var/turf/b in range(1, T))
+		new /obj/effect/temp_visual/cult/sparks(b)
+	SLEEP_CHECK_DEATH(3)
+	for(var/turf/b in range(2, T))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(b)
+		if(ishuman(b))
+			var/mob/living/carbon/human/H = b
+			if(!("apostle" in H.faction))
+				to_chat(H, "<span class='userdanger'>A sudden wave of wind sends you flying!</span>")
+				var/turf/thrownat = get_ranged_target_turf_direct(src, H, 8, rand(-10, 10))
+				H.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
+				L.apply_damage(10, BRUTE)
+				shake_camera(H, 2, 1)
+	playsound(T, 'ModularTegustation/Tegusounds/apostle/antagonist/spear_dash.ogg', 100, 1)
+	forceMove(T)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/rapture()
 	rapture_skill.Remove(src)
