@@ -101,11 +101,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	chosen_attack_num = 5
 
 /mob/living/simple_animal/hostile/megafauna/apostle/AttackingTarget()
-	if("apostle" in target.faction)
-		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if("apostle" in L.faction)
+			return
 	. = ..()
 
-/mob/living/simple_animal/hostile/megafauna/hierophant/devour(mob/living/L)
+/mob/living/simple_animal/hostile/megafauna/apostle/devour(mob/living/L)
 	if(apostle_num < 13 && L.mind)
 		to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
 		return
