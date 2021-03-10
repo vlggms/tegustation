@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/devour(mob/living/L)
-	if(apostle_num < 13 && L.mind)
+	if(apostle_num < 13 && L.key)
 		to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
 		return
 	. = ..()
@@ -159,14 +159,17 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(ishuman(i))
 			var/mob/living/carbon/human/H = i
 			if(!("apostle" in H.faction))
-				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
+				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.key)
+					H.grab_ghost(force = TRUE)
+					if(!H.client) // If there is nobody controlling it - offer to ghosts.
+						if(!(offer_control(H))) // If nobody takes the mob - nothing happens.
+							continue
 					apostle_cooldown = (world.time + apostle_cooldown_base)
 					H.set_species(/datum/species/human, 1)
 					H.regenerate_limbs()
 					H.regenerate_organs()
 					H.dna.species.GiveSpeciesFlight(H)
 					H.revive(full_heal = TRUE, admin_revive = FALSE)
-					H.grab_ghost(force = TRUE)
 					// Giving the fancy stuff to new apostle
 					H.faction |= "apostle"
 					ADD_TRAIT(H, TRAIT_BOMBIMMUNE, SPECIES_TRAIT)
@@ -175,8 +178,6 @@ GLOBAL_LIST_EMPTY(apostles)
 					ADD_TRAIT(H, TRAIT_RESISTLOWPRESSURE, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_RESISTCOLD, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_NODISMEMBER, SPECIES_TRAIT)
-					if(!H.client) // If there is nobody controlling it - offer to ghosts.
-						offer_control(H)
 					to_chat(H, "<span class='notice'>You are protected by the holy light!</span>")
 					if(apostle_num < 12)
 						H.set_light_color(COLOR_VERY_SOFT_YELLOW)
@@ -186,7 +187,7 @@ GLOBAL_LIST_EMPTY(apostles)
 						H.overlays_standing[HALO_LAYER] = apostle_halo
 						H.apply_overlay(HALO_LAYER)
 					SLEEP_CHECK_DEATH(20)
-					// Executing rupture scenario
+					// Executing rapture scenario
 					switch(apostle_num)
 						if(1)
 							apostle_line = "And I tell you, you are [H.real_name] the apostle, and on this rock I will build my church, and the gates of hell shall not prevail against it."
@@ -229,7 +230,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					maxHealth += 300
 					health += 400 // Heals
 					holy_revival_damage += 2 // More damage and healing from AOE spell.
-					scream_power += 2.5 // Deafen them all. Destroy their ears.
+					scream_power += 2 // Deafen them all. Destroy their ears.
 					light_range += 1 // More light, because why not.
 				else
 					playsound(H.loc, 'sound/machines/clockcult/ark_damage.ogg', 50, TRUE, -1)
@@ -292,6 +293,9 @@ GLOBAL_LIST_EMPTY(apostles)
 		C.do_jitter_animation(jitteriness)
 		C.blur_eyes(scream_power * 0.3, 0.6)
 		C.stuttering += (scream_power)
+	if(apostle_num == 666)
+		for(var/obj/machinery/power/apc/A in range(6, src))
+			A.overload_lighting()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/holy_blink(target)
 	if(blink_cooldown > world.time)
@@ -301,10 +305,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/turf/S = get_turf(src)
 	for(var/turf/a in range(1, S))
 		new /obj/effect/temp_visual/cult/sparks(a)
-	SLEEP_CHECK_DEATH(2)
-	for(var/turf/b in range(1, T))
+	SLEEP_CHECK_DEATH(2.5)
+	for(var/turf/b in range(2, T))
 		new /obj/effect/temp_visual/cult/sparks(b)
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(5)
 	src.visible_message("<span class='danger'>[src] blinks away!</span>")
 	for(var/turf/b in range(2, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(b)
@@ -320,6 +324,7 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/rapture()
 	rapture_skill.Remove(src)
+	apostle_num = 666 // This is for special stuff in attacks
 	chosen_attack = 1 // To avoid rapture spam
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
 	holy_revival_cooldown_base = 8 SECONDS
@@ -333,7 +338,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(!A.owner || !ishuman(A.owner.current))
 			continue
 		var/mob/living/carbon/H = A.owner.current
-		if(!H.client) // If there is nobody controlling it - offer to ghosts.
+		if(!H.key) // If there is nobody controlling it - offer to ghosts.
 			offer_control(H)
 		A.rapture()
 		H.revive(full_heal = TRUE, admin_revive = FALSE)
