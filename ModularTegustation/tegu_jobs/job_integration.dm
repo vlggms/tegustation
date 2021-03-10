@@ -14,13 +14,10 @@
 
 // Used in overwrites to assign the ID card's icon.
 /obj/item/card/id/proc/return_icon_job()
-	if (!linkedJobType || assignment == "Deputy") // Using the global list here breaks Tegu Job's ID Card Overlays.
+	if (assignment in GLOB.tegu_job_cards)
 		return 'ModularTegustation/Teguicons/cards.dmi'
 
-	if (!linkedJobType || assignment == "Void Technician") // Using the global list here breaks Tegu Job's ID Card Overlays.
-		return 'ModularTegustation/Teguicons/cards.dmi'
-
-	if (!linkedJobType || assignment == "Unassigned")
+	else if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/obj/card.dmi'
 
 	return initial(linkedJobType.id_icon)
@@ -30,10 +27,7 @@
 	if (assignment in GLOB.tegu_job_assignment)
 		return 'ModularTegustation/Teguicons/teguhud.dmi'
 
-	if (!linkedJobType || assignment == "Void Technician") // Using the global list here breaks Tegu Job's ID Card Overlays.
-		return 'ModularTegustation/Teguicons/teguhud.dmi'
-
-	if (!linkedJobType || assignment == "Unassigned")
+	else if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/mob/hud.dmi'
 
 	return initial(linkedJobType.hud_icon)
