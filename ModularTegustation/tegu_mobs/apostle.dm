@@ -48,6 +48,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/scream_power = 25
 	var/apostle_cooldown = 20 SECONDS //Cooldown for conversion and revival of non-apostles.
 	var/apostle_cooldown_base = 20 SECONDS
+	var/blink_cooldown = 10 SECONDS
+	var/blink_cooldown_base = 10 SECONDS
 	var/apostle_num = 1 //Number of apostles. Used for revival and finale.
 	var/apostle_line
 	var/apostle_prev //Used for previous apostle's name, to reference in next line.
@@ -155,7 +157,6 @@ GLOBAL_LIST_EMPTY(apostles)
 					H.dna.species.GiveSpeciesFlight(H)
 					H.revive(full_heal = TRUE, admin_revive = FALSE)
 					H.grab_ghost(force = TRUE)
-					to_chat(H, "<span class='notice'>You feel protected by holy light!</span>")
 					// Giving the fancy stuff to new apostle
 					H.faction |= "apostle"
 					ADD_TRAIT(H, TRAIT_BOMBIMMUNE, SPECIES_TRAIT)
@@ -164,6 +165,9 @@ GLOBAL_LIST_EMPTY(apostles)
 					ADD_TRAIT(H, TRAIT_RESISTLOWPRESSURE, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_RESISTCOLD, SPECIES_TRAIT)
 					ADD_TRAIT(H, TRAIT_NODISMEMBER, SPECIES_TRAIT)
+					if(!H.client) // If there is nobody controlling it - offer to ghosts.
+						offer_control(H)
+					to_chat(H, "<span class='notice'>You are protected by the holy light!</span>")
 					if(apostle_num < 12)
 						H.set_light_color(COLOR_VERY_SOFT_YELLOW)
 						H.set_light(4)
@@ -280,14 +284,20 @@ GLOBAL_LIST_EMPTY(apostles)
 		C.stuttering += (scream_power)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/holy_blink(target)
-	var/turf/T = get_turf(target)
+	if(blink_cooldown > world.time)
+		return
+	blink_cooldown = (world.time + blink_cooldown_base)
+	var/turf/T = get_step(target, pick(1,2,4,8))
 	var/turf/S = get_turf(src)
+	if(T.density)
+		T = get_turf(target)
 	for(var/turf/a in range(1, S))
 		new /obj/effect/temp_visual/cult/sparks(a)
-	SLEEP_CHECK_DEATH(1)
+	SLEEP_CHECK_DEATH(2)
 	for(var/turf/b in range(1, T))
 		new /obj/effect/temp_visual/cult/sparks(b)
 	SLEEP_CHECK_DEATH(3)
+	src.visible_message("<span class='danger'>[src] blinks away!</span>")
 	for(var/turf/b in range(2, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(b)
 		if(ishuman(b))
