@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					H.grab_ghost(force = TRUE)
 					to_chat(H, "<span class='notice'>The holy light compels you to live!</span>")
 				else
-					M.adjustStaminaLoss(200)
+					H.adjustStaminaLoss(200)
 					H.adjustBruteLoss(holy_revival_damage)
 					H.adjustFireLoss(holy_revival_damage)
 					H.regenerate_limbs()
