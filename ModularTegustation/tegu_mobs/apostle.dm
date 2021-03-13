@@ -48,8 +48,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/scream_power = 25
 	var/apostle_cooldown = 20 SECONDS //Cooldown for conversion and revival of non-apostles.
 	var/apostle_cooldown_base = 20 SECONDS
-	var/blink_cooldown = 10 SECONDS
-	var/blink_cooldown_base = 10 SECONDS
+	var/blink_cooldown = 7 SECONDS
+	var/blink_cooldown_base = 7 SECONDS
 	var/apostle_num = 1 //Number of apostles. Used for revival and finale.
 	var/apostle_line
 	var/apostle_prev //Used for previous apostle's name, to reference in next line.
@@ -162,10 +162,10 @@ GLOBAL_LIST_EMPTY(apostles)
 				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.key)
 					H.grab_ghost(force = TRUE)
 					if(!H.client) // If there is nobody controlling it - offer to ghosts.
-						if(!(offer_control(H))) // If nobody takes the mob - nothing happens.
+						if(offer_control(H) == FALSE) // If nobody takes the mob - nothing happens.
 							continue
 					apostle_cooldown = (world.time + apostle_cooldown_base)
-					H.set_species(/datum/species/human, 1)
+					// H.set_species(/datum/species/human, 1)
 					H.regenerate_limbs()
 					H.regenerate_organs()
 					H.dna.species.GiveSpeciesFlight(H)
@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					melee_damage_lower += 2
 					melee_damage_upper += 2
 					maxHealth += 300
-					health += 400 // Heals
+					health += 300
 					holy_revival_damage += 2 // More damage and healing from AOE spell.
 					scream_power += 2 // Deafen them all. Destroy their ears.
 					light_range += 1 // More light, because why not.
@@ -247,7 +247,9 @@ GLOBAL_LIST_EMPTY(apostles)
 					H.grab_ghost(force = TRUE)
 					to_chat(H, "<span class='notice'>The holy light compels you to live!</span>")
 				else
-					H.heal_bodypart_damage(holy_revival_damage,holy_revival_damage, 200) // Fully heals stamina damage, instantly.
+					M.adjustStaminaLoss(200)
+					H.adjustBruteLoss(holy_revival_damage)
+					H.adjustFireLoss(holy_revival_damage)
 					H.regenerate_limbs()
 					H.regenerate_organs()
 					to_chat(H, "<span class='notice'>The holy light heals you!</span>")
@@ -263,7 +265,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		for(var/turf/open/T in fire_zone)
 			new /obj/effect/temp_visual/cult/turf/floor(T)
-		SLEEP_CHECK_DEATH(2)
+		SLEEP_CHECK_DEATH(1.5)
 	SLEEP_CHECK_DEATH(3)
 	for(var/i = 1 to field_range)
 		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
@@ -274,7 +276,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			for(var/mob/living/L in T.contents)
 				if("apostle" in L.faction)
 					continue
-				L.adjustFireLoss(20)
+				L.adjustFireLoss(15)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire field!</span>")
 		SLEEP_CHECK_DEATH(1.5)
 
@@ -294,8 +296,11 @@ GLOBAL_LIST_EMPTY(apostles)
 		C.blur_eyes(scream_power * 0.3, 0.6)
 		C.stuttering += (scream_power)
 	if(apostle_num == 666)
-		for(var/obj/machinery/power/apc/A in range(6, src))
-			A.overload_lighting()
+		for(var/obj/machinery/light/L in range(6, src)) // A copy from apc.dm
+			L.on = TRUE
+			L.break_light_tube()
+			L.on = FALSE
+			stoplag()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/holy_blink(target)
 	if(blink_cooldown > world.time)
@@ -306,20 +311,20 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/turf/a in range(1, S))
 		new /obj/effect/temp_visual/cult/sparks(a)
 	SLEEP_CHECK_DEATH(2.5)
-	for(var/turf/b in range(2, T))
+	for(var/turf/b in range(1, T))
 		new /obj/effect/temp_visual/cult/sparks(b)
 	SLEEP_CHECK_DEATH(5)
 	src.visible_message("<span class='danger'>[src] blinks away!</span>")
-	for(var/turf/b in range(2, T))
+	for(var/turf/b in range(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(b)
 		for(var/mob/living/H in b)
 			if(!("apostle" in H.faction))
 				to_chat(H, "<span class='userdanger'>A sudden wave of wind sends you flying!</span>")
 				var/turf/thrownat = get_ranged_target_turf_direct(src, H, 8, rand(-10, 10))
 				H.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
-				H.apply_damage(15, BRUTE)
+				H.apply_damage(10, BRUTE)
 				shake_camera(H, 2, 1)
-	playsound(T, 'ModularTegustation/Tegusounds/apostle/antagonist/spear_dash.ogg', 100, 1)
+	playsound(T, 'sound/effects/bamf.ogg', 100, 1)
 	forceMove(T)
 
 /mob/living/simple_animal/hostile/megafauna/apostle/proc/rapture()
@@ -354,7 +359,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			SLEEP_CHECK_DEATH(3)
 			H.forceMove(main_loc)
 		if(A.number == 12)
-			SLEEP_CHECK_DEATH(30)
+			SLEEP_CHECK_DEATH(26)
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z && M.client)
 				var/mod = "st"
