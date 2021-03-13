@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			if(!("apostle" in H.faction))
 				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
 					var/mob/dead/observer/ghost = H.get_ghost(TRUE, TRUE)
-					if(!H.ghost?.can_reenter_corpse) // If there is nobody able to control it - skip.
+					if(!ghost?.can_reenter_corpse) // If there is nobody able to control it - skip.
 						continue
 					H.grab_ghost(force = TRUE)
 					apostle_cooldown = (world.time + apostle_cooldown_base)
