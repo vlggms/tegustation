@@ -159,11 +159,10 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(ishuman(i))
 			var/mob/living/carbon/human/H = i
 			if(!("apostle" in H.faction))
-				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.key)
+				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
+					if(!H.ghost?.can_reenter_corpse) // If there is nobody able to control it - skip.
+						continue
 					H.grab_ghost(force = TRUE)
-					if(!H.client) // If there is nobody controlling it - offer to ghosts.
-						if(offer_control(H) == FALSE) // If nobody takes the mob - nothing happens.
-							continue
 					apostle_cooldown = (world.time + apostle_cooldown_base)
 					// H.set_species(/datum/species/human, 1)
 					H.regenerate_limbs()
