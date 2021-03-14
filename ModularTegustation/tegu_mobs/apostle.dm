@@ -110,9 +110,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/devour(mob/living/L)
-	if(apostle_num < 13 && L.client)
+	if(apostle_num < 13)
 		var/mob/dead/observer/ghost = L.get_ghost(TRUE, TRUE)
-		if(ghost?.can_reenter_corpse) // If ghost is able to reenter - we can't gib the body.
+		if(L.client || ghost?.can_reenter_corpse) // If ghost is able to reenter - we can't gib the body.
 			to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
 			return
 	. = ..()
