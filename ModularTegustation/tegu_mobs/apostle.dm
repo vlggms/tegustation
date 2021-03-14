@@ -110,9 +110,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/devour(mob/living/L)
-	if(apostle_num < 13 && L.key)
-		to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
-		return
+	if(apostle_num < 13 && L.client)
+		var/mob/dead/observer/ghost = L.get_ghost(TRUE, TRUE)
+		if(ghost?.can_reenter_corpse) // If ghost is able to reenter - we can't gib the body.
+			to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
+			return
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/apostle/OpenFire()
@@ -160,10 +162,12 @@ GLOBAL_LIST_EMPTY(apostles)
 			var/mob/living/carbon/human/H = i
 			if(!("apostle" in H.faction))
 				if(apostle_num < 13 && H.stat == DEAD && apostle_cooldown <= world.time && H.mind)
-					var/mob/dead/observer/ghost = H.get_ghost(TRUE, TRUE)
-					if(!ghost?.can_reenter_corpse) // If there is nobody able to control it - skip.
-						continue
-					H.grab_ghost(force = TRUE)
+					if(!H.client)
+						var/mob/dead/observer/ghost = H.get_ghost(TRUE, TRUE)
+						if(!ghost?.can_reenter_corpse) // If there is nobody able to control it - skip.
+							continue
+						else // If it can reenter - do it.
+							H.grab_ghost(force = TRUE)
 					apostle_cooldown = (world.time + apostle_cooldown_base)
 					// H.set_species(/datum/species/human, 1)
 					H.regenerate_limbs()
@@ -343,11 +347,14 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(!A.owner || !ishuman(A.owner.current))
 			continue
 		var/mob/living/carbon/H = A.owner.current
-		if(!H.key) // If there is nobody controlling it - offer to ghosts.
-			offer_control(H)
+		if(!H.client)
+			var/mob/dead/observer/ghost = H.get_ghost(TRUE, TRUE)
+			if(!ghost?.can_reenter_corpse) // If there is nobody able to control it - offer to ghosts.
+				offer_control(H)
+			else
+				H.grab_ghost(force = TRUE)
 		A.rapture()
 		H.revive(full_heal = TRUE, admin_revive = FALSE)
-		H.grab_ghost(force = TRUE)
 		shake_camera(H, 1, 1)
 		if(A.number < 12)
 			var/turf/main_loc = get_step(src, pick(0,1,2,4,5,6,8,9,10))
