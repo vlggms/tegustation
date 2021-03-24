@@ -76,7 +76,7 @@
 
 /datum/action/innate/cult/mastervote/IsAvailable()
 	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	if(!C || C.cult_team.cult_vote_called || !ishuman(owner))
+	if(!C?.cult_team || C.cult_team.cult_vote_called || !ishuman(owner))
 		return FALSE
 	return ..()
 
@@ -84,6 +84,9 @@
 	var/choice = alert(owner, "The mantle of leadership is heavy. Success in this role requires an expert level of communication and experience. Are you sure?",, "Yes", "No")
 	if(choice == "Yes" && IsAvailable())
 		var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
+		if(!C.cult_team)
+			to_chat(owner, "<span class='cult bold'>Do you not alreaady lead yourself?</span>")
+			return
 		pollCultists(owner,C.cult_team)
 
 /proc/pollCultists(mob/living/Nominee,datum/team/cult/team) //Cult Master Poll
@@ -152,6 +155,9 @@
 /datum/action/innate/cult/master/finalreck/Activate()
 	var/datum/antagonist/cult/antag = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!antag)
+		return
+	if(!antag.cult_team)
+		to_chat(owner, "<span class='cult bold'>You have no team. You are alone.</span>")
 		return
 	var/place = get_area(owner)
 	var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
@@ -268,7 +274,6 @@
 		return FALSE
 
 	var/datum/antagonist/cult/C = caller.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-
 	if(target in view(7, get_turf(ranged_ability_user)))
 		if(C.cult_team.blood_target)
 			to_chat(ranged_ability_user, "<span class='cult'>The cult has already designated a target!</span>")
@@ -337,8 +342,11 @@
 
 /datum/action/innate/cult/ghostmark/Activate()
 	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
+	if(!C.cult_team)
+		to_chat(owner, "<span class='cultbold'>You are alone. You do not have a team.</span>")
+		return
 	if(C.cult_team.blood_target)
-		if(cooldown>world.time)
+		if(cooldown > world.time)
 			reset_blood_target(C.cult_team)
 			to_chat(owner, "<span class='cultbold'>You have cleared the cult's blood target!</span>")
 			deltimer(C.cult_team.blood_target_reset_timer)
@@ -346,7 +354,7 @@
 		else
 			to_chat(owner, "<span class='cultbold'>The cult has already designated a target!</span>")
 			return
-	if(cooldown>world.time)
+	if(cooldown > world.time)
 		to_chat(owner, "<span class='cultbold'>You aren't ready to place another blood mark yet!</span>")
 		return
 	target = owner.orbiting?.parent || get_turf(owner)

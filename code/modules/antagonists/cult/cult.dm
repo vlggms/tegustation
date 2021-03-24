@@ -15,15 +15,27 @@
 	antag_hud_type = ANTAG_HUD_CULT
 	antag_hud_name = "cult"
 	var/ignore_implant = FALSE
+	var/make_team = TRUE
 	var/give_equipment = FALSE
 	var/datum/team/cult/cult_team
+	var/neutered = FALSE //can not use round ending, gibbing, converting, or similar things with unmatched round impact
+	var/ignore_eligibility_checks = FALSE
+	var/ignore_holy_water = FALSE
 
+/datum/antagonist/cult/neutered
+	neutered = TRUE
+
+/datum/antagonist/cult/neutered/traitor
+	ignore_eligibility_checks = TRUE
+	ignore_holy_water = TRUE
+	ignore_holy_water = TRUE
+	make_team = FALSE
 
 /datum/antagonist/cult/get_team()
 	return cult_team
 
 /datum/antagonist/cult/create_team(datum/team/cult/new_team)
-	if(!new_team)
+	if(!new_team && make_team)
 		//todo remove this and allow admin buttons to create more than one cult
 		for(var/datum/antagonist/cult/H in GLOB.antagonists)
 			if(!H.owner)
@@ -34,12 +46,12 @@
 		cult_team = new /datum/team/cult
 		cult_team.setup_objectives()
 		return
-	if(!istype(new_team))
+	if(make_team && !istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
 	cult_team = new_team
 
 /datum/antagonist/cult/proc/add_objectives()
-	objectives |= cult_team.objectives
+	objectives |= cult_team?.objectives
 
 /datum/antagonist/cult/Destroy()
 	QDEL_NULL(communion)
@@ -48,7 +60,7 @@
 
 /datum/antagonist/cult/can_be_owned(datum/mind/new_owner)
 	. = ..()
-	if(. && !ignore_implant)
+	if(. && !ignore_implant && !ignore_eligibility_checks)
 		. = is_convertable_to_cult(new_owner.current,cult_team)
 
 /datum/antagonist/cult/greet()
@@ -107,13 +119,13 @@
 	handle_clown_mutation(current, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	current.faction |= "cult"
 	current.grant_language(/datum/language/narsie, TRUE, TRUE, LANGUAGE_CULTIST)
-	if(!cult_team.cult_master)
+	if(!cult_team?.cult_master)
 		vote.Grant(current)
 	communion.Grant(current)
 	if(ishuman(current))
 		magic.Grant(current)
 	current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
-	if(cult_team.cult_risen)
+	if(cult_team?.cult_risen)
 		cult_team.rise(current)
 		if(cult_team.cult_ascendent)
 			cult_team.ascend(current)
@@ -214,7 +226,7 @@
 	throwing.Grant(current)
 	current.update_action_buttons_icon()
 	current.apply_status_effect(/datum/status_effect/cult_master)
-	if(cult_team.cult_risen)
+	if(cult_team?.cult_risen)
 		cult_team.rise(current)
 		if(cult_team.cult_ascendent)
 			cult_team.ascend(current)

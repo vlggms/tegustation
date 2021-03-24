@@ -252,7 +252,7 @@
 		data = list("misc" = 1)
 	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
-	if(iscultist(M))
+	if(iscultist(M, FALSE, TRUE))
 		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
 			to_chat(M, "<span class='cultlarge'>Your blood rites falter as holy water scours your body!</span>")
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
@@ -270,7 +270,7 @@
 				to_chat(M, "<span class='cultlarge'>[pick("Your blood is your bond - you are nothing without it", "Do not forget your place", \
 				"All that power, and you still fail?", "If you cannot scour this poison, I shall scour your meager life!")].</span>")
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
-		if(iscultist(M))
+		if(iscultist(M, FALSE, TRUE))
 			SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
 		M.jitteriness = 0
 		M.stuttering = 0
