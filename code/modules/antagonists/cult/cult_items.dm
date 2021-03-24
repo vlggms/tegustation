@@ -6,7 +6,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/tome/traitor
+/obj/item/tome/traitor //tegu edit start
 	var/spent = FALSE
 
 /obj/item/tome/traitor/check_uplink_validity()
@@ -19,7 +19,7 @@
 			spent = TRUE
 		else
 			to_chat(user, "<span class='userdanger'>[src] falls dark. It appears you weren't worthy.</span>")
-		return ..()
+		return ..() //Tegu edit end
 
 /obj/item/melee/cultblade/dagger
 	name = "ritual dagger"
@@ -483,7 +483,7 @@
 	var/static/totalcurses = 0
 
 /obj/item/shuttle_curse/attack_self(mob/living/user)
-	if(!iscultist(user, TRUE))
+	if(!iscultist(user, TRUE))//tegu edit
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(100)
 		to_chat(user, "<span class='warning'>A powerful force shoves you away from [src]!</span>")

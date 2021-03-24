@@ -40,7 +40,7 @@
 
 /obj/item/soulstone/pickup(mob/living/user)
 	..()
-	if(!iscultist(user, TRUE) && !iswizard(user) && !usability)
+	if(!iscultist(user, TRUE) && !iswizard(user) && !usability) //tegu edit
 		to_chat(user, "<span class='danger'>An overwhelming feeling of dread comes over you as you pick up [src]. It would be wise to be rid of this quickly.</span>")
 
 /obj/item/soulstone/examine(mob/user)
@@ -70,7 +70,7 @@
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
 /obj/item/soulstone/attack(mob/living/carbon/human/M, mob/living/user)
-	if(!iscultist(user, TRUE) && !iswizard(user) && !usability)
+	if(!iscultist(user, TRUE) && !iswizard(user) && !usability) //tegu edit
 		user.Unconscious(100)
 		to_chat(user, "<span class='userdanger'>Your body is wracked with debilitating pain!</span>")
 		return
@@ -94,7 +94,7 @@
 /obj/item/soulstone/attack_self(mob/living/user)
 	if(!in_range(src, user))
 		return
-	if(!iscultist(user, TRUE) && !iswizard(user) && !usability)
+	if(!iscultist(user, TRUE) && !iswizard(user) && !usability) //tegu edit
 		user.Unconscious(100)
 		to_chat(user, "<span class='userdanger'>Your body is wracked with debilitating pain!</span>")
 		return
@@ -169,7 +169,7 @@
 /obj/structure/constructshell/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/soulstone))
 		var/obj/item/soulstone/SS = O
-		if(!iscultist(user, TRUE) && !iswizard(user) && !SS.purified)
+		if(!iscultist(user, TRUE) && !iswizard(user) && !SS.purified) //tegu edit
 			to_chat(user, "<span class='danger'>An overwhelming feeling of dread comes over you as you attempt to place [SS] into the shell. It would be wise to be rid of this quickly.</span>")
 			user.Dizzy(30)
 			return

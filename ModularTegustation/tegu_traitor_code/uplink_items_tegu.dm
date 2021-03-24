@@ -135,6 +135,14 @@
 	restricted_roles = list("Gorlex Infiltrator")
 	cant_discount = FALSE
 
+/datum/uplink_item/role_restricted/arcane_tome
+	name = "Arcane Tome"
+	desc = "A replica of a Nar'sian tome. This is probably a bad idea.."
+	item = /obj/item/tome/traitor
+	cost = 20
+	refundable = TRUE
+	restricted_roles = list("Chaplain", "Curator")
+
 /datum/uplink_item/role_restricted/flukeop
 	name = "Nuclear Operative Bundle"
 	desc = "A starting kit for wannabe nuclear operatives. \
