@@ -317,7 +317,7 @@
 	damage = 30
 	damage_type = BRUTE
 	knockdown = 50
-	hitsound = 'sound/weapons/punch3.ogg'
+	hitsound = 'sound/weapons/slap.ogg'
 	trigger_range = 0
 	check_holy = TRUE
 	ignored_factions = list("cult")

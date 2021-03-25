@@ -195,7 +195,7 @@
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
-	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	playsound(D, 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	return TRUE
 
 /datum/martial_art/velvetfu/grab_act(mob/living/A, mob/living/D) // No grabbing in Velvet-Fu!
@@ -218,7 +218,7 @@
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
-	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	playsound(D, 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	return TRUE
 
 /datum/martial_art/velvetfu/disarm_act(mob/living/A, mob/living/D) // No shoving in Velvet-Fu!
@@ -241,7 +241,7 @@
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
-	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	playsound(D, 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	return TRUE
 
 

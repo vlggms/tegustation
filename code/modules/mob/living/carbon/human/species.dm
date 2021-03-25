@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///Punch-specific attack verb.
 	var/attack_verb = "punch"
 	///
-	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
+	var/sound/attack_sound = 'sound/weapons/slap.ogg'
 	var/sound/miss_sound = 'sound/weapons/punchmiss.ogg'
 
 	///What gas does this species breathe? Used by suffocation screen alerts, most of actual gas breathing is handled by mutantlungs. See [life.dm][code/modules/mob/living/carbon/human/life.dm]

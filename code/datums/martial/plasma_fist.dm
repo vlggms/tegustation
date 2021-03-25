@@ -36,7 +36,7 @@
 
 /datum/martial_art/plasma_fist/proc/Tornado(mob/living/A, mob/living/D)
 	A.say("TORNADO SWEEP!", forced="plasma fist")
-	dance_rotate(A, CALLBACK(GLOBAL_PROC, .proc/playsound, A.loc, 'sound/weapons/punch1.ogg', 15, TRUE, -1))
+	dance_rotate(A, CALLBACK(GLOBAL_PROC, .proc/playsound, A.loc, 'sound/weapons/slap.ogg', 15, TRUE, -1))
 	var/obj/effect/proc_holder/spell/aoe_turf/repulse/R = new(null)
 	var/list/turfs = list()
 	for(var/turf/T in range(1,A))
@@ -49,7 +49,7 @@
 	D.visible_message("<span class='danger'>[A] hits [D] with Plasma Punch!</span>", \
 					"<span class='userdanger'>You're hit with a Plasma Punch by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", null, A)
 	to_chat(A, "<span class='danger'>You hit [D] with Plasma Punch!</span>")
-	playsound(D.loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	playsound(D.loc, 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	D.throw_at(throw_target, 200, 4,A)
 	A.say("HYAH!", forced="plasma fist")
@@ -60,7 +60,7 @@
 	var/hasclient = D.client ? TRUE : FALSE
 
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-	playsound(D.loc, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	playsound(D.loc, 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	A.say("PLASMA FIST!", forced="plasma fist")
 	D.visible_message("<span class='danger'>[A] hits [D] with THE PLASMA FIST TECHNIQUE!</span>", \
 					"<span class='userdanger'>You're suddenly hit with THE PLASMA FIST TECHNIQUE by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", null, A)
@@ -110,7 +110,7 @@
 	A.apply_damage(rand(50,70), BRUTE)
 
 	addtimer(CALLBACK(src,.proc/Apotheosis_end, A), 6 SECONDS)
-	playsound(boomspot, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+	playsound(boomspot, 'sound/weapons/slap.ogg', 50, TRUE, -1)
 	explosion(boomspot,plasma_power,plasma_power*2,plasma_power*4,ignorecap = TRUE)
 	plasma_power = 1 //just in case there is any clever way to cause it to happen again
 

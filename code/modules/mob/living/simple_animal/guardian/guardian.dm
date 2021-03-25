@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	is_flying_animal = TRUE // Immunity to chasms and landmines, etc.
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = INFINITY

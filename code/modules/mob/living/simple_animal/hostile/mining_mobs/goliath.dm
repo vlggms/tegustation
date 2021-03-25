@@ -25,7 +25,7 @@
 	melee_damage_upper = 25
 	attack_verb_continuous = "pulverizes"
 	attack_verb_simple = "pulverize"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	throw_message = "does nothing to the rocky hide of the"
 	vision_range = 5
 	aggro_vision_range = 9

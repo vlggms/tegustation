@@ -21,7 +21,7 @@
 	melee_damage_upper = 12
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS
 	faction = list("plants")
 

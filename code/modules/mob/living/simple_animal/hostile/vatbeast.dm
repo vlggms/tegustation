@@ -19,7 +19,7 @@
 	melee_damage_upper = 25
 	obj_damage = 40
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	attack_sound = 'sound/weapons/punch3.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	attack_verb_continuous = "slaps"
 	attack_verb_simple = "slap"
 	food_type = list(/obj/item/food/fries, /obj/item/food/cheesyfries, /obj/item/food/cornchips, /obj/item/food/carrotfries)

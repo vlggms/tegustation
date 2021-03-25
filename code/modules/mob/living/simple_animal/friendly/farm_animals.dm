@@ -24,7 +24,7 @@
 	attack_same = 1
 	attack_verb_continuous = "kicks"
 	attack_verb_simple = "kick"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	health = 40
 	maxHealth = 40
 	minbodytemp = 180
@@ -134,7 +134,7 @@
 	response_harm_simple = "kick"
 	attack_verb_continuous = "kicks"
 	attack_verb_simple = "kick"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	health = 50
 	maxHealth = 50
 	var/obj/item/udder/udder = null
@@ -439,7 +439,7 @@
 	response_harm_simple = "kick"
 	attack_verb_continuous = "bucks"
 	attack_verb_simple = "buck"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/slap.ogg'
 	health = 75
 	maxHealth = 75
 	blood_volume = BLOOD_VOLUME_NORMAL

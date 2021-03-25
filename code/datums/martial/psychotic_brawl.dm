@@ -46,7 +46,7 @@
 			D.visible_message("<span class='danger'>[A] [atk_verb]s [D]!</span>", \
 							"<span class='userdanger'>You're [atk_verb]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", null, A)
 			to_chat(A, "<span class='danger'>You [atk_verb] [D]!</span>")
-			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 40, TRUE, -1)
+			playsound(get_turf(D), 'sound/weapons/slap.ogg', 40, TRUE, -1)
 			D.apply_damage(rand(5,10), A.get_attack_type(), BODY_ZONE_HEAD)
 			A.apply_damage(rand(5,10), A.get_attack_type(), BODY_ZONE_HEAD)
 			if (iscarbon(D))

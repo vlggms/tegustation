@@ -6,7 +6,7 @@
 	mecha_attacker.do_attack_animation(src)
 	switch(mecha_attacker.damtype)
 		if(BRUTE)
-			playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
+			playsound(src, 'sound/weapons/slap.ogg', 50, TRUE)
 			mecha_attacker.visible_message("<span class='danger'>[mecha_attacker.name] hits [src]!</span>", \
 							"<span class='danger'>You hit [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 			if(prob(hardness + mecha_attacker.force) && mecha_attacker.force > 20)
@@ -30,7 +30,7 @@
 	else
 		switch(mecha_attacker.damtype)
 			if(BRUTE)
-				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
+				playsound(src, 'sound/weapons/slap.ogg', 50, TRUE)
 			if(BURN)
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 			if(TOX)
@@ -58,7 +58,7 @@
 			if(BRUTE)
 				Unconscious(20)
 				take_overall_damage(rand(mecha_attacker.force/2, mecha_attacker.force))
-				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
+				playsound(src, 'sound/weapons/slap.ogg', 50, TRUE)
 			if(BURN)
 				take_overall_damage(0, rand(mecha_attacker.force * 0.5, mecha_attacker.force))
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
@@ -97,7 +97,7 @@
 					else if(mecha_attacker.force > 20 && !IsKnockdown()) // lightweight mechas like gygax
 						Knockdown(40)
 					update |= temp.receive_damage(dmg, 0)
-					playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
+					playsound(src, 'sound/weapons/slap.ogg', 50, TRUE)
 				if(FIRE)
 					update |= temp.receive_damage(0, dmg)
 					playsound(src, 'sound/items/welder.ogg', 50, TRUE)
