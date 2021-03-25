@@ -59,6 +59,7 @@
 
 	loot = list(
 				/obj/item/gun/ballistic/automatic/pistol = 8,
+				/obj/item/gun/magic/staff/honk = 7,
 				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
 				/obj/item/gun/ballistic/automatic/pistol/deagle,
 				/obj/item/gun/ballistic/revolver/mateba
@@ -66,6 +67,7 @@
 
 /obj/effect/spawner/lootdrop/armory_contraband/metastation
 	loot = list(/obj/item/gun/ballistic/automatic/pistol = 5,
+				/obj/item/gun/magic/staff/honk = 7,
 				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
 				/obj/item/gun/ballistic/automatic/pistol/deagle,
 				/obj/item/storage/box/syndie_kit/throwing_weapons = 3,
@@ -73,6 +75,7 @@
 
 /obj/effect/spawner/lootdrop/armory_contraband/donutstation
 	loot = list(/obj/item/grenade/clusterbuster/teargas = 5,
+				/obj/item/gun/magic/staff/honk = 7,
 				/obj/item/gun/ballistic/shotgun/automatic/combat = 5,
 				/obj/item/bikehorn/golden,
 				/obj/item/grenade/clusterbuster,
@@ -198,6 +201,7 @@
 /obj/effect/spawner/lootdrop/grille_or_trash
 	name = "maint grille or trash spawner"
 	loot = list(/obj/structure/grille = 5,
+			/obj/item/food/grown/banana = 3,
 			/obj/item/cigbutt = 1,
 			/obj/item/trash/cheesie = 1,
 			/obj/item/trash/candy = 1,
