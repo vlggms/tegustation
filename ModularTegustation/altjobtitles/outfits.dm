@@ -37,7 +37,7 @@
 	uniform = /obj/item/clothing/under/rank/medical/doctor/blue
 	suit = /obj/item/clothing/suit/apron/surgical
 	suit_store = null
-	mask = /obj/item/clothing/mask/surgical
+	mask = /obj/item/clothing/mask/gas/clown_hat
 
 /datum/outfit/job/doctor/nurse
  	name = "Medical Doctor (Nurse)"
@@ -89,7 +89,7 @@
 	uniform = /obj/item/clothing/under/rank/civilian/cookjorts
 	suit = null
 	head = null
-	mask = null
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	r_hand = /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
 
 /// Curator

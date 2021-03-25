@@ -38,6 +38,7 @@
 	id = /obj/item/card/id/gold
 	belt = /obj/item/pda/captain
 	glasses = /obj/item/clothing/glasses/sunglasses
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
 	uniform =  /obj/item/clothing/under/rank/captain

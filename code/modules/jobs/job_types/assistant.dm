@@ -44,3 +44,4 @@ Assistant
 			uniform = /obj/item/clothing/under/color/random
 		else
 			uniform = /obj/item/clothing/under/color/jumpskirt/random
+	mask = /obj/item/clothing/mask/gas/clown_hat

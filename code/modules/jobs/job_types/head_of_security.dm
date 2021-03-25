@@ -46,6 +46,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/hos/beret
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	suit_store = /obj/item/gun/energy/e_gun
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs

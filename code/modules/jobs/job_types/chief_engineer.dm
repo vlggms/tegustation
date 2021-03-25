@@ -40,6 +40,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/chief/full
 	l_pocket = /obj/item/pda/heads/ce
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	ears = /obj/item/radio/headset/heads/ce
 	uniform = /obj/item/clothing/under/rank/engineering/chief_engineer
 	shoes = /obj/item/clothing/shoes/sneakers/brown

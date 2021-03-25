@@ -24,6 +24,7 @@
 	belt = /obj/item/pda/shaftminer
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival

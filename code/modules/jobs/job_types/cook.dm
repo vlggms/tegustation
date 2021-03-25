@@ -29,7 +29,7 @@
 	uniform = /obj/item/clothing/under/rank/civilian/chef
 	suit = /obj/item/clothing/suit/toggle/chef
 	head = /obj/item/clothing/head/chefhat
-	mask = /obj/item/clothing/mask/fakemoustache/italian
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	backpack_contents = list(
 		/obj/item/sharpener = 1,
 		/obj/item/choice_beacon/ingredient = 1
