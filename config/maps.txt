@@ -34,7 +34,7 @@ map icebox
 	votable
 endmap
 
-map fuck
+map error
 	votable
 endmap
 
