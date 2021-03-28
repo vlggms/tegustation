@@ -34,6 +34,10 @@ map icebox
 	votable
 endmap
 
+map fuck
+	votable
+endmap
+
 map runtimestation
 endmap
 
