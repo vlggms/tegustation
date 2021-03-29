@@ -54,6 +54,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Chief Engineer" = 40,
 		"Station Engineer" = 41,
 		"Atmospheric Technician" = 42,
+		"Void Technician" = 43,
 		// 50-59: Cargo
 		"Head of Personnel" = 50,
 		"Quartermaster" = 51,
@@ -76,7 +77,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Tegustation Roles; 150 - 200
 		"TerraGov Official" = 150, // Tegustation TerraGov edit
 		"Deputy" = 151, // Tegustation Deputy edit: Add all tegu-only jobs here!
-		"Void Technician" = 152,
 
 		// Tegustation Syndicate roles; 160 - 199
 		"Syndicate Overlord" = 160,

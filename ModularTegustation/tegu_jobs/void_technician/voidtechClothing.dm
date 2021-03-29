@@ -6,8 +6,8 @@
 	icon_state = "voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
 	inhand_icon_state = "void_suit"
-	lefthand_file = 'ModularTegustation/Teguicons/kirie_stuff/left.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/kirie_stuff/right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 10)
 	resistance_flags = NONE
 
@@ -20,8 +20,8 @@
 	icon_state = "hardsuit0-voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
 	inhand_icon_state = "void_hardsuit"
-	lefthand_file = 'ModularTegustation/Teguicons/kirie_stuff/left.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/kirie_stuff/right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
 	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
 	hardsuit_type = "voidtech"
 
@@ -32,8 +32,8 @@
 	icon_state = "hardsuit-voidtech"
 	icon = 'ModularTegustation/Teguicons/kirie_stuff/voidtech_icon.dmi'
 	inhand_icon_state = "void_hardsuit"
-	lefthand_file = 'ModularTegustation/Teguicons/kirie_stuff/left.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/kirie_stuff/right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
 	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/voidtech
 	slowdown = 0.35
@@ -55,4 +55,4 @@
 	name = "void technicians radio encryption key"
 	icon_state = "eng_cypherkey"
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_ENGINEERING = 1)
-	
+

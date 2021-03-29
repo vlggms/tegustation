@@ -2,17 +2,18 @@
 	title = "Void Technician"
 	department_head = list("Chief Engineer")
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	exp_requirements = 60
+	minimal_player_age = 3
+	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/voidtech
 
-	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,ACCESS_MECH_ENGINE, ACCESS_AUX_BASE,ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP,ACCESS_MECH_ENGINE, ACCESS_AUX_BASE,ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_MINERAL_STOREROOM)
+	access = list(ACCESS_TELEPORTER, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MECH_ENGINE, ACCESS_AUX_BASE, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_MINERAL_STOREROOM)
+	minimal_access = list(ACCESS_TELEPORTER, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MECH_ENGINE, ACCESS_AUX_BASE, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 
@@ -39,13 +40,7 @@
 	pda_slot = ITEM_SLOT_LPOCKET
 	backpack_contents = list(/obj/item/stack/rods/fifty)
 
-
 //Spawn Point
 /obj/effect/landmark/start/voidtech
 	name = "Void Technician"
 	icon_state = "Station Engineer"
-
-/obj/effect/landmark/start/station_engineer/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
-	new /obj/effect/landmark/start/voidtech(T)
