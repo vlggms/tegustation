@@ -46,3 +46,15 @@
 	The only people that are allowed to know about your existance is high command of Cybersun. \
 	You must complete your objectives and stay undiscovered AT ALL COST. Remember - every innocent victim will be \
 	deducted from your pay-check."
+
+/datum/config_entry/number/senior_timelock
+	config_entry_value = 2600
+	min_val = 0
+
+/datum/config_entry/number/ultra_senior_timelock
+	config_entry_value = 14400
+	min_val = 0
+
+/datum/config_entry/keyed_list/trusted_races	// Races available to trusted players
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
