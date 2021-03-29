@@ -13,14 +13,14 @@
     },
     "traits":[
        {"Up" : 1,"Linkage" : "Cross","Gravity" : true},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"},
-       {"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/transparent/openspace"}
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Up" : 1,"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"},
+       {"Down" : -1,"Linkage" : "Cross","Gravity" : true,"Baseturf" : "/turf/open/openspace"}
     ]
 }
