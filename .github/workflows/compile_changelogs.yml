@@ -2,12 +2,13 @@ name: Compile changelogs
 
 on:
   schedule:
-  - cron: "0 0 * * *"
+    - cron: "0 * * * *"
+  workflow_dispatch:
 
 jobs:
   compile:
     name: "Compile changelogs"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: "Check for CHANGELOG_ENABLER secret and pass true to output if it exists to be checked by later steps"
         id: value_holder
@@ -52,4 +53,4 @@ jobs:
         if: steps.value_holder.outputs.CL_ENABLED
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.CHANGELOG_TOKEN }}
