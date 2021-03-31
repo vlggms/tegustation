@@ -597,7 +597,7 @@
 "awx" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
-/turf/open/openspace,
+/turf/open/openspace/airless,
 /area/space/nearstation)
 "awL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
@@ -866,15 +866,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"aHF" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
-/obj/structure/cable,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/command)
 "aHT" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
@@ -2176,10 +2167,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
-"bEe" = (
-/obj/machinery/door/firedoor,
-/turf/closed/wall/r_wall,
-/area/crew_quarters/bar/atrium)
 "bEu" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6880,7 +6867,7 @@
 /turf/open/floor/carpet/green,
 /area/crew_quarters/dorms)
 "fsO" = (
-/turf/open/openspace,
+/turf/open/openspace/airless,
 /area/space)
 "ftd" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -9582,7 +9569,7 @@
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
 	},
-/turf/open/openspace,
+/turf/open/openspace/airless,
 /area/space)
 "hyh" = (
 /obj/machinery/computer/arcade{
@@ -23310,7 +23297,7 @@
 	name = "DeltaStation emergency evac bay";
 	width = 30
 	},
-/turf/open/openspace,
+/turf/open/openspace/airless,
 /area/space)
 "rXi" = (
 /obj/structure/table/reinforced,
@@ -27164,7 +27151,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/openspace,
+/turf/open/openspace/airless,
 /area/space/nearstation)
 "vdw" = (
 /turf/closed/wall/r_wall,
@@ -31092,7 +31079,7 @@
 /area/quartermaster/storage)
 "ybQ" = (
 /obj/structure/lattice,
-/turf/open/openspace,
+/turf/open/openspace/airless,
 /area/space/nearstation)
 "ycv" = (
 /obj/structure/chair/office/light{
@@ -71774,7 +71761,7 @@ vbH
 dvs
 dvs
 dvs
-bEe
+vbH
 eBt
 eBt
 wnh
@@ -172140,7 +172127,7 @@ dRp
 oMT
 lPc
 gSx
-aHF
+nzp
 taw
 qdg
 pME
