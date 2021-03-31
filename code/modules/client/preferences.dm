@@ -1178,10 +1178,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/datum/job/J = SSjob.GetJob(job_title)
 				var/sen_timelock = CONFIG_GET(number/senior_timelock)
 				var/ulsen_timelock = CONFIG_GET(number/ultra_senior_timelock)
-				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + sen_timelock)) //If they have more than 50 hours (300 Minutes) past the required time needed for the job, give them access to the senior title
+				if(user.client.prefs.exp[job_title] >= sen_timelock) //If they have more than 50 hours (300 Minutes) past the required time needed for the job, give them access to the senior title
 					if(J.senior_title)
 						titles_list += J.senior_title
-				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + ulsen_timelock)) //Ultra important(no) job title. Need more than 500 hours to unlock.
+				if(user.client.prefs.exp[job_title] >= ulsen_timelock) //Ultra important(no) job title. Need more than 500 hours to unlock.
 					if(J.ultra_senior_title)
 						titles_list += J.ultra_senior_title
 				for(var/i in J.alt_titles)
@@ -1434,7 +1434,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("species")
 
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races
+					var/result // TeguStation edit.
+					if(IS_TRUSTED_PLAYER(user.client.ckey) || check_rights_for(user.client, R_ADMIN))
+						result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races + GLOB.trusted_races
+					else
+						result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races // TeguStation edit end.
 
 					if(result)
 						var/newtype = GLOB.species_list[result]
@@ -2003,9 +2007,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type
 	if(roundstart_checks && !(pref_species.id in GLOB.roundstart_races) && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
-		chosen_species = /datum/species/human
-		pref_species = new /datum/species/human
-		save_character()
+		if(!((pref_species.id in GLOB.trusted_races) && (IS_TRUSTED_PLAYER(parent.ckey) || check_rights_for(parent, R_ADMIN)))) // TeguStation edit.
+			chosen_species = /datum/species/human
+			pref_species = new /datum/species/human
+			save_character()
 
 	character.dna.features = features.Copy()
 	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
