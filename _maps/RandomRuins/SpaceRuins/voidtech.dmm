@@ -159,6 +159,9 @@
 /area/ruin/space/has_grav/voidtech)
 "qJ" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/structure/sign/poster/official/wtf_is_co2{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "rM" = (
@@ -166,6 +169,9 @@
 	locked = 0
 	},
 /obj/machinery/portable_atmospherics/pump,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "rR" = (
@@ -195,6 +201,12 @@
 "tD" = (
 /turf/closed/wall/r_wall,
 /area/template_noop)
+"wq" = (
+/obj/structure/sign/poster/official/enlist{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
 "wH" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/machinery/light{
@@ -241,6 +253,12 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
+"AS" = (
+/obj/structure/sign/nanotrasen{
+	pixel_x = 32
+	},
+/turf/template_noop,
+/area/template_noop)
 "BA" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -406,14 +424,27 @@
 "Ol" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/engineering,
+/obj/machinery/camera{
+	c_tag = "Void Outpost";
+	name = "outpost camera"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "OB" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
+"Qm" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/template_noop,
+/area/template_noop)
 "RQ" = (
 /obj/machinery/atmospherics/components/binary/pump,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "SL" = (
@@ -422,6 +453,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
+"TU" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = -32
+	},
+/turf/template_noop,
+/area/template_noop)
 "UU" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4
@@ -432,6 +469,18 @@
 /obj/machinery/light_switch{
 	pixel_x = -6;
 	pixel_y = 32
+	},
+/obj/item/binoculars{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/binoculars{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
@@ -444,6 +493,9 @@
 /obj/item/pipe_dispenser,
 /obj/structure/table/reinforced,
 /obj/structure/cable,
+/obj/structure/sign/poster/official/build{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "WM" = (
@@ -634,7 +686,7 @@ Jt
 Jt
 Jt
 Jt
-Jt
+AS
 Jt
 Jt
 Jt
@@ -968,7 +1020,7 @@ Jt
 Jt
 Jt
 Jt
-Jt
+TU
 Xf
 Gz
 MC
@@ -980,7 +1032,7 @@ II
 kN
 An
 Xf
-Jt
+Qm
 Jt
 Jt
 Jt
@@ -1172,7 +1224,7 @@ Jt
 Jt
 Jt
 Jt
-Jt
+TU
 Xf
 wH
 JY
@@ -1184,7 +1236,7 @@ EK
 CE
 en
 Xf
-Jt
+Qm
 Jt
 Jt
 Jt
@@ -1214,7 +1266,7 @@ CD
 aO
 aO
 aO
-aO
+wq
 aO
 OB
 Xf

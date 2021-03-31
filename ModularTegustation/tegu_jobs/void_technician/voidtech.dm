@@ -4,7 +4,7 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the chief engineer"
+	supervisors = "the chief engineer and captain" // Can't say that Void Technicians are 100% an engineering job.
 	selection_color = "#fff5cc"
 	minimal_player_age = 3
 	exp_requirements = 120
@@ -38,7 +38,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/survival/engineer
 	pda_slot = ITEM_SLOT_LPOCKET
-	backpack_contents = list(/obj/item/stack/rods/fifty)
+	backpack_contents = list(/obj/item/stack/rods/fifty, /obj/item/analyzer)
 
 //Spawn Point
 /obj/effect/landmark/start/voidtech

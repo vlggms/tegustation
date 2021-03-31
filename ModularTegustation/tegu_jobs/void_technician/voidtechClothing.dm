@@ -11,7 +11,6 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 10)
 	resistance_flags = NONE
 
-
 //Voidtech hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/voidtech
 	name = "voidtech hardsuit helmet"
@@ -38,7 +37,6 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/voidtech
 	slowdown = 0.35
 
-
 //Special Subspace Headset
 /obj/item/radio/headset/subspace/void
 	name = "voidtech's subspace headset"
@@ -49,10 +47,8 @@
 	keyslot = new /obj/item/encryptionkey/headset_void
 	subspace_transmission = FALSE
 
-
 //Encryption key
 /obj/item/encryptionkey/headset_void
 	name = "void technicians radio encryption key"
 	icon_state = "eng_cypherkey"
 	channels = list(RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_ENGINEERING = 1)
-
