@@ -38,6 +38,11 @@ map error
 	votable
 endmap
 
+map packedstation
+	maxplayers 20
+	votable
+endmap
+
 map runtimestation
 endmap
 
