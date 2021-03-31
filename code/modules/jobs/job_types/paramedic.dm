@@ -26,6 +26,7 @@
 	jobtype = /datum/job/paramedic
 
 	ears = /obj/item/radio/headset/headset_med
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	head = /obj/item/clothing/head/soft/paramedic
 	shoes = /obj/item/clothing/shoes/sneakers/blue

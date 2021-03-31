@@ -22,6 +22,7 @@
 
 	belt = /obj/item/pda/janitor
 	ears = /obj/item/radio/headset/headset_srv
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	uniform = /obj/item/clothing/under/rank/civilian/janitor
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
 

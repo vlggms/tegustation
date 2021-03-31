@@ -23,6 +23,7 @@
 	jobtype = /datum/job/psychologist
 
 	ears = /obj/item/radio/headset/headset_srvmed
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	uniform = /obj/item/clothing/under/suit/black
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id

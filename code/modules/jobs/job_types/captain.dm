@@ -41,6 +41,7 @@
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	uniform =  /obj/item/clothing/under/rank/captain
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace
 	shoes = /obj/item/clothing/shoes/sneakers/brown

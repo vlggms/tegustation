@@ -22,6 +22,7 @@
 
 	belt = /obj/item/pda/botanist
 	ears = /obj/item/radio/headset/headset_srv
+	mask = /obj/item/clothing/mask/gas/clown_hat
 	uniform = /obj/item/clothing/under/rank/civilian/hydroponics
 	suit = /obj/item/clothing/suit/apron
 	gloves  =/obj/item/clothing/gloves/botanic_leather

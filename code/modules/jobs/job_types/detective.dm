@@ -44,7 +44,6 @@
 	/obj/item/camera/detective=1, // Tegustation Detective Kit edit
 	/obj/item/sensor_device=1, // Tegustation Detective Kit edit
 	/obj/item/pinpointer/crew=1) // Tegustation Detective Kit edit
-	mask = /obj/item/clothing/mask/gas/clown_hat
 
 	implants = list(/obj/item/implant/mindshield)
 
