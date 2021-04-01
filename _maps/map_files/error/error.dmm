@@ -4553,6 +4553,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
+"dCE" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/telecomms/message_server/preset,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "dCV" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -7256,12 +7263,10 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "fKs" = (
-/obj/machinery/telecomms/allinone{
-	network = "tcommsat"
-	},
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/telecomms/bus/preset_one/birdstation,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "fKv" = (
@@ -9730,6 +9735,7 @@
 	external_pressure_bound = 120;
 	name = "server vent"
 	},
+/obj/machinery/telecomms/processor/preset_one/birdstation,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "hFA" = (
@@ -13108,6 +13114,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"keV" = (
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "kfN" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
 	dir = 1
@@ -17979,6 +17988,7 @@
 	name = "server vent";
 	pressure_checks = 0
 	},
+/obj/machinery/telecomms/broadcaster/preset_left/birdstation,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "nEh" = (
@@ -21190,6 +21200,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/machinery/telecomms/receiver/preset_left/birdstation,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "qev" = (
@@ -25941,6 +25952,14 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"uhN" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "uhZ" = (
 /obj/machinery/door/airlock/research/glass/incinerator/toxmix_exterior,
 /turf/open/floor/engine,
@@ -29974,6 +29993,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/telecomms/server/presets/common/birdstation,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "xkV" = (
@@ -172134,7 +172154,7 @@ pME
 kDo
 omi
 oDe
-xkn
+keV
 fWg
 mWt
 fsO
@@ -172263,7 +172283,7 @@ oyg
 uqs
 rRU
 hGi
-xkn
+dCE
 viI
 mWt
 fsO
@@ -172392,7 +172412,7 @@ pal
 kJH
 tfh
 rAL
-qdV
+uhN
 hER
 mWt
 fsO
