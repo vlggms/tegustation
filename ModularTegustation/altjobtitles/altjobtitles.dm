@@ -1,3 +1,5 @@
+/* Word of warning - Alt titles for Tegu-unique jobs should also be in both job-lists in tegu_global_vars.dm */
+
 /datum/job
 	var/list/alt_titles = list()
 	var/senior_title
@@ -5,6 +7,7 @@
 
 /// Command
 /datum/job/captain
+	alt_titles = list("Commander")
 	senior_title = "Commodore"
 	ultra_senior_title = "Rear Admiral"
 
@@ -67,6 +70,9 @@
 /datum/job/atmos
 	alt_titles = list("Firefighter", "Life Support Specialist")
 	senior_title = "Senior Atmospheric Technician"
+
+/datum/job/tegu/voidtech
+	ultra_senior_title = "Space Marine"
 
 /// Supply
 
