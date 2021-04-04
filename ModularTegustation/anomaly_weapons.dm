@@ -28,9 +28,14 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/vortex)
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = null
-	icon_state = "wormhole_projector"
+	icon = "ModularTegustation/Teguicons/bhole_projector.dmi"
+	icon_state = "vortex_gun"
 	cell_type = /obj/item/stock_parts/cell/mini_egun // 3 shots.
 	var/firing_core = FALSE
+
+/obj/item/gun/energy/vortex_gun/Initialize()
+	. = ..()
+	fire_delay = 20
 
 /obj/item/gun/energy/vortex_gun/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly/vortex))
@@ -55,13 +60,16 @@
 	projectile_type = /obj/projectile/beam/vortex_bullet
 	select_name = "death"
 	e_cost = 200
+	fire_sound = 'sound/weapons/marauder.ogg'
 
 // Projectiles
 /obj/projectile/beam/vortex_bullet
 	name = "compressed singularity"
 	desc = "Well, you are dead."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "bhole3"
+	icon = 'ModularTegustation/Teguicons/bhole_projector.dmi'
+	icon_state = "dark_bullet"
+	impact_effect_type = /obj/effect/projectile/impact/wormhole
+	light_color = LIGHT_COLOR_PURPLE
 	damage = 55
 	irradiate = 100
 	range = 11
@@ -71,7 +79,7 @@
 /obj/projectile/beam/vortex_bullet/on_hit(atom/target, blocked = FALSE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/dead_man = target
-		dead_man.Sleeping(8 SECONDS)
+		dead_man.Sleeping(6 SECONDS)
 	return ..()
 
 /obj/projectile/beam/vortex_bullet/Moved(atom/OldLoc, Dir)
