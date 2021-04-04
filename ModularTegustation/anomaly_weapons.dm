@@ -28,7 +28,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/vortex)
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = null
-	icon = "ModularTegustation/Teguicons/bhole_projector.dmi"
+	icon = 'ModularTegustation/Teguicons/bhole_projector.dmi'
 	icon_state = "vortex_gun"
 	cell_type = /obj/item/stock_parts/cell/mini_egun // 3 shots.
 	var/firing_core = FALSE
