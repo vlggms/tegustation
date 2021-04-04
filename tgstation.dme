@@ -3357,6 +3357,7 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "ModularTegustation\anomaly_weapons.dm"
 #include "ModularTegustation\engineering_bounties.dm"
 #include "ModularTegustation\languagebooks.dm"
 #include "ModularTegustation\resindoor.dm"
