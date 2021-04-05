@@ -12,7 +12,7 @@
 
 /datum/design/flux_sword
 	name = "Flux Sword"
-	desc = "A weapon that is using power of high-voltage electricity. Requires flux anomaly core to operate properly."
+	desc = "A weapon that is using power of high-voltage electricity. Requires a flux anomaly core to operate properly."
 	id = "flux_sword"
 	construction_time = 200
 	build_type = PROTOLATHE
@@ -167,13 +167,15 @@
 /obj/item/melee/flux_sword/afterattack(target, mob/user, proximity_flag)
 	. = ..()
 	if(proximity_flag && anomaly_ready)
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+		if(iliving(target))
+			var/mob/living/L = target
 			playsound(src.loc, "sparks", 75, TRUE, -1)
-			do_sparks(5, TRUE, target)
-			H.adjustFireLoss(burn_force)
-			H.adjustStaminaLoss(stam_force)
-			H.electrocution_animation(15)
-			H.jitteriness += 5
-			if(prob(25))
-				H.Knockdown(burn_force / 2)
+			do_sparks(5, TRUE, L)
+			L.adjustFireLoss(burn_force)
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				H.adjustStaminaLoss(stam_force)
+				H.electrocution_animation(15)
+				H.jitteriness += 5
+				if(prob(20))
+					H.Knockdown(burn_force / 2)
