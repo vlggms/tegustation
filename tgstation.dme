@@ -3366,6 +3366,7 @@
 #include "ModularTegustation\tegu_cargo.dm"
 #include "ModularTegustation\tegu_config.dm"
 #include "ModularTegustation\tegu_dynamic_rulesets.dm"
+#include "ModularTegustation\tegu_emotes.dm"
 #include "ModularTegustation\tegu_global_vars.dm"
 #include "ModularTegustation\tegu_iceruins.dm"
 #include "ModularTegustation\tegu_integration.dm"
