@@ -110,6 +110,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/last_user = null
 	var/current_desired_k = null
 
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/should_have_node()
+	return TRUE
+
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
 	id = "default_reactor_for_lazy_mappers"
@@ -265,7 +268,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/tritium][MOLES] / 5 //Chernobyl 2.
 			var/turf/T = get_turf(src)
 			if(power >= 20)
-				coolant_output.adjust_moles(/datum/gas/nitryl, total_fuel_moles/50) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.gases[/datum/gas/nitryl][MOLES] += total_fuel_moles/50 //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			var/obj/structure/cable/C = T.get_cable_node()
 			if(!C || !C.powernet)
 				return
@@ -428,7 +431,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			return
 		next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
 		warning = TRUE //Start warning the crew of the imminent danger.
-		relay('ModularTegustation/Tegusounds/rmbk/rmbkalarm.ogg', null, loop=TRUE, channel = CHANNEL_REACTOR_ALERT)
+		relay('ModularTegustation/Tegusounds/rmbk/alarm.ogg', null, loop=TRUE, channel = CHANNEL_REACTOR_ALERT)
 		set_light(0)
 		light_color = COLOR_SOFT_RED
 		set_light(10)
@@ -768,7 +771,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	extended_desc = "This program connects to specially calibrated sensors to provide information on the status of nuclear reactors."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_CONSTRUCTION
-	network_destination = "rbmk monitoring system"
 	size = 2
 	tgui_id = "NtosRbmkStats"
 	var/active = TRUE //Easy process throttle
