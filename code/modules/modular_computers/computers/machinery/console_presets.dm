@@ -40,6 +40,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
 	hard_drive.store_file(new/datum/computer_file/program/supermatter_monitor())
 
+
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/console/preset/research
 	console_department = "Research"
