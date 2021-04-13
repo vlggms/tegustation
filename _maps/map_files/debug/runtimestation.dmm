@@ -2612,11 +2612,8 @@
 /turf/open/floor/plasteel,
 /area/science)
 "Cv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
 /obj/structure/cable,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/construction)
 "CQ" = (
 /obj/machinery/light,
@@ -6470,7 +6467,7 @@ dy
 dy
 gG
 ii
-Cv
+dy
 dm
 dM
 cN
@@ -6745,7 +6742,7 @@ dn
 dn
 dn
 dn
-dn
+Cv
 hi
 dn
 dL

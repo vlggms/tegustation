@@ -110,9 +110,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/last_user = null
 	var/current_desired_k = null
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/should_have_node()
-	return TRUE
-
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
 	id = "default_reactor_for_lazy_mappers"
