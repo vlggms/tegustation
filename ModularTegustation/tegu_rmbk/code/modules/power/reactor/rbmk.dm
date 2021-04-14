@@ -267,11 +267,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			var/turf/T = get_turf(src)
 			if(power >= 20)
 				coolant_output.gases[/datum/gas/nitryl][MOLES] += total_fuel_moles/50 //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
-			var/obj/structure/cable/C = T.get_cable_node()
-			if(!C || !C.powernet)
-				return
-			else
-				C.powernet.newavail += last_power_produced
+			add_avail(last_power_produced)
 		var/total_control_moles = moderator_input.gases[/datum/gas/nitrogen][MOLES] + (moderator_input.gases[/datum/gas/carbon_dioxide][MOLES]*2) + (moderator_input.gases[/datum/gas/pluoxium][MOLES]*3) //N2 helps you control the reaction at the cost of making it absolutely blast you with rads. Pluoxium has the same effect but without the rads!
 		if(total_control_moles >= minimum_coolant_level)
 			var/control_bonus = total_control_moles / 250 //1 mol of n2 -> 0.002 bonus control rod effectiveness, if you want a super controlled reaction, you'll have to sacrifice some power.
