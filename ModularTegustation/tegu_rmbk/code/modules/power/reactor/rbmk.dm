@@ -110,6 +110,13 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/last_user = null
 	var/current_desired_k = null
 
+//shitcode
+	var/datum/powernet/powernet = null
+	use_power = NO_POWER_USE
+	idle_power_usage = 0
+	active_power_usage = 0
+//endshitcode
+
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
 	id = "default_reactor_for_lazy_mappers"
@@ -221,6 +228,22 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/has_fuel()
 	return fuel_rods?.len
 
+//******shitcode******
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/add_avail(amount)
+	if(powernet)
+		powernet.newavail += amount
+		return TRUE
+	else
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/newavail()
+	if(powernet)
+		return powernet.newavail
+	else
+		return 0
+
+//*****shitcode end******
+
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/slowprocess()
 	//Let's get our gasses sorted out.
 	var/datum/gas_mixture/coolant_input = COOLANT_INPUT_GATE
@@ -255,7 +278,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	gas_absorption_effectiveness = gas_absorption_constant
 	//Next up, handle moderators!
 	if(moderator_input.total_moles() >= minimum_coolant_level)
-		var/total_fuel_moles = moderator_input.gases[/datum/gas/plasma]
+		var/total_fuel_moles = moderator_input.gases[/datum/gas/plasma][MOLES]
 		total_fuel_moles += moderator_input.gases[/datum/gas/tritium][MOLES]*10
 		var/power_modifier = max((moderator_input.gases[/datum/gas/oxygen][MOLES] / moderator_input.total_moles() * 10), 1) //You can never have negative IPM. For now.
 		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
@@ -264,7 +287,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
 			last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
 			radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/tritium][MOLES] / 5 //Chernobyl 2.
-			var/turf/T = get_turf(src)
 			if(power >= 20)
 				coolant_output.gases[/datum/gas/nitryl][MOLES] += total_fuel_moles/50 //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			add_avail(last_power_produced)
