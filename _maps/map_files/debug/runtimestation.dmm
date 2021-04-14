@@ -2149,7 +2149,8 @@
 /area/science)
 "hi" = (
 /obj/machinery/atmospherics/components/binary/pump/rbmk_output{
-	dir = 8
+	dir = 8;
+	target_pressure = 800
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -2168,13 +2169,16 @@
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
 "ie" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
 /turf/open/floor/plating,
 /area/construction)
 "ih" = (
 /obj/machinery/atmospherics/components/binary/pump/rbmk_input{
-	dir = 8
+	dir = 8;
+	target_pressure = 800
 	},
 /turf/open/floor/plating,
 /area/construction)
@@ -2255,7 +2259,10 @@
 /area/hallway/primary/central)
 "md" = (
 /obj/machinery/atmospherics/components/trinary/mixer/flipped{
-	dir = 1
+	dir = 1;
+	node1_concentration = 0.8;
+	node2_concentration = 0.2;
+	target_pressure = 4500
 	},
 /turf/open/floor/plating,
 /area/construction)
@@ -2363,7 +2370,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "so" = (
-/obj/machinery/atmospherics/components/binary/pump/on,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	target_pressure = 4500
+	},
 /turf/open/floor/plating,
 /area/construction)
 "sr" = (
@@ -2447,7 +2456,8 @@
 /area/science/nanite)
 "uV" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 4
+	dir = 4;
+	target_temperature = 73.15
 	},
 /turf/open/floor/plating,
 /area/construction)
@@ -2474,7 +2484,9 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "vz" = (
-/obj/machinery/atmospherics/components/binary/pump/rbmk_moderator,
+/obj/machinery/atmospherics/components/binary/pump/rbmk_moderator{
+	target_pressure = 1500
+	},
 /turf/open/floor/plating,
 /area/construction)
 "vP" = (
@@ -2540,6 +2552,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
+/obj/machinery/meter,
 /turf/open/floor/plating,
 /area/construction)
 "zo" = (
@@ -2559,10 +2572,10 @@
 /turf/open/floor/plasteel,
 /area/construction)
 "An" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 1
-	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/construction)
 "AE" = (
@@ -2612,7 +2625,7 @@
 /turf/open/floor/plasteel,
 /area/science)
 "Cv" = (
-/obj/structure/cable,
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped,
 /turf/open/floor/plating,
 /area/construction)
 "CQ" = (
@@ -2657,7 +2670,8 @@
 /area/medical/medbay)
 "DX" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 4
+	dir = 4;
+	target_pressure = 4500
 	},
 /turf/open/floor/plating,
 /area/construction)
@@ -2834,7 +2848,7 @@
 /turf/open/floor/plating,
 /area/construction)
 "MS" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/construction)
 "MY" = (
@@ -2843,7 +2857,9 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "Na" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	target_temperature = 73.15
+	},
 /turf/open/floor/plating,
 /area/construction)
 "Nb" = (
@@ -3106,6 +3122,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/construction)
 "ZD" = (
@@ -6646,7 +6663,7 @@ EA
 dn
 dn
 up
-TB
+ie
 TB
 TB
 Rh
@@ -6735,14 +6752,14 @@ bE
 bE
 ef
 cY
-MS
+Ex
 so
 OT
 dn
 dn
-dn
-dn
 Cv
+dn
+MS
 hi
 dn
 dL
@@ -7107,9 +7124,9 @@ dn
 Na
 OT
 dn
-ie
+up
 Ta
-An
+XG
 dn
 ih
 dn
@@ -7199,9 +7216,9 @@ dn
 Na
 OT
 dn
-dn
+An
 hy
-dn
+An
 dn
 it
 dn
