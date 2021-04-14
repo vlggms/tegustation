@@ -330,9 +330,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			var/mob/living/L = I
 			if(temperature > 0)
 				L.adjust_bodytemperature(clamp(temperature, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
-		if(istype(I, /obj/item/food) && !istype(I, /obj/item/food/drinks))
+		if(istype(I, /obj/item/reagent_containers/food) && !istype(I, /obj/item/reagent_containers/food/drinks))
 			playsound(src, pick('sound/machines/fryer/deep_fryer_1.ogg', 'sound/machines/fryer/deep_fryer_2.ogg'), 100, TRUE)
-			var/obj/item/food/grilled_item = I
+			var/obj/item/reagent_containers/food/grilled_item = I
 			if(prob(80))
 				return //To give the illusion that it's actually cooking omegalul.
 			switch(power)
