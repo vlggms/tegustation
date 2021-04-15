@@ -39,6 +39,9 @@ map packedstation
 	votable
 endmap
 
+map rbmktest
+endmap
+
 map runtimestation
 endmap
 
