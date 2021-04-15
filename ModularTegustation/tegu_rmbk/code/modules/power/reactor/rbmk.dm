@@ -241,10 +241,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		return powernet.newavail
 	else
 		return 0
-		
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/should_have_node()
-	return FALSE
-should_have_node()
 
 //*****shitcode end******
 
