@@ -38,7 +38,7 @@
 	fire_delay = 20
 
 /obj/item/gun/energy/vortex_gun/attackby(obj/item/C, mob/user)
-	if(istype(C, /obj/item/assembly/signaler/anomaly/vortex))
+	if(istype(C, /obj/item/assembly/signaler/anomaly/vortex) && !firing_core)
 		to_chat(user, "<span class='notice'>You insert [C] into the [src] and the weapon starts humming.</span>")
 		firing_core = TRUE
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
@@ -154,7 +154,7 @@
 	var/anomaly_ready = FALSE
 
 /obj/item/melee/flux_sword/attackby(obj/item/C, mob/user)
-	if(istype(C, /obj/item/assembly/signaler/anomaly/flux))
+	if(istype(C, /obj/item/assembly/signaler/anomaly/flux) && !anomaly_ready)
 		to_chat(user, "<span class='notice'>You insert [C] into the [src].</span>")
 		playsound(src.loc, "sparks", 50, TRUE)
 		name = "flux sword"

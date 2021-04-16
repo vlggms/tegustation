@@ -59,6 +59,16 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	hidden = TRUE
 
+/datum/techweb_node/anomaly_tools
+	id = "anomaly_tools"
+	display_name = "Anomalous Tools Research"
+	description = "Expensive tools that utilize anomalous properties to solve modern engineering problems."
+	prereq_ids = list("anomaly_research", "exp_tools")
+	design_ids = list("rcd_bluespace", "magboots_anomaly")
+	boost_item_paths = list(/obj/item/construction/rcd/arcd/bluespace, /obj/item/clothing/shoes/magboots/noslow)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	hidden = TRUE
+
 // Items
 /obj/item/research_notes/loot/Initialize()
 	..()
