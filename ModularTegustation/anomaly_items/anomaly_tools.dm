@@ -2,7 +2,7 @@
 	name = "Bluespace Rapid Construction Device"
 	desc = "A prototype RCD with ranged capability and extended capacity. Requires a bluespace core to operate properly."
 	id = "rcd_bluespace"
-	materials = list(/datum/material/iron = 80000, /datum/material/glass = 25000, )
+	materials = list(/datum/material/iron = 80000, /datum/material/glass = 20000, /datum/material/bluespace = 3000)
 	build_path = /obj/item/construction/rcd/arcd/bluespace
 
 /obj/item/construction/rcd/arcd/bluespace
@@ -47,7 +47,7 @@
 	name = "Anomalous Magnetic Boots"
 	desc = "Magnetic boots that use gravity anomaly core power to reduce the weight and thus the slowdown."
 	id = "magboots_anomaly"
-	materials = list(/datum/material/iron = 4500, /datum/material/silver = 1500, /datum/material/gold = 2500)
+	materials = list(/datum/material/iron = 10000, /datum/material/uranium = 5000, /datum/material/silver = 3500, /datum/material/gold = 3500)
 	build_path = /obj/item/clothing/shoes/magboots/noslow
 
 /obj/item/clothing/shoes/magboots/noslow
