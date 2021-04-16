@@ -167,7 +167,7 @@
 /obj/item/melee/flux_sword/afterattack(target, mob/user, proximity_flag)
 	. = ..()
 	if(proximity_flag && anomaly_ready)
-		if(iliving(target))
+		if(isliving(target))
 			var/mob/living/L = target
 			playsound(src.loc, "sparks", 75, TRUE, -1)
 			do_sparks(5, TRUE, L)

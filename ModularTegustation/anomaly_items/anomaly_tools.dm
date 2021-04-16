@@ -67,7 +67,7 @@
 	. = ..()
 
 /obj/item/clothing/shoes/magboots/noslow/attackby(obj/item/C, mob/user)
-	if(istype(C, /obj/item/assembly/signaler/anomaly/gravity) && !anomaly_core)
+	if(istype(C, /obj/item/assembly/signaler/anomaly/grav) && !anomaly_core)
 		name = "anomalous magboots"
 		to_chat(user, "<span class='notice'>You insert [C] into [src] and they start to feel much lighter.</span>")
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
