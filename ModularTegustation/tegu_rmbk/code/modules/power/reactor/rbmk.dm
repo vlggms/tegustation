@@ -136,7 +136,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			. += msg
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/twohanded/required/fuel_rod))
+	if(istype(W, /obj/item/fuel_rod))
 		if(power >= 20)
 			to_chat(user, "<span class='notice'>You cannot insert fuel into [src] when it has been raised above 20% power.</span>")
 			return FALSE
@@ -189,13 +189,13 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/lazy_startup()
 	for(var/I=0;I<5;I++){
-		fuel_rods += new /obj/item/twohanded/required/fuel_rod(src)
+		fuel_rods += new /obj/item/fuel_rod(src)
 	}
 	message_admins("Reactor started up by admins in [ADMIN_VERBOSEJMP(src)]")
 	start_up()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/deplete()
-	for(var/obj/item/twohanded/required/fuel_rod/FR in fuel_rods){
+	for(var/obj/item/fuel_rod/FR in fuel_rods){
 		FR.depletion = 100
 	}
 
@@ -270,11 +270,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
 			var/power_produced = max((total_fuel_moles / moderator_input.total_moles() * 10), 1)
 			last_power_produced = max(0,((power_produced*power_modifier)*moderator_input.total_moles()))
-			message_admins("1 - [last_power_produced]") //temporary
 			last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
-			message_admins("2 - [last_power_produced]") //temporary
 			last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
-			message_admins("3 - [last_power_produced]") //temporary
 			moderator_input.assert_gas(/datum/gas/tritium)
 			radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/tritium][MOLES] / 5 //Chernobyl 2.
 			moderator_input.garbage_collect()
@@ -336,7 +333,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(!has_fuel())  //Reactor must be fuelled and ready to go before we can heat it up boys.
 		K = 0
 	else
-		for(var/obj/item/twohanded/required/fuel_rod/FR in fuel_rods)
+		for(var/obj/item/fuel_rod/FR in fuel_rods)
 			K += FR.fuel_power
 			fuel_power += FR.fuel_power
 			FR.deplete(depletion_modifier)
@@ -386,23 +383,23 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				if(20 to 39)
 					grilled_item.name = "grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "[initial(I.desc)] It's been grilled over a nuclear reactor."
-					if(!grilled_item.foodtype & FRIED)
-						grilled_item.foodtype |= FRIED
+					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(40 to 70)
 					grilled_item.name = "heavily grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "[initial(I.desc)] It's been heavily grilled through the magic of nuclear fission."
-					if(!grilled_item.foodtype & FRIED)
-						grilled_item.foodtype |= FRIED
+					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(70 to 95)
 					grilled_item.name = "Three-Mile Nuclear-Grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "A [initial(grilled_item.name)]. It's been put on top of a nuclear reactor running at extreme power by some badass engineer."
-					if(!grilled_item.foodtype & FRIED)
-						grilled_item.foodtype |= FRIED
+					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(95 to INFINITY)
 					grilled_item.name = "Ultimate Meltdown Grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "A [initial(grilled_item.name)]. A grill this perfect is a rare technique only known by a few engineers who know how to perform a 'controlled' meltdown whilst also having the time to throw food on a reactor. I'll bet it tastes amazing."
-					if(!grilled_item.foodtype & FRIED)
-						grilled_item.foodtype |= FRIED
+					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
 	for(var/mob/M in GLOB.player_list)
@@ -555,7 +552,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	temperature = 0
 	update_icon()
 
-/obj/item/twohanded/required/fuel_rod
+/obj/item/fuel_rod
 	name = "Uranium-235 Fuel Rod"
 	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder inside, and a breeding blanket of uranium-238 around it, used to kick off a fission reaction and breed plutonium fuel respectivly."
 	icon = 'ModularTegustation/Teguicons/reactor/control_rod.dmi'
@@ -564,7 +561,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/depletion = 0 //Each fuel rod will deplete in around 30 minutes.
 	var/fuel_power = 0.10
 
-/obj/item/twohanded/required/fuel_rod/proc/deplete(amount=0.035)
+/obj/item/fuel_rod/proc/deplete(amount=0.035)
 	depletion += amount
 	if(depletion >= 100)
 		fuel_power = 0.20
@@ -572,13 +569,19 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		desc = "A highly energetic titanium sheathed rod containing a sizeable measure of weapons grade plutonium, it's highly efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
 		icon_state = "inferior"
 		AddComponent(/datum/component/radioactive, 1500 , src)
+
 	else
 		fuel_power = 0.10
 
-/obj/item/twohanded/required/fuel_rod/Initialize()
+/obj/item/fuel_rod/Initialize()
 	.=..()
 	AddComponent(/datum/component/radioactive, 350 , src)
-
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
+/*
+/obj/item/fuel_rod/ComponentInitialize()
+	.=..()
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
+*/
 //Controlling the reactor.
 
 /obj/machinery/computer/reactor
@@ -978,6 +981,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 /datum/weather/nuclear_fallout/weather_act(mob/living/L)
 	L.rad_act(100)
+	to_chat(L, "<span class='notice'>You taste metal.</span>")
 
 /datum/weather/nuclear_fallout/telegraph()
 	..()
