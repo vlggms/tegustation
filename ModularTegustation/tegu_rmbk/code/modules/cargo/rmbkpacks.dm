@@ -33,5 +33,3 @@
 	crate_name = "Build Your Own Reactor Kit"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
-
-
