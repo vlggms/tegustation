@@ -3785,6 +3785,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/atmospherics)
+"Ng" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/survivalcapsule/reactor,
+/obj/machinery/computer/reactor/stats/cargo,
+/obj/machinery/computer/reactor/fuel_rods/cargo,
+/obj/machinery/computer/reactor/control_rods/cargo,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged3"
+	},
+/area/ruin/space/derelict/singularity_engine)
 "Ni" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -8584,7 +8594,7 @@ ZB
 dr
 dr
 dX
-dO
+Ng
 dX
 dP
 dO
