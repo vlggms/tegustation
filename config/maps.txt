@@ -42,6 +42,10 @@ endmap
 map rbmktest
 endmap
 
+map deltastationrbmk
+	minplayers 50
+endmap
+
 map runtimestation
 endmap
 

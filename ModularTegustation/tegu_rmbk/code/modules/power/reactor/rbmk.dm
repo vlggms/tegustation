@@ -255,80 +255,79 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	gas_absorption_effectiveness = gas_absorption_constant
 	//Next up, handle moderators!
 //	if(moderator_input.total_moles() >= minimum_coolant_level)
-	if(TRUE)
-		var/total_fuel_moles = 0
-		moderator_input.assert_gas(/datum/gas/plasma)
+	var/total_fuel_moles = 0
+	moderator_input.assert_gas(/datum/gas/plasma)
+	moderator_input.assert_gas(/datum/gas/tritium)
+	total_fuel_moles += moderator_input.gases[/datum/gas/plasma][MOLES]
+	total_fuel_moles += moderator_input.gases[/datum/gas/tritium][MOLES]*10
+	moderator_input.garbage_collect()
+	var/power_modifier = 0
+
+	moderator_input.assert_gas(/datum/gas/oxygen)
+	power_modifier = max((moderator_input.gases[/datum/gas/oxygen][MOLES] / moderator_input.total_moles() * 10), 1) //You can never have negative IPM. For now.
+	moderator_input.garbage_collect()
+	if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
+		var/power_produced = max((total_fuel_moles / moderator_input.total_moles() * 10), 1)
+		last_power_produced = max(0,((power_produced*power_modifier)*moderator_input.total_moles()))
+		last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
+		last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
 		moderator_input.assert_gas(/datum/gas/tritium)
-		total_fuel_moles += moderator_input.gases[/datum/gas/plasma][MOLES]
-		total_fuel_moles += moderator_input.gases[/datum/gas/tritium][MOLES]*10
+		radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/tritium][MOLES] / 5 //Chernobyl 2.
 		moderator_input.garbage_collect()
-		var/power_modifier = 0
-
-		moderator_input.assert_gas(/datum/gas/oxygen)
-		power_modifier = max((moderator_input.gases[/datum/gas/oxygen][MOLES] / moderator_input.total_moles() * 10), 1) //You can never have negative IPM. For now.
-		moderator_input.garbage_collect()
-		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
-			var/power_produced = max((total_fuel_moles / moderator_input.total_moles() * 10), 1)
-			last_power_produced = max(0,((power_produced*power_modifier)*moderator_input.total_moles()))
-			last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
-			last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
-			moderator_input.assert_gas(/datum/gas/tritium)
-			radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/tritium][MOLES] / 5 //Chernobyl 2.
-			moderator_input.garbage_collect()
-			var/turf/T = get_turf(src)
-			if(power >= 20)
-				if(coolant_output.gases == /datum/gas/nitryl)
-					coolant_output.gases[/datum/gas/nitryl][MOLES] += total_fuel_moles/50 //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
-				else
-					coolant_output.add_gas(/datum/gas/nitryl)
-			var/obj/structure/cable/C = T.get_cable_node()
-			if(!C || !C.powernet)
-				return
+		var/turf/T = get_turf(src)
+		if(power >= 20)
+			if(coolant_output.gases == /datum/gas/nitryl)
+				coolant_output.gases[/datum/gas/nitryl][MOLES] += total_fuel_moles/50 //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			else
-				C.powernet.newavail += last_power_produced
-		var/total_control_moles = 0
+				coolant_output.add_gas(/datum/gas/nitryl)
+		var/obj/structure/cable/C = T.get_cable_node()
+		if(!C || !C.powernet)
+			return
+		else
+			C.powernet.newavail += last_power_produced
+	var/total_control_moles = 0
 
+	moderator_input.assert_gas(/datum/gas/nitrogen)
+	moderator_input.assert_gas(/datum/gas/carbon_dioxide)
+	moderator_input.assert_gas(/datum/gas/pluoxium)
+	total_control_moles += moderator_input.gases[/datum/gas/nitrogen][MOLES]
+	total_control_moles += moderator_input.gases[/datum/gas/carbon_dioxide][MOLES]*2
+	total_control_moles += moderator_input.gases[/datum/gas/pluoxium][MOLES]*3 //N2 helps you control the reaction at the cost of making it absolutely blast you with rads. Pluoxium has the same effect but without the rads!
+	moderator_input.garbage_collect()
+
+	if(total_control_moles >= minimum_coolant_level)
+		var/control_bonus = total_control_moles / 250 //1 mol of n2 -> 0.002 bonus control rod effectiveness, if you want a super controlled reaction, you'll have to sacrifice some power.
+		control_rod_effectiveness = initial(control_rod_effectiveness) + control_bonus
 		moderator_input.assert_gas(/datum/gas/nitrogen)
 		moderator_input.assert_gas(/datum/gas/carbon_dioxide)
-		moderator_input.assert_gas(/datum/gas/pluoxium)
-		total_control_moles += moderator_input.gases[/datum/gas/nitrogen][MOLES]
-		total_control_moles += moderator_input.gases[/datum/gas/carbon_dioxide][MOLES]*2
-		total_control_moles += moderator_input.gases[/datum/gas/pluoxium][MOLES]*3 //N2 helps you control the reaction at the cost of making it absolutely blast you with rads. Pluoxium has the same effect but without the rads!
+		radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/nitrogen][MOLES] / 25 //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
+		radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/carbon_dioxide][MOLES] / 12.5
 		moderator_input.garbage_collect()
 
-		if(total_control_moles >= minimum_coolant_level)
-			var/control_bonus = total_control_moles / 250 //1 mol of n2 -> 0.002 bonus control rod effectiveness, if you want a super controlled reaction, you'll have to sacrifice some power.
-			control_rod_effectiveness = initial(control_rod_effectiveness) + control_bonus
-			moderator_input.assert_gas(/datum/gas/nitrogen)
-			moderator_input.assert_gas(/datum/gas/carbon_dioxide)
-			radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/nitrogen][MOLES] / 25 //An example setup of 50 moles of n2 (for dealing with spent fuel) leaves us with a radioactivity spice multiplier of 3.
-			radioactivity_spice_multiplier += moderator_input.gases[/datum/gas/carbon_dioxide][MOLES] / 12.5
-			moderator_input.garbage_collect()
+	var/total_permeability_moles = 0 // moderator_input.gases[/datum/gas/bz][MOLES] + (moderator_input.gases[/datum/gas/water_vapor][MOLES]*2) + (moderator_input.gases[/datum/gas/hypernoblium][MOLES]*10)
 
-		var/total_permeability_moles = 0 // moderator_input.gases[/datum/gas/bz][MOLES] + (moderator_input.gases[/datum/gas/water_vapor][MOLES]*2) + (moderator_input.gases[/datum/gas/hypernoblium][MOLES]*10)
+	moderator_input.assert_gas(/datum/gas/bz)
+	moderator_input.assert_gas(/datum/gas/water_vapor)
+	moderator_input.assert_gas(/datum/gas/hypernoblium)
+	total_permeability_moles += moderator_input.gases[/datum/gas/bz][MOLES]
+	total_permeability_moles += moderator_input.gases[/datum/gas/water_vapor][MOLES]*2
+	total_permeability_moles += moderator_input.gases[/datum/gas/hypernoblium][MOLES]*10
+	moderator_input.garbage_collect()
 
-		moderator_input.assert_gas(/datum/gas/bz)
-		moderator_input.assert_gas(/datum/gas/water_vapor)
-		moderator_input.assert_gas(/datum/gas/hypernoblium)
-		total_permeability_moles += moderator_input.gases[/datum/gas/bz][MOLES]
-		total_permeability_moles += moderator_input.gases[/datum/gas/water_vapor][MOLES]*2
-		total_permeability_moles += moderator_input.gases[/datum/gas/hypernoblium][MOLES]*10
-		moderator_input.garbage_collect()
+	if(total_permeability_moles >= minimum_coolant_level)
+		var/permeability_bonus = total_permeability_moles / 500
+		gas_absorption_effectiveness = gas_absorption_constant + permeability_bonus
+	var/total_degradation_moles = 0 //moderator_input.gases[/datum/gas/nitryl][MOLES]
+	moderator_input.assert_gas(/datum/gas/nitryl)//Because it's quite hard to get.
+	total_degradation_moles += moderator_input.gases[/datum/gas/nitryl][MOLES]
+	moderator_input.garbage_collect()
 
-		if(total_permeability_moles >= minimum_coolant_level)
-			var/permeability_bonus = total_permeability_moles / 500
-			gas_absorption_effectiveness = gas_absorption_constant + permeability_bonus
-		var/total_degradation_moles = 0 //moderator_input.gases[/datum/gas/nitryl][MOLES]
-		moderator_input.assert_gas(/datum/gas/nitryl)//Because it's quite hard to get.
-		total_degradation_moles += moderator_input.gases[/datum/gas/nitryl][MOLES]
-		moderator_input.garbage_collect()
-
-		if(total_degradation_moles >= minimum_coolant_level*0.5) //I'll be nice.
-			depletion_modifier += total_degradation_moles / 15 //Oops! All depletion. This causes your fuel rods to get SPICY.
-			playsound(src, pick('sound/machines/sm/accent/normal/1.ogg','sound/machines/sm/accent/normal/2.ogg','sound/machines/sm/accent/normal/3.ogg','sound/machines/sm/accent/normal/4.ogg','sound/machines/sm/accent/normal/5.ogg'), 100, TRUE)
-		//From this point onwards, we clear out the remaining gasses.
-		moderator_input.remove() //Woosh. And the soul is gone.
-		K += total_fuel_moles / 1000
+	if(total_degradation_moles >= minimum_coolant_level*0.5) //I'll be nice.
+		depletion_modifier += total_degradation_moles / 15 //Oops! All depletion. This causes your fuel rods to get SPICY.
+		playsound(src, pick('sound/machines/sm/accent/normal/1.ogg','sound/machines/sm/accent/normal/2.ogg','sound/machines/sm/accent/normal/3.ogg','sound/machines/sm/accent/normal/4.ogg','sound/machines/sm/accent/normal/5.ogg'), 100, TRUE)
+	//From this point onwards, we clear out the remaining gasses.
+	moderator_input.remove() //Woosh. And the soul is gone.
+	K += total_fuel_moles / 1000
 	var/fuel_power = 0 //So that you can't magically generate K with your control rods.
 	if(!has_fuel())  //Reactor must be fuelled and ready to go before we can heat it up boys.
 		K = 0
@@ -450,8 +449,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
 		var/turf/T = get_turf(src)
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
-		vessel_integrity -= (pressure/100)
-		if(vessel_integrity <= pressure/100) //It wouldn't be able to tank another hit.
+		vessel_integrity -= (pressure/200)
+		if(vessel_integrity <= pressure/200) //It wouldn't be able to tank another hit.
 			investigate_log("Reactor blowout at [pressure] PSI with desired criticality at [desired_k]", INVESTIGATE_SINGULO)
 			blowout()
 			return

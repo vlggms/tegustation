@@ -1,7 +1,7 @@
 /datum/supply_pack/engine/bananium_fuel_rod
 	name = "Bananium Fuel Rod crate"
 	desc = "Two fuel rods designed to utilize and multiply bananium in a reactor, requires CE access to open. Caution: Radioactive"
-	cost = 4000
+	cost = CARGO_CRATE_VALUE*20
 	access = ACCESS_CE // Nag your local CE
 	contains = list(/obj/item/fuel_rod/material/bananium,
 					/obj/item/fuel_rod/material/bananium)
@@ -13,7 +13,7 @@
 /datum/supply_pack/engine/fuel_rod
 	name = "Uranium Fuel Rod crate"
 	desc = "Two additional fuel rods for use in a reactor, requires CE access to open. Caution: Radioactive"
-	cost = 3000
+	cost = CARGO_CRATE_VALUE*15
 	access = ACCESS_CE
 	contains = list(/obj/item/fuel_rod,
 					/obj/item/fuel_rod)
@@ -24,7 +24,7 @@
 /datum/supply_pack/engine/reactor
 	name = "RMBK Nuclear Reactor Kit" // (not) a toy
 	desc = "Contains a reactor beacon and 3 reactor consoles. Uranium rods not included."
-	cost = 12000
+	cost = CARGO_CRATE_VALUE*60
 	access = ACCESS_CE
 	contains = list(/obj/item/survivalcapsule/reactor,
 					/obj/machinery/computer/reactor/control_rods/cargo,
