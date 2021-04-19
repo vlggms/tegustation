@@ -107248,10 +107248,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/engine/engineering/reactor_control)
-"ile" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/space)
 "ilu" = (
 /obj/structure/window,
 /obj/machinery/biogenerator,
@@ -110635,9 +110631,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"peN" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "peO" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Holodeck Access"
@@ -128505,12 +128498,12 @@ aaa
 aaa
 aaa
 aaa
-peN
-ile
-ile
-ile
-peN
-peN
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
