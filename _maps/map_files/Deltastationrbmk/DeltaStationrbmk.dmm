@@ -8027,6 +8027,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aut" = (
@@ -11009,22 +11010,6 @@
 /obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"aBc" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/landmark/nuclear_waste_spawner,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "aBd" = (
 /obj/structure/sign/directions/engineering{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
@@ -53571,12 +53556,10 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "caB" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "caC" = (
@@ -55207,8 +55190,6 @@
 /area/engine/engineering)
 "cdY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet,
-/obj/effect/spawner/lootdrop/maintenance,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -55218,6 +55199,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/maintenance/port)
 "cdZ" = (
@@ -57888,11 +57870,11 @@
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "cjQ" = (
-/obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/maintenance/central/secondary)
 "cjR" = (
@@ -72216,8 +72198,7 @@
 /area/maintenance/port)
 "cNl" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/structure/closet/radiation,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "cNm" = (
@@ -79318,8 +79299,8 @@
 /turf/open/floor/plasteel,
 /area/science/research)
 "daO" = (
-/obj/structure/closet/firecloset,
 /obj/effect/turf_decal/bot,
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/science/research)
 "daP" = (
@@ -90853,6 +90834,7 @@
 /area/medical/surgery/room_b)
 "dBt" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/closet/radiation,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dBu" = (
@@ -94653,6 +94635,7 @@
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/green,
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "dJp" = (
@@ -95552,6 +95535,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/maintenance/aft)
 "dLj" = (
@@ -105743,6 +105727,11 @@
 "eVx" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
+"eWU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/radiation,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "eZf" = (
 /obj/structure/cable,
 /obj/machinery/computer/security/telescreen{
@@ -105819,20 +105808,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"fih" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/landmark/nuclear_waste_spawner,
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft)
 "fiN" = (
 /obj/structure/window,
 /obj/effect/decal/cleanable/dirt,
@@ -109806,6 +109781,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
+"nld" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/radiation,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "nlM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -113098,10 +113078,6 @@
 /obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"tVy" = (
-/obj/effect/landmark/nuclear_waste_spawner,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "tWK" = (
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/wall,
@@ -150087,7 +150063,7 @@ bsC
 bsW
 bvI
 bvK
-bvK
+nld
 bwU
 bBw
 bDx
@@ -154169,7 +154145,7 @@ azj
 aAq
 aBH
 aCM
-aBc
+aAq
 aAq
 tHC
 tHC
@@ -154248,7 +154224,7 @@ cPk
 cXD
 cPk
 daY
-fih
+cPk
 cPk
 cPk
 cPk
@@ -154261,7 +154237,7 @@ dqT
 cPk
 cXD
 cPk
-fih
+cPk
 dlR
 cPk
 cPk
@@ -156572,7 +156548,7 @@ dnl
 dpi
 dcO
 dpn
-tVy
+dcO
 dcO
 bHz
 dsA
@@ -158309,7 +158285,7 @@ boU
 cKD
 bsS
 bsW
-bvK
+nld
 bvK
 bvI
 bwU
@@ -160922,7 +160898,7 @@ cIZ
 cKM
 dAh
 cNJ
-cHW
+eWU
 vTA
 cSQ
 nQW
