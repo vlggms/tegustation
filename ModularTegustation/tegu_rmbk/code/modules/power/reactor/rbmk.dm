@@ -85,6 +85,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/temperature = 0 //Lose control of this -> Meltdown
 	var/vessel_integrity = 400 //How long can the reactor withstand overpressure / meltdown? This gives you a fair chance to react to even a massive pipe fire
 	var/pressure = 0 //Lose control of this -> Blowout
+	var/moles = 0 //no you dummy, if you lose control of THIS it will blowout!!
 	var/K = 0 //Rate of reaction.
 	var/desired_k = 0
 	var/control_rod_effectiveness = 0.65 //Starts off with a lot of control over K. If you flood this thing with plasma, you lose your ability to control K as easily.
@@ -109,6 +110,14 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 	var/last_user = null
 	var/current_desired_k = null
+	///Internal radio
+	var/obj/item/radio/radio
+	///The key our internal radio uses
+	var/radio_key = /obj/item/encryptionkey/headset_eng
+	///The engineering channel
+	var/engineering_channel = "Engineering"
+	///The common channel
+	var/common_channel = null
 
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
@@ -205,6 +214,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	gas_absorption_effectiveness = rand(5, 6)/10 //All reactors are slightly different. This will result in you having to figure out what the balance is for K.
 	gas_absorption_constant = gas_absorption_effectiveness //And set this up for the rest of the round.
 	STOP_PROCESSING(SSmachines, src) //We'll handle this one ourselves.
+	radio = new(src)
+	radio.keyslot = new radio_key
+	radio.listening = 0
+	radio.recalculateChannels()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/Crossed(atom/movable/AM, oldloc)
 	. = ..()
@@ -249,6 +262,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	coolant_output.temperature = CELSIUS_TO_KELVIN(temperature) //Heat the coolant output gas that we just had pass through us.
 	last_output_temperature = KELVIN_TO_CELSIUS(coolant_output.return_temperature())
 	pressure = KPA_TO_PSI(coolant_output.return_pressure())
+	moles = coolant_output.total_moles()
 	power = (temperature / RBMK_TEMPERATURE_CRITICAL) * 100
 	var/radioactivity_spice_multiplier = 1 //Some gasses make the reactor a bit spicy.
 	var/depletion_modifier = 0.035 //How rapidly do your rods decay
@@ -428,8 +442,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		investigate_log("Reactor reaching critical temperature at [temperature] C with desired criticality at [desired_k]", INVESTIGATE_SINGULO)
 		message_admins("Reactor reaching critical temperature at [ADMIN_VERBOSEJMP(src)]")
 		if(temperature >= RBMK_TEMPERATURE_MELTDOWN)
-			vessel_integrity -= (temperature / 100)
-			if(vessel_integrity <= temperature/100) //It wouldn't be able to tank another hit.
+			vessel_integrity -= (temperature / 200)
+			radio_alert()
+			if(vessel_integrity <= temperature/200) //It wouldn't be able to tank another hit.
 				investigate_log("Reactor melted down at [temperature] C with desired criticality at [desired_k]", INVESTIGATE_SINGULO)
 				meltdown() //Oops! All meltdown
 				return
@@ -449,8 +464,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
 		var/turf/T = get_turf(src)
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
-		vessel_integrity -= (pressure/200)
-		if(vessel_integrity <= pressure/200) //It wouldn't be able to tank another hit.
+		vessel_integrity -= (pressure/400)
+		radio_alert()
+		if(vessel_integrity <= pressure/400) //It wouldn't be able to tank another hit.
 			investigate_log("Reactor blowout at [pressure] PSI with desired criticality at [desired_k]", INVESTIGATE_SINGULO)
 			blowout()
 			return
@@ -551,6 +567,11 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	temperature = 0
 	update_icon()
 
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/radio_alert()
+	if(vessel_integrity<120)
+		radio.talk_into(src, "REACTOR MELTDOWN IMMINENT. Integrity: [vessel_integrity/4]%", common_channel)
+	else
+		radio.talk_into(src, "Danger! Vessel integrity faltering! Integrity: [vessel_integrity/4]%", engineering_channel)
 /obj/item/fuel_rod
 	name = "Uranium-235 Fuel Rod"
 	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder inside, and a breeding blanket of uranium-238 around it, used to kick off a fission reaction and breed plutonium fuel respectivly."
