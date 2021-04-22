@@ -54,30 +54,6 @@
 				return TRUE
 	return FALSE
 
-/datum/objective_item/steal/renaultfox
-	name = "Renault, the Captain's prized fox, alive!"
-	targetitem = /obj/item/pet_carrier
-	difficulty = 20
-	excludefromjob = list("Captain")
-	altitems = list(/obj/item/clothing/head/mob_holder)
-
-/datum/objective_item/steal/renaultfox/New()
-	special_equipment += /obj/item/lazarus_injector
-	..()
-
-/datum/objective_item/steal/renaultfox/check_special_completion(obj/item/K)
-	if(istype(K, /obj/item/pet_carrier))
-		var/obj/item/pet_carrier/G = K
-		for(var/mob/living/simple_animal/pet/fox/renault/D in G)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	if(istype(K, /obj/item/clothing/head/mob_holder))
-		var/obj/item/clothing/head/mob_holder/G = K
-		for(var/mob/living/simple_animal/pet/fox/renault/D in G)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	return FALSE
-
 /datum/objective_item/steal/lamarr // Might require maintaining if Xeno rework is merged
 	name = "Lamarr The subject of study by the research director."
 	targetitem = /obj/item/clothing/mask/facehugger/lamarr
@@ -85,5 +61,24 @@
 	excludefromjob = list("Research Director")
 
 /datum/objective/escape/escape_with_identity/infiltrator/New() //For infiltrators, so they get mulligan
+	var/list/spec_equipment = list()
+	spec_equipment += /obj/item/adv_mulligan
+	give_special_equipment(spec_equipment)
 	..()
-	give_special_equipment(list(/obj/item/adv_mulligan))
+
+/datum/objective/proc/find_target_by_race(race, invert=FALSE) // race = "human", and so on.
+	var/list/datum/mind/owners = get_owners()
+	var/list/possible_targets = list()
+	for(var/datum/mind/possible_target in get_crewmember_minds())
+		if(!(possible_target in owners) && ishuman(possible_target.current))
+			var/mob/living/carbon/human/H = possible_target.current
+			if(invert)
+				if((H.dna.species.id != race) && H.stat != DEAD)
+					possible_targets += possible_target
+			else
+				if((H.dna.species.id == race) && H.stat != DEAD)
+					possible_targets += possible_target
+	if(length(possible_targets))
+		target = pick(possible_targets)
+	update_explanation_text()
+	return target
