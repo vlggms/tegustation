@@ -10,7 +10,7 @@ import { useBackend, useLocalState } from '../backend';
 export const RbmkStats = (props, context) => {
   const { act, data } = useBackend(context);
   const powerData = data.powerData.map((value, i) => [i, value]);
-  const moleData = data.moleData.map((value, i) => [i, value]);
+  const psiData = data.psiData.map((value, i) => [i, value]);
   const tempInputData = data.tempInputData.map((value, i) => [i, value]);
   const tempOutputdata = data.tempOutputdata.map((value, i) => [i, value]);
   return (
@@ -24,13 +24,13 @@ export const RbmkStats = (props, context) => {
             maxValue={100}
             color="yellow" />
           <br />
-          Reactor Mass (Moles):
+          Reactor Pressure (PSI):
           <ProgressBar
-            value={data.moles}
+            value={data.psi}
             minValue={0}
             maxValue={2000}
             color="white" >
-            {data.moles} moles
+            {data.psi} PSI
           </ProgressBar>
           Coolant temperature (°C):
           <ProgressBar
@@ -59,8 +59,8 @@ export const RbmkStats = (props, context) => {
             fillColor="rgba(255, 215, 0, 0.1)" />
           <Chart.Line
             fillPositionedParent
-            data={moleData}
-            rangeX={[0, moleData.length - 1]}
+            data={psiData}
+            rangeX={[0, psiData.length - 1]}
             rangeY={[0, 1500]}
             strokeColor="rgba(255,250,250, 1)"
             fillColor="rgba(255,250,250, 0.1)" />
