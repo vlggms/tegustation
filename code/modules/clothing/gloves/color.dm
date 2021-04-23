@@ -205,9 +205,9 @@
 	inhand_icon_state = "infiltrator"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.3
- 	clothing_traits = list(TRAIT_QUICKER_CARRY)
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-  	transfer_prints = FALSE
+	transfer_prints = FALSE
 
 /obj/item/clothing/gloves/color/latex/engineering
 	name = "tinker's gloves"
