@@ -90,8 +90,8 @@
 		return
 	ultimatum_cooldown = world.time + ultimatum_cooldown_time
 	var/list/mob/living/carbon/human/death_candidates = list()
-	for(var/mob/living/carbon/human/maybe_victim in GLOB.human_list) //player_list
-		if(maybe_victim.loc.AllowClick()&& (maybe_victim.stat != DEAD) && maybe_victim.z == z)
+	for(var/mob/living/carbon/human/maybe_victim in GLOB.player_list)
+		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
 	var/mob/living/carbon/human/H = null
 	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
