@@ -573,8 +573,7 @@
 				var/datum/job/job = SSjob.GetJob(job_name)
 				job.allow_bureaucratic_error = FALSE
 				job.total_positions = 0
-			for(var/i in GLOB.player_list)
-				var/mob/living/carbon/human/H = i
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
 				// Jumpsuit
 				var/olduniform = H.w_uniform
 				var/obj/item/clothing/under/newuniform = new /obj/item/clothing/under/color/black
