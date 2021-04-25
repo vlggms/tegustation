@@ -599,11 +599,12 @@
 				H.equip_to_slot_or_del(newshoes, ITEM_SLOT_FEET)
 
 				// ID
-				var/obj/item/card/id/LEID = H.get_idcard(TRUE)
-				LEID.access = get_all_accesses()
-				LEID.assignment = "Assistant"
-				LEID.desc = "An identification card of a FREE man! Has full access everywhere on the station."
-				LEID.update_label()
+				if(H.get_idcard(TRUE))
+					var/obj/item/card/id/LEID = H.get_idcard(TRUE)
+					LEID.access = get_all_accesses()
+					LEID.assignment = "Assistant"
+					LEID.desc = "An identification card of a FREE man! Has full access everywhere on the station."
+					LEID.update_label()
 
 	if(E)
 		E.processing = FALSE
