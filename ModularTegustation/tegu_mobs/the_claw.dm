@@ -41,9 +41,9 @@
 	var/dash_num_short = 4
 	var/dash_num_long = 18
 	var/dash_cooldown = 0
-	var/dash_cooldown_time = 5 // cooldown_time * distance:
-	// 5 * 4 = 20 (2 seconds)
-	// 5 * 18 = 90 (9 seconds)
+	var/dash_cooldown_time = 4 // cooldown_time * distance:
+	// 4 * 4 = 16 (1.6 seconds)
+	// 4 * 18 = 72 (7.2 seconds)
 
 /datum/action/innate/megafauna_attack/ultimatum
 	name = "Ultimatum"
@@ -134,9 +134,10 @@
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
 		qdel(eff)
 		return
+	new /obj/effect/temp_visual/emp/pulse(src.loc)
 	visible_message("<span class='warning'>[src] blinks away!</span>")
 	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
-	new /obj/effect/temp_visual/small_smoke/halfsecond(tp_loc)
+	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
 	qdel(eff)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
