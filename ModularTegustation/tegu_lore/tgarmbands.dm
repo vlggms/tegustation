@@ -2,7 +2,7 @@
 Who is terragov?
 Terragov is a remnant of the last nations on Earth. Their language is Galactic Common, which is a mixture of old Chinese and old English(edited)
 
-Terragov is  made up of 6 factions
+Terragov is  made up of 6 divisions
 TG-EU
 TG-Americas
 TG-Russia
@@ -10,8 +10,8 @@ TG-China
 TG-Africa
 TG-UN
 
-TG-Americas and TG-China are the 2 biggest factions, both speak Galactic Common with their own distinct accent  that's similar to their ancient dialect
-The TG-UN is a leftover from the formation of Terragov. They prevent conflict between the factions.
+TG-Americas and TG-China are the 2 biggest divisions, both speak Galactic Common with their own distinct accent  that's similar to their ancient dialect
+The TG-UN is a leftover from the formation of Terragov. They prevent conflict between the divisions.
 
 Note that TG-Russia and Space Russia (or the third soviet union or USSP if you are fancy) are not the same thing, in fact, Terragov and Space russia are in a undeclared war!
 although space russia is vastly weaker than TG, space russia is too far away to attack, and only TG-RU has been seending expeditionary fleets into Space russian space.
@@ -64,7 +64,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 //soldiers
 /obj/item/clothing/under/terragov/camo
 	name = "camouflage fatigues"
-	desc = "A green military camouflage uniform used by Terragov soldiers in every faction."
+	desc = "A green military camouflage uniform used by Terragov soldiers in every division."
 	icon_state = "camogreen"
 	inhand_icon_state = "g_suit"
 	armor = list(MELEE = 10, BULLET = 10, LASER = 0,ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 50, ACID = 40, WOUND = 10)
@@ -93,17 +93,17 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 //deathsquad / real bad shit ert
 
 /obj/item/clothing/head/helmet/swat/terragov
-	name = "elite terragov helmet"
+	name = "military terragov helmet"
 	desc = "A spaceproof helmet used by space force operations by TG-AM and TG-CN."
 	icon_state = "helmetalt"
 
 /obj/item/clothing/head/helmet/swat/terragov/beret
-	name = "elite terragov beret"
+	name = "military terragov beret"
 	desc = "A bulletproof helmet used by TG-RU, TG-EU, and TG-AF."
 	icon_state = "hosberetblack"
 
 /obj/item/clothing/head/helmet/swat/terragov/un
-	name = "elite peacekeeper helmet"
+	name = "military peacekeeper helmet"
 	desc = "A blue helmet used by TG-UN for \"peacekeeping\" operations."
 	icon_state = "antichristhelm"
 	icon = 'ModularTegustation/Teguicons/tegu_armbands.dmi'
@@ -235,7 +235,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	remove_sensors_elite()
 	return ..()
 
-//armbands, for factions, maybe a "pefererd terragov faction" pref? Scratch that, earlier me, probabaly a beacon where you can pick your faction, which gives you a cool helmet and armband!
+//armbands, for divisions, maybe a "pefererd terragov division" pref? Scratch that, earlier me, probabaly a beacon where you can pick your divisions, which gives you a cool helmet and armband!
 
 /obj/item/clothing/accessory/armband/terragov
 	name = "terragov armband"
@@ -247,40 +247,127 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 
 /obj/item/clothing/accessory/armband/terragov/un
 	name = "tg-un armband"
-	desc = "A light blue armband worn by those in the UN faction of Terragov. For when you love the antichrist."
+	desc = "A light blue armband worn by those in the UN division of Terragov. For when you love the antichrist."
 	icon_state = "tgunband"
 
 /obj/item/clothing/accessory/armband/terragov/eu
 	name = "tg-eu armband"
-	desc = "A blue armband worn by those in the EU faction of Terragov. Est Europa nunc unita!"
+	desc = "A blue armband worn by those in the EU division of Terragov. Est Europa nunc unita!"
 	icon_state = "tgeuband"
 
 /obj/item/clothing/accessory/armband/terragov/cn
 	name = "tg-cn armband"
-	desc = "A rainbow colored armband worn by those in the CN faction of Terragov."
+	desc = "A rainbow colored armband worn by those in the CN division of Terragov."
 	icon_state = "tgcnband"
 
 /obj/item/clothing/accessory/armband/terragov/af
 	name = "tg-af armband"
-	desc = "A green colored armband worn by those in the AF faction of Terragov."
+	desc = "A green colored armband worn by those in the AF division of Terragov."
 	icon_state = "tgafband"
 
 /obj/item/clothing/accessory/armband/terragov/am
 	name = "tg-am armband"
-	desc = "A red and white colored armband worn by those in the AM faction of Terragov."
+	desc = "A red and white colored armband worn by those in the AM division of Terragov."
 	icon_state = "tgamband"
 	attachment_slot = null
 
 /obj/item/clothing/accessory/armband/terragov/ru
 	name = "tg-ru armband"
-	desc = "A blue and white colored armband worn by those in the RU faction of Terragov."
+	desc = "A blue and white colored armband worn by those in the RU division of Terragov."
 	icon_state = "tgruband"
 
 //GUNS!!
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper SABR SMG"
-	desc = "A three-round burst 9mm submachine gun. SMG of choice of TerraGov. Has a threaded barrel for suppressors."
+	desc = "A three-round burst 9mm submachine gun. Used by TerraGov. Has a threaded barrel for suppressors."
 	w_class = WEIGHT_CLASS_HUGE
+
+//Choice beacons, may or may not be borked
+/*
+choices:
+TerraGov - No division
+TerraGov - United Nations
+TerraGov - Europe
+TerraGov - Russia
+TerraGov - China
+TerraGov - America
+TerraGov - Africa
+
+*/
+/obj/item/choice_beacon/terragov_faction
+	name = "division choice"
+	desc = "We forgot to send you your armbands and helmets. Oops. Simply pick the division you are a part of and we will send it your way."
+
+/obj/item/choice_beacon/terragov_faction/generate_display_names()
+	var/static/list/faction_list
+	if(!faction_list)
+		faction_list = list()
+		var/list/templist = typesof(/obj/item/storage/box/terragov_helms) //we have to convert type = name to name = type, how lovely!
+		for(var/V in templist)
+			var/atom/A = V
+			faction_list[initial(A.name)] = A
+	return faction_list
+
+/obj/item/choice_beacon/terragov_faction/spawn_option(obj/choice,mob/living/M)
+	new choice(get_turf(M))
+	var/msg = "<span class=danger>After making your selection, a box suddenly apears out of blue dust!</span>"
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(istype(H.ears, /obj/item/radio/headset))
+			msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from High Command.  Message as follows: <span class='bold'>Requestion received. You should have reccived your item right about now.</span> Message ends.\""
+	to_chat(M, msg)
+
+//boxes with said items
+/obj/item/storage/box/terragov_helms
+	name = "TerraGov - No division"
+
+/obj/item/storage/box/terragov_helms/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov(src)
+	new /obj/item/clothing/accessory/armband/terragov(src)
+
+/obj/item/storage/box/terragov_helms/un
+	name = "TerraGov - United Nations"
+
+/obj/item/storage/box/terragov_helms/un/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov/un(src)
+	new /obj/item/clothing/accessory/armband/terragov/un(src)
+
+/obj/item/storage/box/terragov_helms/eu
+	name = "TerraGov - Europe"
+
+/obj/item/storage/box/terragov_helms/eu/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov/beret(src)
+	new /obj/item/clothing/accessory/armband/terragov/eu(src)
+
+/obj/item/storage/box/terragov_helms/ru
+	name = "TerraGov - Russia"
+
+/obj/item/storage/box/terragov_helms/ru/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov/beret(src)
+	new /obj/item/clothing/accessory/armband/terragov/ru(src)
+
+/obj/item/storage/box/terragov_helms/cn
+	name = "TerraGov - China"
+
+/obj/item/storage/box/terragov_helms/cn/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov(src)
+	new /obj/item/clothing/accessory/armband/terragov/cn(src)
+
+/obj/item/storage/box/terragov_helms/am
+	name = "TerraGov - America"
+
+/obj/item/storage/box/terragov_helms/am/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov(src)
+	new /obj/item/clothing/accessory/armband/terragov/am(src)
+
+/obj/item/storage/box/terragov_helms/af
+	name = "TerraGov - Africa"
+
+/obj/item/storage/box/terragov_helms/af/PopulateContents()
+	new /obj/item/clothing/head/helmet/swat/terragov/beret(src)
+	new /obj/item/clothing/accessory/armband/terragov/af(src)
+
+
 
 //erts
 
@@ -307,6 +394,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	uniform = /obj/item/clothing/under/terragov/camo
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/hud/terragov
+	r_hand = /obj/item/choice_beacon/terragov_faction
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
@@ -321,6 +409,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/hud/terragov/elite
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad // /hardsuit/terragov soon :tm:, or maybe even a subtype of the syndicate harsuit?
+	r_hand = /obj/item/choice_beacon/terragov_faction
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/centcom // for now
