@@ -53,11 +53,14 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	*/ // imagine losing your progress like a dumbass
 
 //officals "weird cia agent"
-/obj/item/clothing/under/suit/black_really/terragov
+/obj/item/clothing/under/suit_jacket/really_black/terragov
 	name = " terragov suit"
 	desc = "A formal black suit and red tie. Used by non-military Terragov personel."
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-
+	icon_state = "really_black_suit"
+	inhand_icon_state = "really_black_suit"
+	icon = 'icons/obj/clothing/under/suits.dmi'
+	worn_icon = 'icons/mob/clothing/under/suits.dmi'
 //soldiers
 /obj/item/clothing/under/terragov/camo
 	name = "camouflage fatigues"
@@ -111,8 +114,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 /obj/item/clothing/glasses/hud/terragov
 	name = "protective goggles"
 	desc = "Protects agains flashes while providing information about criminal records, both on the Terragov database and on the local station database."
-	icon_state = "sunglasses"
-	hud_type = (ANTAG_HUD_GANGSTER, DATA_HUD_SECURITY_BASIC, DATA_HUD_MEDICAL_BASIC)
+	icon_state = "sun"
 	darkness_view = 1
 	flash_protect = FLASH_PROTECTION_FLASH
 	tint = 1
@@ -122,8 +124,116 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	name = "elite goggles"
 	desc = "Protects agains flashes while providing top-secret info from Terragov's inteligence agencies."
 	icon_state = "bigsunglasses"
-	hud_type = (ANTAG_HUD_GANGSTER, ANTAG_HUD_CULT, ANTAG_HUD_REV, ANTAG_HUD_FUGITIVE, DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED, DATA_HUD_AI_DETECT)
 	darkness_view = 1
+
+//glasses code
+
+/obj/item/clothing/glasses/hud/terragov/dropped(mob/user)
+	..()
+	remove_sensors(user)
+
+/obj/item/clothing/glasses/hud/terragov/equipped(mob/user, slot)
+	..()
+	add_sensors(user, slot)
+
+/obj/item/clothing/glasses/hud/terragov/proc/remove_sensors(mob/user)
+	if(!user)
+		if(ismob(loc))
+			user = loc
+		else
+			return
+	var/datum/atom_hud/gangsensor = GLOB.huds[ANTAG_HUD_GANGSTER]
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_SECURITY_BASIC]
+	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_MEDICAL_BASIC]
+	secsensor.remove_hud_from(user)
+	medsensor.remove_hud_from(user)
+	gangsensor.remove_hud_from(user)
+
+
+/obj/item/clothing/glasses/hud/terragov/proc/add_sensors(mob/user, slot)
+	if(slot != ITEM_SLOT_EYES)
+		return
+	if(!user)
+		if(ismob(loc))
+			user = loc
+		else
+			return
+	var/datum/atom_hud/gangsensor = GLOB.huds[ANTAG_HUD_GANGSTER]
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_SECURITY_BASIC]
+	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_MEDICAL_BASIC]
+	secsensor.add_hud_to(user)
+	medsensor.add_hud_to(user)
+	gangsensor.add_hud_to(user)
+
+
+
+/obj/item/clothing/glasses/hud/terragov/elite/Destroy()
+	remove_sensors()
+	return ..()
+
+// now the advanced hud
+
+/obj/item/clothing/glasses/hud/terragov/elite/dropped(mob/user)
+	..()
+	remove_sensors_elite(user)
+
+/obj/item/clothing/glasses/hud/terragov/elite/equipped(mob/user, slot)
+	..()
+	add_sensors_elite(user, slot)
+
+/obj/item/clothing/glasses/hud/terragov/elite/proc/remove_sensors_elite(mob/user)
+	if(!user)
+		if(ismob(loc))
+			user = loc
+		else
+			return
+	var/datum/atom_hud/gangsensor = GLOB.huds[ANTAG_HUD_GANGSTER]
+	var/datum/atom_hud/cultsensor = GLOB.huds[ANTAG_HUD_CULT]
+	var/datum/atom_hud/revsensor = GLOB.huds[ANTAG_HUD_REV]
+	var/datum/atom_hud/fugsensor = GLOB.huds[ANTAG_HUD_FUGITIVE]
+	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	var/datum/atom_hud/diagsensor = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
+	var/datum/atom_hud/aisensor = GLOB.huds[DATA_HUD_AI_DETECT]
+
+	secsensor.remove_hud_from(user)
+	medsensor.remove_hud_from(user)
+	gangsensor.remove_hud_from(user)
+	revsensor.remove_hud_from(user)
+	fugsensor.remove_hud_from(user)
+	diagsensor.remove_hud_from(user)
+	aisensor.remove_hud_from(user)
+	cultsensor.remove_hud_from(user)
+
+/obj/item/clothing/glasses/hud/terragov/elite/proc/add_sensors_elite(mob/user, slot)
+	if(slot != ITEM_SLOT_EYES)
+		return
+	if(!user)
+		if(ismob(loc))
+			user = loc
+		else
+			return
+	var/datum/atom_hud/gangsensor = GLOB.huds[ANTAG_HUD_GANGSTER]
+	var/datum/atom_hud/cultsensor = GLOB.huds[ANTAG_HUD_CULT]
+	var/datum/atom_hud/revsensor = GLOB.huds[ANTAG_HUD_REV]
+	var/datum/atom_hud/fugsensor = GLOB.huds[ANTAG_HUD_FUGITIVE]
+	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	var/datum/atom_hud/diagsensor = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
+	var/datum/atom_hud/aisensor = GLOB.huds[DATA_HUD_AI_DETECT]
+
+	secsensor.add_hud_to(user)
+	medsensor.add_hud_to(user)
+	gangsensor.add_hud_to(user)
+	revsensor.add_hud_to(user)
+	fugsensor.add_hud_to(user)
+	diagsensor.add_hud_to(user)
+	aisensor.add_hud_to(user)
+	cultsensor.add_hud_to(user)
+
+/obj/item/clothing/glasses/hud/terragov/elite/Destroy()
+	remove_sensors_elite()
+	return ..()
 
 //armbands, for factions, maybe a "pefererd terragov faction" pref? Scratch that, earlier me, probabaly a beacon where you can pick your faction, which gives you a cool helmet and armband!
 
@@ -131,6 +241,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	name = "terragov armband"
 	desc = "A armband worn by Terragov officals if they don't want to get involved with Terragov's politics."
 	icon_state = "terraband"
+	worn_icon_state ="terraband"
 	icon = 'ModularTegustation/Teguicons/tegu_armbands.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/tegu_armbands_worn.dmi'
 
@@ -164,12 +275,19 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	name = "tg-ru armband"
 	desc = "A blue and white colored armband worn by those in the RU faction of Terragov."
 	icon_state = "tgruband"
-//erps
+
+//GUNS!!
+/obj/item/gun/ballistic/automatic/proto
+	name = "\improper SABR SMG"
+	desc = "A three-round burst 9mm submachine gun. SMG of choice of TerraGov. Has a threaded barrel for suppressors."
+	w_class = WEIGHT_CLASS_HUGE
+
+//erts
 
 //outfits
 /datum/outfit/terragov/offical
 	name = "Terragov Offical"
-	uniform = /obj/item/under/suit/black_really/terragov
+	uniform = /obj/item/clothing/under/suit_jacket/really_black/terragov
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/sunglasses
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol // pistol/terragov soon :tm:
@@ -182,8 +300,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	ears = /obj/item/radio/headset/terragov/alt
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
 		/obj/item/clothing/gloves/color/latex=1,\
-		/obj/item/crowbar=1\
-		/obj/item/assembly/flash/hypnotic)
+		/obj/item/crowbar=1)
 
 /datum/outfit/terragov/sodlier
 	name = "Terragov Soldier"
@@ -196,7 +313,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	id = /obj/item/card/id/centcom // for now
 	ears = /obj/item/radio/headset/terragov/alt
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/crowbar/powertool)
+		/obj/item/crowbar/power)
 
 /datum/outfit/terragov/sodlier/elite
 	name = "Terragov Elite"
@@ -209,7 +326,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	id = /obj/item/card/id/centcom // for now
 	ears = /obj/item/radio/headset/terragov/alt
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/crowbar/powertool)
+		/obj/item/crowbar/power)
 
 //ert shit
 
@@ -271,3 +388,34 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	missionobj.completed = TRUE
 	mission = missionobj
 	objectives |= mission
+
+//???
+
+
+/datum/ert/terragov/official
+	code = "102"
+	teamsize = 1
+	opendoors = FALSE
+	leader_role = /datum/antagonist/ert/terragov/official
+	roles = list(/datum/antagonist/ert/terragov/official)
+	rename_team = "TerraGov Officials"
+	polldesc = "a TerraGov Official"
+	mission = "Cover up a information leak or inspect the station."
+	random_names = FALSE
+	leader_experience = FALSE
+
+/datum/ert/terragov
+	leader_role = /datum/antagonist/ert/terragov
+	roles = list(/datum/antagonist/ert/terragov)
+	code = "101"
+	rename_team = "TerraGov Intervention Squad"
+	polldesc = "a TerraGov Intervention Squad"
+
+
+/datum/ert/terragov/elite
+	roles = list(/datum/antagonist/ert/terragov/elite)
+	leader_role = /datum/antagonist/ert/terragov/elite
+	rename_team = "TerraGov Soldier"
+	code = "404"
+	mission = "You been taken out of space Afganastan to assist the station. From one hell to another."
+	polldesc = "a TerraGov Military Squadron"
