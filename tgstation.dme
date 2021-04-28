@@ -3421,6 +3421,7 @@
 #include "ModularTegustation\tegu_jobs\void_technician\outpost.dm"
 #include "ModularTegustation\tegu_jobs\void_technician\voidtech.dm"
 #include "ModularTegustation\tegu_jobs\void_technician\voidtechClothing.dm"
+#include "ModularTegustation\tegu_lore\tgarmbands.dm"
 #include "ModularTegustation\tegu_medical_code\tegu_medical.dm"
 #include "ModularTegustation\tegu_mentorhelp\ahelp-reject.dm"
 #include "ModularTegustation\tegu_mentorhelp\follow.dm"
