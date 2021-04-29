@@ -277,10 +277,43 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	icon_state = "tgruband"
 
 //GUNS!!
+//UN
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper SABR SMG"
 	desc = "A three-round burst 9mm submachine gun. Used by TerraGov. Has a threaded barrel for suppressors."
 	w_class = WEIGHT_CLASS_HUGE
+
+//RU
+/obj/item/gun/ballistic/automatic/pistol/terragov
+	name = "Makarov PM"
+	desc = "A modern reproduction of the ancient 9mm handgun. Has a threaded barrel for suppressors."
+	w_class = WEIGHT_CLASS_NORMAL
+	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
+	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
+	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
+	icon = 'ModularTegustation/TeguIcons/makarovpm.dmi'
+
+//AM
+//maybe add revolver?
+
+//EU
+/obj/item/gun/ballistic/automatic/pistol/sig
+	name = "SIG Sauer"
+	desc = "A classic handgun with a larger than average magazine capacity."
+	spread = 1
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state = "secpistol" //temp icon, will replace with better icon soon
+	mag_type = /obj/item/ammo_box/magazine/m9mm_aps/sig
+	can_suppress = FALSE
+	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
+	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
+	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
+//custom mags
+
+/obj/item/ammo_box/magazine/m9mm_aps/sig
+	name = "SIG Sauer pistol magazine (9mm)"
 
 //Choice beacons, may or may not be borked
 /*
@@ -367,8 +400,69 @@ TerraGov - Africa
 	new /obj/item/clothing/head/helmet/swat/terragov/beret(src)
 	new /obj/item/clothing/accessory/armband/terragov/af(src)
 
+//pistol beacon
+/obj/item/choice_beacon/terragov_sidearm
+	name = "sidearm choice"
+	desc = "TerraGov has collected a armament of service pistols over history. Most of them are still in service and can be ordered here."
 
+/obj/item/choice_beacon/terragov_sidearm/generate_display_names()
+	var/static/list/gun_list
+	if(!gun_list)
+		gun_list = list()
+		var/list/templist = typesof(/obj/item/storage/box/sidearm) //we have to convert type = name to name = type, how lovely!
+		for(var/V in templist)
+			var/atom/A = V
+			gun_list[initial(A.name)] = A
+	return gun_list
 
+/obj/item/choice_beacon/terragov_faction/spawn_option(obj/choice,mob/living/M)
+	new choice(get_turf(M))
+	var/msg = "<span class=danger>After making your selection, a box suddenly apears out of blue dust!</span>"
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(istype(H.ears, /obj/item/radio/headset))
+			msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from High Command.  Message as follows: <span class='bold'>Requestion received. You should have reccived your item right about now.</span> Message ends.\""
+	to_chat(M, msg)
+
+obj/item/storage/box/sidearm
+	name = "TG-RU Makarov PM"
+
+/obj/item/storage/box/sidearm/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/terragov(src)
+	new /obj/item/suppressor(src)
+	new /obj/item/ammo_box/magazine/m9mm(src)
+	new /obj/item/ammo_box/magazine/m9mm(src)
+
+obj/item/storage/box/sidearm/m1911
+	name = "TG-AM M1911"
+
+/obj/item/storage/box/sidearm/m1911/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/m1911(src)
+	new /obj/item/ammo_box/magazine/m45(src)
+	new /obj/item/ammo_box/magazine/m45(src)
+	new /obj/item/ammo_box/magazine/m45(src)
+
+obj/item/storage/box/sidearm/sig
+	name = "TG-EU SIG Sauer"
+
+/obj/item/storage/box/sidearm/sig/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/sig(src)
+	new /obj/item/ammo_box/magazine/m9mm_aps/sig(src)
+	new /obj/item/ammo_box/magazine/m9mm_aps/sig(src)
+
+obj/item/storage/box/sidearm/deagle
+	name = "TG-AF Desert Eagle"
+
+/obj/item/storage/box/sidearm/deagle/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/deagle/camo(src)
+	new /obj/item/ammo_box/magazine/m50(src)
+	new /obj/item/ammo_box/magazine/m50(src)
+
+obj/item/storage/box/sidearm/unica
+	name = "TG-RU Unica Revolver"
+
+/obj/item/storage/box/sidearm/unica/PopulateContents()
+	new /obj/item/gun/ballistic/revolver/mateba(src)
 //erts
 
 //outfits
@@ -395,6 +489,7 @@ TerraGov - Africa
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/hud/terragov
 	r_hand = /obj/item/choice_beacon/terragov_faction
+	r_pocket = /obj/item/choice_beacon/terragov_sidearm
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
@@ -410,6 +505,7 @@ TerraGov - Africa
 	glasses  = /obj/item/clothing/glasses/hud/terragov/elite
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad // /hardsuit/terragov soon :tm:, or maybe even a subtype of the syndicate harsuit?
 	r_hand = /obj/item/choice_beacon/terragov_faction
+	r_pocket = /obj/item/choice_beacon/terragov_sidearm
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/centcom // for now
