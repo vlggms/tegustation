@@ -59,16 +59,15 @@
 	name = "Glock 18"
 	desc = "The well known austrian pistol. This one is fully automatic, and may break your hand."
 	mag_type = /obj/item/ammo_box/magazine/uzim9mm
-// 	burst_size = 1 //soon:tm:
-	burst_size = 5
+ 	burst_size = 1
+//	burst_size = 5
 	spread = 30
 	fire_delay = 0.5
 
-	/*
 /obj/item/gun/ballistic/automatic/pistol/terragov/glock/fullauto/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
-	*/ //soon:tm:
+
 
 //custom mags
 
