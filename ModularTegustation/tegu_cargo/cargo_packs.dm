@@ -4,8 +4,8 @@
 	hidden = TRUE // Need to emag the supply console to be able to buy it.
 	cost = CARGO_CRATE_VALUE * 30 // Loads of cash
 	contains = list(/obj/item/gun/ballistic/automatic/aks74u,
-					/obj/item/ammo_box/magazine/aks74u,
-					/obj/item/ammo_box/magazine/aks74u,
+					/obj/item/ammo_box/magazine/ak47/aks74u,
+					/obj/item/ammo_box/magazine/ak47/aks74u,
 					/obj/item/clothing/mask/bandana/black,
 					/obj/item/clothing/suit/armor/vest/alt,
 					/obj/item/clothing/under/syndicate/camo,
@@ -15,5 +15,5 @@
 	if(prob(50))
 		contains += /obj/item/clothing/gloves/combat
 	if(prob(50))
-		contains += /obj/item/ammo_box/magazine/aks74u
+		contains += /obj/item/ammo_box/magazine/ak47/aks74u
 	. = ..()
