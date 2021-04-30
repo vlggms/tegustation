@@ -116,10 +116,8 @@
 		return
 	if(LAZYACCESS(modifiers, ALT_CLICK))
 		return
-	/* TEGU EDIT - ???
-	if(source.mob.throw_mode)
+	if(source.mob.in_throw_mode)
 		return
-	*/ //TEGU EDIT
 	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
 		return
 	if(get_dist(source.mob, _target) < 2) //Adjacent clicking.
