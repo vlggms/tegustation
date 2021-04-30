@@ -314,7 +314,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	can_suppress = FALSE
 //CH
 /obj/item/gun/ballistic/automatic/pistol/terragov/ppk
-	name = "Walther PPK"
+	name = "Type 64"
 	desc = "The classic Chinese handgun. Chambered in .38."
 	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
 	icon_state = "ppk"
@@ -323,7 +323,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 
 /obj/item/gun/ballistic/automatic/pistol/terragov/ppk/bond
 	name = "PP7"
-	desc = "A handgun that looks supicously similar to a the PPK. This one seems a bit stylish, innit?"
+	desc = "A handgun that looks suspiciously similar to a the Type 64. This one seems a bit stylish, innit?"
 	can_suppress = TRUE
 
 //TG
@@ -508,7 +508,7 @@ obj/item/storage/box/sidearm/deagle
 	new /obj/item/gun/ballistic/automatic/pistol/deagle/camo(src)
 
 obj/item/storage/box/sidearm/ppk
-	name = "TG-CN PPK"
+	name = "TG-CN Type 64"
 
 /obj/item/storage/box/sidearm/ppk/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/terragov/ppk(src)
