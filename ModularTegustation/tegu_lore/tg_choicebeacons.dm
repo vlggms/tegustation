@@ -116,7 +116,7 @@ Glock 17 - No Affiliation
 			msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from High Command.  Message as follows: <span class='bold'>Requestion received. You should have reccived your item right about now.</span> Message ends.\""
 	to_chat(M, msg)
 
-obj/item/storage/box/sidearm
+/obj/item/storage/box/sidearm
 	name = "TG-RU Makarov PM"
 
 /obj/item/storage/box/sidearm/PopulateContents()
@@ -124,14 +124,14 @@ obj/item/storage/box/sidearm
 	new /obj/item/ammo_box/magazine/m9mm(src)
 	new /obj/item/ammo_box/magazine/m9mm(src)
 
-obj/item/storage/box/sidearm/m1911
+/obj/item/storage/box/sidearm/m1911
 	name = "TG-AM M1911"
 
 /obj/item/storage/box/sidearm/m1911/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/m1911(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 
-obj/item/storage/box/sidearm/sig
+/obj/item/storage/box/sidearm/sig
 	name = "TG-EU SIG Sauer"
 
 /obj/item/storage/box/sidearm/sig/PopulateContents()
@@ -139,13 +139,13 @@ obj/item/storage/box/sidearm/sig
 	new /obj/item/ammo_box/magazine/m9mm_aps/sig(src)
 	new /obj/item/ammo_box/magazine/m9mm_aps/sig(src)
 
-obj/item/storage/box/sidearm/deagle
+/obj/item/storage/box/sidearm/deagle
 	name = "TG-AF Desert Eagle"
 
 /obj/item/storage/box/sidearm/deagle/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/deagle/camo(src)
 
-obj/item/storage/box/sidearm/ppk
+/obj/item/storage/box/sidearm/ppk
 	name = "TG-CN Type 64"
 
 /obj/item/storage/box/sidearm/ppk/PopulateContents()
@@ -153,7 +153,7 @@ obj/item/storage/box/sidearm/ppk
 	new /obj/item/ammo_box/magazine/m38(src)
 	new /obj/item/ammo_box/magazine/m38(src)
 
-obj/item/storage/box/sidearm/glock
+/obj/item/storage/box/sidearm/glock
 	name = "TG Glock"
 
 /obj/item/storage/box/sidearm/glock/PopulateContents()
@@ -161,7 +161,7 @@ obj/item/storage/box/sidearm/glock
 	new /obj/item/ammo_box/magazine/m9mm(src)
 	new /obj/item/ammo_box/magazine/m9mm(src)
 
-obj/item/storage/box/sidearm/beretta
+/obj/item/storage/box/sidearm/beretta
 	name = "TG-UN Beretta"
 
 /obj/item/storage/box/sidearm/beretta/PopulateContents()
@@ -170,10 +170,7 @@ obj/item/storage/box/sidearm/beretta
 	new /obj/item/ammo_box/magazine/m9mm(src)
 
 //specialist beacon, totally not a ripoff of another station...
-/*
 
-
-*/
 /obj/item/choice_beacon/terragov_specialist
 	name = "specialist choice"
 	desc = "No two missions are the same, although you can get good weaponry from here, its to have designate roles based on your choices here."

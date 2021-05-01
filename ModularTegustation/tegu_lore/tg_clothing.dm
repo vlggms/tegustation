@@ -1,58 +1,5 @@
-/*
-Who is terragov?
-Terragov is a remnant of the last nations on Earth. Their language is Galactic Common, which is a mixture of old Chinese and old English(edited)
+//clothes/armbands
 
-Terragov is  made up of 6 divisions
-TG-EU
-TG-Americas
-TG-Russia
-TG-China
-TG-Africa
-TG-UN
-
-TG-Americas and TG-China are the 2 biggest divisions, both speak Galactic Common with their own distinct accent  that's similar to their ancient dialect
-The TG-UN is a leftover from the formation of Terragov. They prevent conflict between the divisions.
-
-Note that TG-Russia and Space Russia (or the third soviet union or USSP if you are fancy) are not the same thing, in fact, Terragov and Space russia are in a undeclared war!
-although space russia is vastly weaker than TG, space russia is too far away to attack, and only TG-RU has been seending expeditionary fleets into Space russian space.
-*/
-//cloths
-
-//officer
-/*
-// imagine losing your progress like a dumbass
-
-/obj/item/clothing/under/rank/terragov
-	desc = "It's a jumpsuit worn by Terragov Officers"
-	name = "terragov uniform"
-	inhand_icon_state = "b_suit"
-	sensor_mode = SENSOR_COORDS
-	random_sensor = FALSE
-	icon = 'ModularTegustation/Teguicons/tegu_terragov_clothing_item.dmi'
-	worn_icon = 'ModularTegustation/Teguicons/tegu_terragov_clothing.dmi'
-	icon_state = "terraofficer"
-	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
-
-/obj/item/clothing/suit/armor/vest/terragov
-	name = "terragov tunic"
-	desc = "It's a extremely protective vest worn by Terragov officers."
-	icon = 'ModularTegustation/Teguicons/tegu_terragov_clothing_item.dmi'
-	worn_icon = 'ModularTegustation/Teguicons/tegu_terragov_clothing.dmi'
-	icon_state = "terratunic"
-	inhand_icon_state = "bio_suit"
-	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list(MELEE = 50, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 25, BIO = 0, RAD = 0, FIRE = 100, ACID = 90, WOUND = 10)
-
-/obj/item/clothing/head/terragov
-	name = "terragov cap"
-	desc = "The robust Cap of a Terragov officer. For showing the megacorprations who's in charge."
-	icon = 'ModularTegustation/Teguicons/tegu_terragov_clothing_item.dmi'
-	worn_icon = 'ModularTegustation/Teguicons/tegu_terragov_clothing.dmi'
-	icon_state = "terracap"
-	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 35, BOMB = 25, BIO = 10, RAD = 0, FIRE = 50, ACID = 60, WOUND = 10)
-	strip_delay = 80
-	dynamic_hair_suffix = ""
-	*/
 
 //officals "weird cia agent"
 /obj/item/clothing/under/suit_jacket/really_black/terragov
@@ -75,25 +22,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	icon = 'icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'icons/mob/clothing/under/syndicate.dmi'
 
-// regular helmets, for peacekeeping and regular erts
-/obj/item/clothing/head/helmet/alt/terragov
-	name = "terragov helmet"
-	desc = "A helmet used by TG-AM and TG-CN."
-
-/obj/item/clothing/head/helmet/alt/terragov/beret
-	name = "terragov beret"
-	desc = "A beret used by TG-RU, TG-EU, and TG-AF."
-	icon_state = "hosberetblack"
-
-/obj/item/clothing/head/helmet/alt/terragov/un
-	name = "un helmet"
-	desc = "A blue helmet used by TG-UN for peacekeeping operations	."
-	icon_state = "antichristhelm"
-	icon = 'ModularTegustation/Teguicons/tegu_armbands.dmi'
-	worn_icon = 'ModularTegustation/Teguicons/tegu_armbands_worn.dmi'
-
-//deathsquad / real bad shit ert
-
+// Helmets, can be picked
 /obj/item/clothing/head/helmet/swat/terragov
 	name = "military terragov helmet"
 	desc = "A spaceproof helmet used by space force operations by TG-AM and TG-CN."
@@ -111,7 +40,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	icon = 'ModularTegustation/Teguicons/tegu_armbands.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/tegu_armbands_worn.dmi'
 
-//custom sunglasses, because fuck you
+//custom sunglasses, because why not
 
 /obj/item/clothing/glasses/hud/terragov
 	name = "protective goggles"
@@ -237,7 +166,7 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	remove_sensors_elite()
 	return ..()
 
-//armbands, for divisions, maybe a "pefererd terragov division" pref? Scratch that, earlier me, probabaly a beacon where you can pick your divisions, which gives you a cool helmet and armband!
+//armbands, for divisions
 
 /obj/item/clothing/accessory/armband/terragov
 	name = "terragov armband"
