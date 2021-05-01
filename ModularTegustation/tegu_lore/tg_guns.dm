@@ -3,7 +3,7 @@
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper SABR SMG"
 	desc = "A three-round burst 9mm submachine gun. Used by TerraGov. Has a threaded barrel for suppressors."
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/gun/ballistic/automatic/pistol/terragov/beretta
 	name = "Beretta M9"
@@ -58,13 +58,25 @@
 /obj/item/gun/ballistic/automatic/pistol/terragov/glock/fullauto
 	name = "Glock 18"
 	desc = "The well known austrian pistol. This one is fully automatic, and may break your hand."
-	mag_type = /obj/item/ammo_box/magazine/uzim9mm
- 	burst_size = 1
-//	burst_size = 5
+	mag_type = list(/obj/item/ammo_box/magazine/uzim9mm, /obj/item/ammo_box/magazine/m9mm)
+	burst_size = 1
 	spread = 30
 	fire_delay = 0.5
 
 /obj/item/gun/ballistic/automatic/pistol/terragov/glock/fullauto/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
+
+//AF
+
+//they have the desert eagle, no need to list it here
+
+/obj/item/gun/ballistic/automatic/mini_uzi
+	burst_size = 1
+	fire_delay = 0.5
+	spread = 30
+
+/obj/item/gun/ballistic/automatic/mini_uzi/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
 
@@ -80,16 +92,3 @@
 	icon_state = "9x19p"
 	caliber = CALIBER_38
 	max_ammo = 6
-
-//Choice beacons, may or may not be borked
-/*
-choices:
-TerraGov - No division
-TerraGov - United Nations
-TerraGov - Europe
-TerraGov - Russia
-TerraGov - China
-TerraGov - America
-TerraGov - Africa
-
-*/

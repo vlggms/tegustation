@@ -1,5 +1,15 @@
-//choice becaons, even though its a ert customization is cool
+//Choice beacons, may or may not be borked
+/*
+choices:
+TerraGov - No division
+TerraGov - United Nations
+TerraGov - Europe
+TerraGov - Russia
+TerraGov - China
+TerraGov - America
+TerraGov - Africa
 
+*/
 /obj/item/choice_beacon/terragov_faction
 	name = "division choice"
 	desc = "We forgot to send you your armbands and helmets. Oops. Simply pick the division you are a part of and we will send it your way."
@@ -97,7 +107,7 @@ Glock 17 - No Affiliation
 			gun_list[initial(A.name)] = A
 	return gun_list
 
-/obj/item/choice_beacon/terragov_faction/spawn_option(obj/choice,mob/living/M)
+/obj/item/choice_beacon/terragov_sidearm/spawn_option(obj/choice,mob/living/M)
 	new choice(get_turf(M))
 	var/msg = "<span class=danger>After making your selection, a box suddenly apears out of blue dust!</span>"
 	if(ishuman(M))
@@ -168,21 +178,89 @@ obj/item/storage/box/sidearm/beretta
 	name = "specialist choice"
 	desc = "No two missions are the same, although you can get good weaponry from here, its to have designate roles based on your choices here."
 
-/obj/item/choice_beacon/terragov_sidearm/generate_display_names()
-	var/static/list/gun_list
-	if(!gun_list)
-		gun_list = list()
-		var/list/templist = typesof(/obj/item/storage/box/sidearm) //we have to convert type = name to name = type, how lovely!
+/obj/item/choice_beacon/terragov_specialist/generate_display_names()
+	var/static/list/special_list
+	if(!special_list)
+		special_list = list()
+		var/list/templist = typesof(/obj/item/storage/backpack/duffelbag/captain/specialist) //we have to convert type = name to name = type, how lovely!
 		for(var/V in templist)
 			var/atom/A = V
-			gun_list[initial(A.name)] = A
-	return gun_list
+			special_list[initial(A.name)] = A
+	return special_list
 
-/obj/item/choice_beacon/terragov_faction/spawn_option(obj/choice,mob/living/M)
-	new choice(get_turf(M))
-	var/msg = "<span class=danger>After making your selection, a box suddenly apears out of blue dust!</span>"
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(istype(H.ears, /obj/item/radio/headset))
-			msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from High Command.  Message as follows: <span class='bold'>Requestion received. You should have reccived your item right about now.</span> Message ends.\""
-	to_chat(M, msg)
+/obj/item/storage/backpack/duffelbag/captain/specialist
+	name = "TG-UN SABR SMG"
+	desc = "Terragov's standard SMG. Although slow firing, and a lower than average magazine size, this one has execptional accuracy and is in full auto."
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/proto/unrestricted(src)
+	new /obj/item/ammo_box/magazine/smgm9mm(src)
+	new /obj/item/ammo_box/magazine/smgm9mm(src)
+	new /obj/item/ammo_box/magazine/smgm9mm(src)
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/uzi
+	name = "TG-AF UZI SMG"
+	desc = "Extremely high rate of fire SMG with a high magazine size. Just don't expect to hit anything."
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/uzi/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/mini_uzi(src)
+	new /obj/item/ammo_box/magazine/uzim9mm(src)
+	new /obj/item/ammo_box/magazine/uzim9mm(src)
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/intel
+	name = "TG-US Intelligence bundle"
+	desc = "If you don't understand the situation well enough, use this to deploy a encryption key, pinpointer, crew monitor, and thermal goggles. Note that the goggles aren't flash proof."
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/intel/PopulateContents()
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/encryptionkey/intel/terragov(src)
+	new /obj/item/clothing/glasses/thermal(src)
+
+//totallly not stolen from somewhere...
+/obj/item/encryptionkey/intel/terragov
+	name = "\proper TG intel encryption key"
+	icon = 'ModularTegustation/Teguicons/radio.dmi'
+	icon_state = "terragov_cypherkey"
+	channels = list(RADIO_CHANNEL_ENGINEERING = 0, RADIO_CHANNEL_SCIENCE = 0, RADIO_CHANNEL_MEDICAL = 0, RADIO_CHANNEL_SUPPLY = 0, RADIO_CHANNEL_SERVICE = 0, RADIO_CHANNEL_SECURITY = 0)
+//
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/mech
+	name = "TG-CN Mech supplies"
+	desc = "Sometimes, things just go to shit. Comes with a Gygax."
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/mech/PopulateContents()
+	new /obj/item/choice_beacon/mech(src)
+	new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg(src)
+	new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching(src)
+	new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching(src)
+	new /obj/item/mecha_ammo/lmg(src)
+	new /obj/item/clothing/suit/jacket/miljacket(src)
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/medic
+	name = "TG-EU Medical kit"
+	desc = "For when plans go wrong. Comes with medical supplies and a portable medbeam."
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/medic/PopulateContents()
+	new /obj/item/gun/medbeam(src)
+	new /obj/item/defibrillator/compact(src)
+	new /obj/item/storage/firstaid/tactical/terragov(src)
+
+/obj/item/storage/firstaid/tactical/terragov/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/reagent_containers/hypospray/combat(src)
+	new /obj/item/reagent_containers/pill/patch/libital(src)
+	new /obj/item/reagent_containers/pill/patch/libital(src)
+	new /obj/item/reagent_containers/pill/patch/aiuri(src)
+	new /obj/item/reagent_containers/pill/patch/aiuri(src)
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/toolbelt
+	name = "TG-RU Engineering supplies"
+	desc = "You probably want to order one of these. Comes with a fully stocked toolbelt, industrial RCD, and a inducer. You are probably are going to break into places with this than repair things."
+
+/obj/item/storage/backpack/duffelbag/captain/specialist/toolbelt/PopulateContents()
+	new /obj/item/storage/belt/utility/chief/full(src)
+	new /obj/item/construction/rcd/combat(src)
+	new /obj/item/inducer/syndicate(src)

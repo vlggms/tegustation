@@ -294,7 +294,8 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	ears = /obj/item/radio/headset/terragov/alt
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
 		/obj/item/clothing/gloves/color/latex=1,\
-		/obj/item/crowbar=1)
+		/obj/item/crowbar=1,\
+		/obj/item/choice_beacon/terragov_sidearm)
 
 /datum/outfit/terragov/sodlier
 	name = "Terragov Soldier"
@@ -302,14 +303,15 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/hud/terragov
 	r_hand = /obj/item/choice_beacon/terragov_faction
-	r_pocket = /obj/item/choice_beacon/terragov_sidearm
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/centcom // for now
 	ears = /obj/item/radio/headset/terragov/alt
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/crowbar/power)
+		/obj/item/crowbar/power,\
+		/obj/item/choice_beacon/terragov_sidearm,
+		/obj/item/choice_beacon/terragov_specialist)
 
 /datum/outfit/terragov/sodlier/elite
 	name = "Terragov Elite"
@@ -317,11 +319,13 @@ although space russia is vastly weaker than TG, space russia is too far away to 
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/hud/terragov/elite
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad // /hardsuit/terragov soon :tm:, or maybe even a subtype of the syndicate harsuit?
-	r_hand = /obj/item/choice_beacon/terragov_faction
-	r_pocket = /obj/item/choice_beacon/terragov_sidearm
+	r_hand = /obj/item/gun/ballistic/automatic/l6_saw/unrestricted
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/centcom // for now
 	ears = /obj/item/radio/headset/terragov/alt
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/crowbar/power)
+		/obj/item/crowbar/power,\
+		/obj/item/choice_beacon/terragov_sidearm,\
+		/obj/item/construction/rcd/combat,\
+		/obj/item/ammo_box/magazine/mm712x82=7)

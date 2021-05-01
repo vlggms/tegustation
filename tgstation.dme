@@ -3434,6 +3434,7 @@
 #include "ModularTegustation\tegu_jobs\void_technician\outpost.dm"
 #include "ModularTegustation\tegu_jobs\void_technician\voidtech.dm"
 #include "ModularTegustation\tegu_jobs\void_technician\voidtechClothing.dm"
+#include "ModularTegustation\tegu_lore\mechpilot.dm"
 #include "ModularTegustation\tegu_lore\tg_choicebeacons.dm"
 #include "ModularTegustation\tegu_lore\tg_clothing.dm"
 #include "ModularTegustation\tegu_lore\tg_ert.dm"
