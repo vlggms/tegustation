@@ -55,7 +55,9 @@
 	description = "A highly advanced research, rumored to be of an alien origin."
 	prereq_ids = list("anomaly_research", "adv_weaponry")
 	design_ids = list("vortex_gun", "flux_sword")
-	boost_item_paths = list(/obj/item/gun/energy/vortex_gun, /obj/item/melee/flux_sword)
+	boost_item_paths = list(/obj/item/gun/energy/vortex_gun, /obj/item/melee/flux_sword, \
+	/obj/item/clothing/suit/armor/abductor/vest, /obj/item/gun/energy/alien, /obj/item/gun/energy/shrink_ray, \
+	/obj/item/assembly/signaler/anomaly/vortex, /obj/item/assembly/signaler/anomaly/flux)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	hidden = TRUE
 
@@ -65,20 +67,22 @@
 	description = "Expensive tools that utilize anomalous properties to solve modern engineering problems."
 	prereq_ids = list("anomaly_research", "exp_tools")
 	design_ids = list("rcd_bluespace", "magboots_anomaly")
-	boost_item_paths = list(/obj/item/construction/rcd/arcd/bluespace, /obj/item/clothing/shoes/magboots/noslow)
+	boost_item_paths = list(/obj/item/construction/rcd/arcd/bluespace, /obj/item/clothing/shoes/magboots/noslow, \
+	/obj/item/assembly/signaler/anomaly/bluespace, /obj/item/assembly/signaler/anomaly/grav)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	hidden = TRUE
 
 // Items
 /obj/item/research_notes/loot/Initialize()
-	..()
 	value = rand(500, 2500)
 	origin_type = pick("syndicate research", "anomaly research", "galactic research", "cybersun research", "alien research")
+	..()
 
 // Lootdrop
 /obj/effect/spawner/lootdrop/space/research
 	name = "research space loot"
 	lootcount = 1
 	loot = list(
-				/obj/item/research_notes/loot = 2
+				/obj/item/research_notes/loot = 3,
+				/obj/item/relic = 1
 	)
