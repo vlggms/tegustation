@@ -94,7 +94,7 @@
 
 		add_fingerprint(user)
 
-		if(do_after(user, gibtime, target = src))
+		if(do_after(user, (gibtime / SKILL_CHECK_VALUE(user, "cqc", 2)), target = src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				user.visible_message("<span class='danger'>[user] stuffs [C] into the gibber!</span>")
 				C.forceMove(src)

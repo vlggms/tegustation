@@ -172,10 +172,16 @@
 /datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(a,R.blacklist)
 	var/send_feedback = 1
+	var/doaf_modifier
 	if(check_contents(a, R, contents))
 		if(check_tools(a, R, contents))
+			if(ishuman(a))
+				var/mob/living/carbon/human/H = a
+				if(H.mind)
+					if(R.category == CAT_FOOD)
+						doaf_modifier = SKILL_CHECK_VALUE(H, "culinary", 4)
 			//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
-			if(ismob(a) && !do_after(a, R.time, target = a))
+			if(ismob(a) && !do_after(a, (R.time / doaf_modifier), target = a))
 				return "."
 			contents = get_surroundings(a,R.blacklist)
 			if(!check_contents(a, R, contents))

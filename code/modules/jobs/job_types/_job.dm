@@ -11,6 +11,9 @@
 	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
 	var/list/minimal_skills
 
+	/// Job specific bay-skills. Difference from normal skills..? You can't earn these normally.
+	var/skills_type = /datum/skill_list_bay
+
 	//Determines who can demote this position
 	var/department_head = list()
 
@@ -104,6 +107,8 @@
 
 	if(!ishuman(H))
 		return
+
+	H.mind.bay_skills = skills_type
 
 	if(!config)	//Needed for robots.
 		roundstart_experience = minimal_skills

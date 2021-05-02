@@ -46,6 +46,7 @@
 	var/datum/outfit/infiltrator/InfilFit = new /datum/outfit/infiltrator
 
 	H.delete_equipment()
+	owner.bay_skills = /datum/skill_list_bay/syndi
 	owner.special_role = special_role
 	if(CONFIG_GET(flag/infiltrator_give_codespeak))
 		H.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)

@@ -148,6 +148,7 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	important_info = "Leaving the station is forbidden."
 	outfit = /datum/outfit/syndicate_engineer
 	assignedrole = "Syndicate Engineer"
+	skills_type = /datum/skill_list_bay/syndi/engineer
 
 /datum/outfit/syndicate_engineer
 	name = "Syndicate Engineer"

@@ -181,6 +181,8 @@
 	var/facial_haircolor
 	var/skin_tone
 
+	var/skills_type = /datum/skill_list_bay // TEGU Edit
+
 /obj/effect/mob_spawn/human/Initialize()
 	if(ispath(outfit))
 		outfit = new outfit()
@@ -256,6 +258,8 @@
 			W.assignment = id_job
 		W.registered_name = H.real_name
 		W.update_label()
+	if(H.mind)
+		H.mind.bay_skills = skills_type
 
 //Instant version - use when spawning corpses during runtime
 /obj/effect/mob_spawn/human/corpse

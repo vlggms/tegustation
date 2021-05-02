@@ -29,6 +29,7 @@
 
 	H.set_species(/datum/species/human) //Plasamen burn up otherwise, and lizards are vulnerable to asimov AIs
 
+	owner.bay_skills = /datum/skill_list_bay/syndi
 	H.equipOutfit(nukeop_outfit)
 	return TRUE
 
