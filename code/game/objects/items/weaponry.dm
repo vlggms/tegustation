@@ -226,6 +226,15 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/highlander/robot/process()
 	loc.layer = LARGE_MOB_LAYER
 
+/obj/item/claymore/bone
+	name = "Bone Sword"
+	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
+	icon_state = "bone_sword"
+	force = 15
+	throwforce = 10
+	armour_penetration = 15
+	block_chance = 30
+
 /obj/item/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20."
