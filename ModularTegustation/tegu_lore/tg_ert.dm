@@ -1,10 +1,11 @@
-//ert shit
+//Terragov regular erts
 
 /datum/antagonist/ert/terragov
 	name = "TerraGov Intervention Squad"
 	outfit = /datum/outfit/terragov/sodlier
 	role = "Soldier"
 
+//message on spawn
 /datum/antagonist/ert/terragov/greet()
 	if(!ert_team)
 		return
@@ -38,6 +39,8 @@
 	random_names = FALSE
 	outfit = /datum/outfit/terragov/offical
 
+//message on spawn
+
 /datum/antagonist/ert/terragov/official/greet()
 	to_chat(owner, "<B><font size=3 color=red>You are a TerraGov Official.</font></B>")
 	to_chat(owner, "<B><font size=5 color=red>You are NOT a Nanotrasen Employee.</font></B>")
@@ -46,6 +49,7 @@
 		to_chat(owner, "TerraGov is sending you to [station_name()] with the task: [ert_team.mission.explanation_text]")
 	else
 		to_chat(owner, "TerraGov is sending you to [station_name()] with the task: [mission.explanation_text]")
+
 
 /datum/antagonist/ert/terragov/official/forge_objectives()
 	if (ert_team)
@@ -59,7 +63,7 @@
 	mission = missionobj
 	objectives |= mission
 
-//???
+//ert datums
 
 
 /datum/ert/terragov/official
@@ -87,5 +91,5 @@
 	leader_role = /datum/antagonist/ert/terragov/elite
 	rename_team = "TerraGov Soldier"
 	code = "404"
-	mission = "You been taken out of space Afganastan to assist the station. From one hell to another."
+	mission = "You been taken out of space Afghanistan to deal the station."
 	polldesc = "a TerraGov Military Squadron"

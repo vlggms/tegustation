@@ -213,8 +213,6 @@
 	uniform = /obj/item/clothing/under/suit_jacket/really_black/terragov
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses  = /obj/item/clothing/glasses/sunglasses
-	r_pocket = /obj/item/gun/ballistic/automatic/pistol // pistol/terragov soon :tm:
-	l_pocket = /obj/item/ammo_box/magazine/m9mm  //pistol
 	r_hand = /obj/item/storage/briefcase
 	suit = /obj/item/clothing/suit/armor/vest
 	back = /obj/item/storage/backpack
@@ -242,13 +240,27 @@
 		/obj/item/choice_beacon/terragov_sidearm,
 		/obj/item/choice_beacon/terragov_specialist)
 
+// changing id name
+/datum/outfit/terragov/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "TerraGov Envoy"
+	W.registered_name = H.real_name
+	W.update_label()
+	..()
+
+
 /datum/outfit/terragov/sodlier/elite
 	name = "Terragov Elite"
 	uniform = /obj/item/clothing/under/terragov/camo
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat/swat
 	glasses  = /obj/item/clothing/glasses/hud/terragov/elite
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad // /hardsuit/terragov soon :tm:, or maybe even a subtype of the syndicate harsuit?
+	suit_store = /obj/item/tank/internals/emergency_oxygen/double
 	r_hand = /obj/item/gun/ballistic/automatic/l6_saw/unrestricted
+	belt = /obj/item/construction/rcd/combat
 	back = /obj/item/storage/backpack
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/centcom // for now
@@ -256,5 +268,4 @@
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
 		/obj/item/crowbar/power,\
 		/obj/item/choice_beacon/terragov_sidearm,\
-		/obj/item/construction/rcd/combat,\
-		/obj/item/ammo_box/magazine/mm712x82=7)
+		/obj/item/ammo_box/magazine/mm712x82=10)

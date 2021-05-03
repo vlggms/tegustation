@@ -116,6 +116,8 @@ Glock 17 - No Affiliation
 			msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from High Command.  Message as follows: <span class='bold'>Requestion received. You should have reccived your item right about now.</span> Message ends.\""
 	to_chat(M, msg)
 
+// boxes with said items
+
 /obj/item/storage/box/sidearm
 	name = "TG-RU Makarov PM"
 
@@ -194,6 +196,8 @@ Glock 17 - No Affiliation
 	new /obj/item/ammo_box/magazine/smgm9mm(src)
 	new /obj/item/ammo_box/magazine/smgm9mm(src)
 	new /obj/item/ammo_box/magazine/smgm9mm(src)
+	new /obj/item/ammo_box/magazine/smgm9mm(src)
+
 
 /obj/item/storage/backpack/duffelbag/captain/specialist/uzi
 	name = "TG-AF UZI SMG"
@@ -201,6 +205,7 @@ Glock 17 - No Affiliation
 
 /obj/item/storage/backpack/duffelbag/captain/specialist/uzi/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/mini_uzi(src)
+	new /obj/item/ammo_box/magazine/uzim9mm(src)
 	new /obj/item/ammo_box/magazine/uzim9mm(src)
 	new /obj/item/ammo_box/magazine/uzim9mm(src)
 
@@ -224,7 +229,7 @@ Glock 17 - No Affiliation
 
 /obj/item/storage/backpack/duffelbag/captain/specialist/mech
 	name = "TG-CN Mech supplies"
-	desc = "Sometimes, things just go to shit. Comes with a Gygax."
+	desc = "Sometimes, things just go to wrong. Comes with a Gygax."
 
 /obj/item/storage/backpack/duffelbag/captain/specialist/mech/PopulateContents()
 	new /obj/item/choice_beacon/mech(src)

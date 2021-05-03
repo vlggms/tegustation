@@ -1,10 +1,5 @@
-//GUNS!!
+//Guns and sorts
 //UN
-/obj/item/gun/ballistic/automatic/proto
-	name = "\improper SABR SMG"
-	desc = "A three-round burst 9mm submachine gun. Used by TerraGov. Has a threaded barrel for suppressors."
-	w_class = WEIGHT_CLASS_NORMAL
-
 /obj/item/gun/ballistic/automatic/pistol/terragov/beretta
 	name = "Beretta M9"
 	desc = "A italian 9mm handgun. For use against pineapple on pizza lovers."
@@ -43,18 +38,14 @@
 	mag_type = /obj/item/ammo_box/magazine/m38
 	can_suppress = FALSE
 
-/obj/item/gun/ballistic/automatic/pistol/terragov/ppk/bond
-	name = "PP7"
-	desc = "A handgun that looks suspiciously similar to a the Type 64. This one seems a bit stylish, innit?"
-	can_suppress = TRUE
-
-//TG
+//TG - No faction
 /obj/item/gun/ballistic/automatic/pistol/terragov/glock
 	name = "Glock 17"
 	desc = "The well known austrian pistol. Commonly used by law enforcement."
 	icon_state = "glock"
 	can_suppress = FALSE
 
+//admin only
 /obj/item/gun/ballistic/automatic/pistol/terragov/glock/fullauto
 	name = "Glock 18"
 	desc = "The well known austrian pistol. This one is fully automatic, and may break your hand."
@@ -71,6 +62,7 @@
 
 //they have the desert eagle, no need to list it here
 
+//makes the UZI autofire, but extremely inacurate
 /obj/item/gun/ballistic/automatic/mini_uzi
 	burst_size = 1
 	fire_delay = 0.5
@@ -92,3 +84,10 @@
 	icon_state = "9x19p"
 	caliber = CALIBER_38
 	max_ammo = 6
+
+//These are replacing the originial definitions
+//changes proto desc/name so it isn't associated with NT anymore
+/obj/item/gun/ballistic/automatic/proto
+	name = "\improper SABR SMG"
+	desc = "A three-round burst 9mm submachine gun. Used by TerraGov. Has a threaded barrel for suppressors."
+	w_class = WEIGHT_CLASS_NORMAL

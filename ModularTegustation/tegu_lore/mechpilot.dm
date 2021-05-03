@@ -39,24 +39,5 @@
 	max_equip = 2
 	step_energy_drain = 3
 
-/*
-/obj/vehicle/sealed/mecha/combat/pilot/clarke
-	desc = "Combining man and machine for a better, stronger engineer. Can even resist lava!"
-	name = "\improper Pilot Clarke"
-	icon_state = "clarke"
-	base_icon_state = "clarke"
-	max_temperature = 65000
-	force = 13
-	max_integrity = 100
-	movedelay = 1.20
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	lights_power = 7
-	deflect_chance = 10
-	step_energy_drain = 15 //slightly higher energy drain since you movin those wheels FAST
-	armor = list(MELEE = 20, BULLET = 10, LASER = 20, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100) //low armor to compensate for fire protection and speed
-	max_equip = 3
-	wreckage = /obj/structure/mecha_wreckage/clarke
-	enter_delay = 40
-	mecha_flags = ADDING_ACCESS_POSSIBLE | IS_ENCLOSED | HAS_LIGHTS
-*/
+
 //credits to kire
