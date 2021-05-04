@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/caseless/arrow
-	name = "arrow of questionable material"
-	desc = "You shouldnt be seeing this arrow"
+	name = "arrow"
+	desc = "An arrow made of... something. It's hella sharp."
 	projectile_type = /obj/projectile/bullet/reusable/arrow
 	caliber = CALIBER_ARROW
 	icon_state = "arrow"

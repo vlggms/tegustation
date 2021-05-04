@@ -3,9 +3,11 @@
 	desc = "While pretty finely crafted, surely you can find something better to use in the current year."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "bow"
+	worn_icon_state = "pipebow"
 	inhand_icon_state = "bow"
 	load_sound = null
 	fire_sound = 'sound/weapons/bowfire.ogg'
+	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/bow
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	force = 15
@@ -20,19 +22,9 @@
 /obj/item/gun/ballistic/bow/update_icon()
 	. = ..()
 	if(!chambered)
-		icon_state = "bow"
+		icon_state = "[initial(icon_state)]"
 	else
-		icon_state = "bow_[drawn]"
-
-/obj/item/gun/ballistic/bow/proc/drop_arrow()
-	drawn = FALSE
-	if(!chambered)
-		chambered = magazine.get_round(keep = FALSE)
-		return
-	if(!chambered)
-		return
-	chambered.forceMove(drop_location())
-	update_icon()
+		icon_state = "[initial(icon_state)]_[drawn]"
 
 /obj/item/gun/ballistic/bow/chamber_round(keep_bullet = FALSE, spin_cylinder, replace_new_round)
 	if(chambered || !magazine)
@@ -53,9 +45,7 @@
 	if(!chambered)
 		return
 	if(!drawn)
-		to_chat(user, "<span clasas='warning'>Without drawing the bow, the arrow uselessly falls to the ground.</span>")
-		drop_arrow()
-		update_icon()
+		to_chat(user, "<span clasas='warning'>You can't shoot without drawing the bow.</span>")
 		return
 	drawn = FALSE
 	. = ..() //fires, removing the arrow
@@ -68,12 +58,15 @@
 	name = "Bone Bow"
 	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
 	icon_state = "ashenbow"
+	inhand_icon_state = "ashenbow"
+	worn_icon_state = "ashenbow"
 	force = 8
 
 /obj/item/gun/ballistic/bow/pipe
 	name = "Pipe Bow"
 	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
 	icon_state = "pipebow"
+	inhand_icon_state = "pipebow"
 	force = 7
 
 /obj/item/ammo_casing/caseless/arrow/despawning/dropped()
