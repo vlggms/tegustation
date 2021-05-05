@@ -24,15 +24,13 @@
 	if(visualsOnly)
 		return
 
+	H.faction |= ROLE_SYNDICATE
 	var/obj/item/card/id/W = H.wear_id
 	W.access = list(ACCESS_SYNDICATE)
 	W.assignment = jb_name
 	W.registered_name = H.real_name
 	W.update_label()
 	..()
-
-/datum/outfit/lufr/post_equip(mob/living/carbon/human/H)
-	H.faction |= ROLE_SYNDICATE
 
 /datum/outfit/lufr/elite
 	name = "LUFR Elite"
@@ -80,6 +78,9 @@
 /obj/effect/mob_spawn/human/lufr/special(mob/living/new_spawn)
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
+	var/mob/living/carbon/human/H = new_spawn
+	var/obj/item/card/id/W = H.wear_id
+	W.registered_name = H.real_name
 
 /obj/effect/mob_spawn/human/lufr/ashwalker
 	mob_species = /datum/species/lizard/ashwalker
