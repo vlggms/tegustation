@@ -248,7 +248,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 				break
 	. = ..()
 	if(nemesis_faction)
-		playsound(target.loc,'sound/effects/wounds/pierce1.ogg', rand(10,30), TRUE) // Play funny sound to signify additional damage.
+		playsound(target.loc,'sound/effects/wounds/pierce1.ogg', rand(30,50), TRUE) // Play funny sound to signify additional damage.
 		force -= faction_bonus_force
 
 /obj/item/katana
