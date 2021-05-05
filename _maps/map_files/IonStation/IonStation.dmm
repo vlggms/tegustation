@@ -329,7 +329,7 @@
 /area/teleporter)
 "aY" = (
 /obj/item/toy/plush/beeplushie{
-	desc = "A /"standard emergency bee plushie type 2/", or as some call it - sergeant bee. It have been through numerous life-or-death situations and helped captains all across the universe.";
+	desc = "A 'standard emergency bee plushie type 2', or as some call it - sergeant bee. It have been through numerous life-or-death situations and helped captains all across the universe.";
 	name = "emergency bee plushie"
 	},
 /turf/open/floor/carpet/royalblack,
