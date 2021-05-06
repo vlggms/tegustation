@@ -49,7 +49,7 @@
 /obj/item/gun/ballistic/automatic/pistol/terragov/glock/fullauto
 	name = "Glock 18"
 	desc = "The well known austrian pistol. This one is fully automatic, and may break your hand."
-	mag_type = list(/obj/item/ammo_box/magazine/uzim9mm, /obj/item/ammo_box/magazine/m9mm)
+	mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 1
 	spread = 30
 	fire_delay = 0.5
