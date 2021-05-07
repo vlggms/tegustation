@@ -537,18 +537,71 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	worn_icon_state = "whip"
 	slot_flags = ITEM_SLOT_BELT
-	force = 15
+	force = 4
+	reach = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
 	attack_verb_simple = list("flog", "whip", "lash", "discipline")
 	hitsound = 'sound/weapons/whip.ogg'
 
-/obj/item/melee/curator_whip/afterattack(target, mob/user, proximity_flag)
-	. = ..()
-	if(ishuman(target) && proximity_flag)
-		var/mob/living/carbon/human/H = target
-		H.drop_all_held_items()
-		H.visible_message("<span class='danger'>[user] disarms [H]!</span>", "<span class='userdanger'>[user] disarmed you!</span>")
+/obj/item/melee/curator_whip/attack(mob/living/target, mob/living/user)
+	. = ..() // Do normal attack stuff and then let's check what limb is attacked.
+	if(!ishuman(target))
+		return // A target isn't human? Abort operation "limb-destroyer"!
+
+	var/mob/living/carbon/H = target
+	var/selected_bodypart_area = check_zone(user.zone_selected) // For stuff like eyes, mouth, etc.
+	var/target_limb = H.get_bodypart(selected_bodypart_area)
+	if(!target_limb) // Does this limb exist at all?
+		return
+	var/armor_v = H.getarmor(target_limb, type = "melee")
+	switch(user.zone_selected)
+		if(BODY_ZONE_L_ARM)
+			whip_disarm(user, H, LEFT_HANDS)
+		if(BODY_ZONE_R_ARM)
+			whip_disarm(user, H, RIGHT_HANDS)
+		if(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+			whip_trip(user, H)
+		if(BODY_ZONE_HEAD)
+			if((armor_v < 26) && prob(30 - armor_v))
+				var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
+				if(!H.is_eyes_covered() && eyes) // You have eyes, right..?
+					to_chat(H, "<span class='userdanger'>[user] managed to hit your eyes with [src]!</span>")
+					to_chat(user, "<span class='notice'>You managed to hit [H] with [src] right in the eyes!</span>")
+					H.apply_damage(force*2, STAMINA, selected_bodypart_area, armor_v)
+					H.blur_eyes(4)
+					H.add_confusion(2)
+					eyes.applyOrganDamage(5)
+		else
+			if(armor_v < 21) // Armor is low! That's gonna sting.
+				H.apply_damage(force*2, STAMINA, selected_bodypart_area, armor_v)
+				if(prob(20 - armor_v)) // Your armor is so bad that you can't move.
+					to_chat(H, "<span class='userdanger'>You can't stand this pain!</span>")
+					H.emote("scream")
+					H.Stun(3)
+					H.Jitter(4)
+
+/obj/item/melee/curator_whip/proc/whip_disarm(mob/living/carbon/user, mob/living/carbon/target, side)
+	var/obj/item/I = target.get_held_items_for_side(side)
+	if(I)
+		if(target.dropItemToGround(I))
+			target.visible_message("<span class='danger'>[I] is yanked out of [target]'s hands by [src]!</span>","<span class='userdanger'>[user] grabs [I] out of your hands with [src]!</span>")
+			log_combat(user, target, "disarmed", src)
+			if(!user.get_inactive_held_item() && target != user)
+				to_chat(user, "<span class='notice'>You yank [I] towards yourself.</span>")
+				user.throw_mode_on()
+				user.swap_hand()
+				I.throw_at(user, 10, 2)
+
+/obj/item/melee/curator_whip/proc/whip_trip(mob/living/carbon/user, mob/living/carbon/target)
+	if(target.stat || target.IsKnockdown() || target == user) // No need to "trip" someone who is already fucking dead. Also don't trip yourself.
+		return
+	if(get_dist(user, target) < 2)
+		to_chat(user, "<span class='warning'>[target] is too close to trip with the whip!</span>")
+		return
+	target.Knockdown(1 SECONDS)
+	log_combat(user, target, "tripped", src)
+	target.visible_message("<span class='danger'>[user] knocks [target] off [target.p_their()] feet!</span>", "<span class='userdanger'>[user] yanks your legs out from under you!</span>")
 
 /obj/item/melee/roastingstick
 	name = "advanced roasting stick"
