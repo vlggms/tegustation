@@ -119,7 +119,7 @@
 	surgery = 2
 
 /datum/skill_list_bay/abductor/solo
-	abductor = "Solo Abductor Agent"
+	name = "Solo Abductor Agent"
 	cqc = 3
 	melee_weapons = 3
 
