@@ -112,7 +112,7 @@
 	if(!ishuman(H))
 		return
 
-	H.mind.bay_skills = new skills_type
+	H?.mind.bay_skills = new skills_type
 
 	if(!config)	//Needed for robots.
 		roundstart_experience = minimal_skills

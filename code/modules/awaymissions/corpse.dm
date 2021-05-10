@@ -35,6 +35,7 @@
 	var/show_flavour = TRUE
 	var/banType = ROLE_LAVALAND
 	var/ghost_usable = TRUE
+	var/datum/skill_list_bay/skills_type // TEGU Edit
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/effect/mob_spawn/attack_ghost(mob/user)
@@ -131,6 +132,8 @@
 				A.objectives += O
 		if(assignedrole)
 			M.mind.assigned_role = assignedrole
+		if(skills_type) // Assign a bay-skill list
+			M.mind.bay_skills = new skills_type
 		special(M)
 		MM.name = M.real_name
 	if(uses > 0)
@@ -180,8 +183,6 @@
 	var/haircolor
 	var/facial_haircolor
 	var/skin_tone
-
-	var/datum/skill_list_bay/skills_type = null // TEGU Edit
 
 /obj/effect/mob_spawn/human/Initialize()
 	if(ispath(outfit))
@@ -258,8 +259,6 @@
 			W.assignment = id_job
 		W.registered_name = H.real_name
 		W.update_label()
-	if(H.mind && skills_type) // Assign a bay-skill list to human.
-		H.mind.bay_skills = new skills_type
 
 //Instant version - use when spawning corpses during runtime
 /obj/effect/mob_spawn/human/corpse

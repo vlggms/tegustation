@@ -133,7 +133,7 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 				</html>
 				"}
 
-
+// Spawner
 /obj/effect/mob_spawn/human/syndicate_engineer
 	name = "Syndicate Engineer Corps"
 	roundstart = FALSE

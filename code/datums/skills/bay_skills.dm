@@ -67,10 +67,11 @@
 
 /datum/skill_list_bay/culinary
 	name = "Cooking"
+	chemistry = 2 // This allows them to use machines in kitchen/botany.
 	culinary = 3
 
 /datum/skill_list_bay/culinary/cook
-	name = "Cooking"
+	name = "Cooking Professional"
 	cqc = 2
 	culinary = 4
 
@@ -93,11 +94,47 @@
 	surgery = 2
 	culinary = 2
 
+// CentCom
+/datum/skill_list_bay/centcom
+	name = "CentCom Official"
+	cqc = 2
+	melee_weapons = 2
+	engineering = 2
+
+/datum/skill_list_bay/centcom/security
+	name = "CentCom Officer"
+	cqc = 4
+	melee_weapons = 4
+
+/datum/skill_list_bay/centcom/security/commander
+	name = "CentCom Commander"
+	engineering = 4
+	surgery = 4
+
+/datum/skill_list_bay/centcom/engineer
+	name = "CentCom Engineer"
+	engineering = 6
+
+/datum/skill_list_bay/centcom/medical
+	name = "CentCom Medic"
+	chemistry = 5
+	surgery = 6
+
+/datum/skill_list_bay/centcom/commando
+	name = "Death Commando"
+	cqc = 6
+	melee_weapons = 6
+	engineering = 6
+	chemistry = 6
+	surgery = 6
+
+/* ANTAGONISTS */
+// Syndicate
 /datum/skill_list_bay/syndi
 	name = "Syndicate Operative"
 	cqc = 3
 	melee_weapons = 3
-	engineering = 4
+	engineering = 3
 	chemistry = 2
 	surgery = 2
 
@@ -105,6 +142,20 @@
 	name = "Syndicate Engineer"
 	engineering = 5
 
+/datum/skill_list_bay/syndi/medic
+	name = "Syndicate Medic"
+	chemistry = 4
+	surgery = 5
+
+/datum/skill_list_bay/syndi/master
+	name = "Syndicate Master"
+	cqc = 4
+	melee_weapons = 4
+	engineering = 4
+	chemistry = 3
+	surgery = 3
+
+// Abductors
 /datum/skill_list_bay/abductor
 	name = "Abductor"
 	engineering = 6
@@ -123,6 +174,8 @@
 	cqc = 3
 	melee_weapons = 3
 
+/* Ghost Roles */
+// Ashwalkers
 /datum/skill_list_bay/ashwalker
 	name = "Ashwalker"
 	cqc = 1
@@ -130,6 +183,25 @@
 	engineering = 1
 	surgery = 1
 
+// Podpeople
+/datum/skill_list_bay/culinary/pod
+	name = "Podperson"
+	engineering = 2
+
+// Golems
+/datum/skill_list_bay/golem
+	name = "Golem"
+	melee_weapons = 1
+	engineering = 2
+	chemistry = 2
+
+/datum/skill_list_bay/golem/free
+	name = "Free Golem"
+	surgery = 2
+	culinary = 2
+
+/* Admemery */
+// Everything at 10
 /datum/skill_list_bay/admin
 	name = "Admin"
 	cqc = 10

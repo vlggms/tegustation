@@ -12,3 +12,4 @@
 /datum/antagonist/cybersun/captain
 	name = "Cybersun Captain"
 	job_rank = ROLE_SYNDICATE_CYBERSUN_CAPTAIN
+	skills_type = /datum/skill_list_bay/syndi/master
