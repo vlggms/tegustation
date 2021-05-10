@@ -679,7 +679,6 @@
 	important_info = "Obey orders given by your captain. DO NOT let the ship fall into enemy hands."
 	outfit = /datum/outfit/syndicatespace/syndicrew
 	assignedrole = ROLE_SYNDICATE_CYBERSUN
-	skills_type = /datum/skill_list_bay/syndi
 
 /datum/outfit/syndicatespace/syndicrew/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE

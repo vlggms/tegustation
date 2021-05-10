@@ -25,7 +25,7 @@
 /obj/structure/table_frame/wrench_act(mob/living/user, obj/item/I)
 	to_chat(user, "<span class='notice'>You start disassembling [src]...</span>")
 	I.play_tool_sound(src)
-	if(!I.use_tool(src, user, 3 SECONDS))
+	if(!I.use_tool(src, user, 3 SECONDS, difficulty_mod=4))
 		return TRUE
 	playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 	deconstruct(TRUE)

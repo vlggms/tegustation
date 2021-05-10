@@ -17,6 +17,14 @@
 	QDEL_NULL(beaker)
 	return ..()
 
+/obj/machinery/chem_heater/attack_hand(mob/user)
+	var/skill = user?.mind.bay_skills.getRating("chemistry")
+	if(skill < 2)
+		to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
+		if(!do_after(user, (50 / SKILL_CHECK_VALUE(user, "chemistry", 2)), target = src))
+			return
+	return ..()
+
 /obj/machinery/chem_heater/handle_atom_del(atom/A)
 	. = ..()
 	if(A == beaker)

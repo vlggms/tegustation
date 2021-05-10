@@ -63,6 +63,14 @@
 	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
 		reagents.maximum_volume += B.reagents.maximum_volume
 
+/obj/machinery/chem_master/attack_hand(mob/user)
+	var/skill = user?.mind.bay_skills.getRating("chemistry")
+	if(skill < 2)
+		to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
+		if(!do_after(user, (50 / SKILL_CHECK_VALUE(user, "chemistry", 2)), target = src))
+			return
+	return ..()
+
 /obj/machinery/chem_master/ex_act(severity, target)
 	if(severity < 3)
 		..()

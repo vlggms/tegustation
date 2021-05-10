@@ -83,6 +83,8 @@
 
 	var/list/saved_recipes = list()
 
+	var/req_skill = 2 // Required skill to use it properly.
+
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
@@ -108,6 +110,13 @@
 		Recharging <b>[recharge_amount]</b> power units per interval.\n\
 		Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 
+/obj/machinery/chem_dispenser/attack_hand(mob/user)
+	var/skill = user?.mind.bay_skills.getRating("chemistry")
+	if(skill < req_skill)
+		to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
+		if(!do_after(user, (50 / SKILL_CHECK_VALUE(user, "chemistry", req_skill)), target = src))
+			return
+	return ..()
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)
 	if(old_value) //Turned off

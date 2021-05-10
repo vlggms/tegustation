@@ -21,7 +21,7 @@
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 	bounty_types = CIV_JOB_CHEM
 
-	skills_type = /datum/skill_list_bay/medical
+	skills_type = /datum/skill_list_bay/medical/chem
 
 /datum/outfit/job/chemist
 	name = "Chemist"

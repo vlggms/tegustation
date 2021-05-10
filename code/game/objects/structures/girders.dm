@@ -38,7 +38,7 @@
 
 	if(istype(W, /obj/item/gun/energy/plasmacutter))
 		to_chat(user, "<span class='notice'>You start slicing apart the girder...</span>")
-		if(W.use_tool(src, user, 40, volume=100))
+		if(W.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			to_chat(user, "<span class='notice'>You slice apart the girder.</span>")
 			var/obj/item/stack/sheet/metal/M = new (loc, 2)
 			M.add_fingerprint(user)
@@ -229,7 +229,7 @@
 		user.visible_message("<span class='warning'>[user] disassembles the girder.</span>",
 			"<span class='notice'>You start to disassemble the girder...</span>",
 			"<span class='hear'>You hear clanking and banging noises.</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
+		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			if(state != GIRDER_DISPLACED)
 				return
 			state = GIRDER_DISASSEMBLED
@@ -241,7 +241,7 @@
 
 	else if(state == GIRDER_REINF)
 		to_chat(user, "<span class='notice'>You start unsecuring support struts...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
+		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			if(state != GIRDER_REINF)
 				return
 			to_chat(user, "<span class='notice'>You unsecure the support struts.</span>")
@@ -250,7 +250,7 @@
 
 	else if(state == GIRDER_REINF_STRUTS)
 		to_chat(user, "<span class='notice'>You start securing support struts...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
+		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			if(state != GIRDER_REINF_STRUTS)
 				return
 			to_chat(user, "<span class='notice'>You secure the support struts.</span>")
@@ -262,7 +262,7 @@
 	. = ..()
 	if(state == GIRDER_REINF_STRUTS)
 		to_chat(user, "<span class='notice'>You start removing the inner grille...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
+		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			to_chat(user, "<span class='notice'>You remove the inner grille.</span>")
 			new /obj/item/stack/sheet/plasteel(get_turf(src))
 			var/obj/structure/girder/G = new (loc)
@@ -277,7 +277,7 @@
 			to_chat(user, "<span class='warning'>A floor must be present to secure the girder!</span>")
 
 		to_chat(user, "<span class='notice'>You start securing the girder...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
+		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			to_chat(user, "<span class='notice'>You secure the girder.</span>")
 			var/obj/structure/girder/G = new (loc)
 			transfer_fingerprints_to(G)
@@ -285,7 +285,7 @@
 		return TRUE
 	else if(state == GIRDER_NORMAL && can_displace)
 		to_chat(user, "<span class='notice'>You start unsecuring the girder...</span>")
-		if(tool.use_tool(src, user, 40, volume=100))
+		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
 			to_chat(user, "<span class='notice'>You unsecure the girder.</span>")
 			var/obj/structure/girder/displaced/D = new (loc)
 			transfer_fingerprints_to(D)
@@ -351,7 +351,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You start slicing apart the girder...</span>")
-		if(W.use_tool(src, user, 40, volume=50))
+		if(W.use_tool(src, user, 40, volume=50, difficulty_mod=4))
 			to_chat(user, "<span class='notice'>You slice apart the girder.</span>")
 			var/obj/item/stack/sheet/runed_metal/R = new(drop_location(), 1)
 			transfer_fingerprints_to(R)
@@ -418,7 +418,7 @@
 		if(!W.tool_start_check(user, amount = 0))
 			return
 		to_chat(user, "<span class='notice'>You start slicing apart [src]...</span>")
-		if(W.use_tool(src, user, 40, volume=50))
+		if(W.use_tool(src, user, 40, volume=50, difficulty_mod=4))
 			to_chat(user, "<span class='notice'>You slice apart [src].</span>")
 			var/obj/item/stack/tile/bronze/B = new(drop_location(), 2)
 			transfer_fingerprints_to(B)
