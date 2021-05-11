@@ -300,13 +300,24 @@
 /* Procs */
 // An additional value to existing do_after variables.
 /proc/SKILL_CHECK_VALUE(mob/living/user, type="engineering", difficulty=1)
-	var/ret_value = (1 + (user.mind.bay_skills.getRating(type) / difficulty))
 	if(!user.mind)
 		return 1 // AI monkey trying to do stuff, I guess.
 	if(issilicon(user))
 		return 1.2 // Cyborgs are superior in everything! Sort of.
+	var/ret_value = (1 + (user.mind.bay_skills.getRating(type) / difficulty))
 	if(ishuman(user))
 		return ret_value
 
 	else
 		return 1 // NONHUMAN ALERT!!!!!!
+
+// Get rating for mob, regardless of mind.
+/proc/get_skill_rating(mob/living/user, type="engineering")
+	if(!user.mind)
+		return 0
+	var/ret_value = user.mind.bay_skills.getRating(type)
+	if(ishuman(user))
+		return ret_value
+
+	else
+		return 0 // How.
