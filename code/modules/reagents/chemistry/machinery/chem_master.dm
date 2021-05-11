@@ -16,6 +16,9 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_master
 
+	skillcheck_type = "chemistry"
+	skillcheck_level = 2
+
 	/// Input reagents container
 	var/obj/item/reagent_containers/beaker
 	/// Pill bottle for newly created pills
@@ -62,14 +65,6 @@
 	reagents.maximum_volume = 0
 	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
 		reagents.maximum_volume += B.reagents.maximum_volume
-
-/obj/machinery/chem_master/attack_hand(mob/user)
-	var/skill = user?.mind.bay_skills.getRating("chemistry")
-	if(skill < 2)
-		to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
-		if(!do_after(user, (50 / SKILL_CHECK_VALUE(user, "chemistry", 2)), target = src))
-			return
-	return ..()
 
 /obj/machinery/chem_master/ex_act(severity, target)
 	if(severity < 3)
@@ -587,3 +582,4 @@
 	name = "CondiMaster 3000"
 	desc = "Used to create condiments and other cooking supplies."
 	condi = TRUE
+	skillcheck_type = "culinary"

@@ -1357,7 +1357,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else
 				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
-		var/skill_mod = user?.mind.bay_skills.getRating("cqc") // CQC skill increases your damage
+		var/skill_mod = user?.mind.bay_skills.getRating("unarmed") // Unarmed skill increases your damage
 
 		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh) + skill_mod
 

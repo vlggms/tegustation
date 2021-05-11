@@ -32,7 +32,6 @@
 #include "code\__DEFINES\aquarium.dm"
 #include "code\__DEFINES\atmospherics.dm"
 #include "code\__DEFINES\atom_hud.dm"
-#include "code\__DEFINES\bay_skills.dm"
 #include "code\__DEFINES\bitfields.dm"
 #include "code\__DEFINES\blackmarket.dm"
 #include "code\__DEFINES\blob_defines.dm"

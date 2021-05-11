@@ -852,7 +852,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			skill_modifier = SKILL_CHECK_VALUE(user, "engineering", difficulty_mod)
 
 
-	delay *= (toolspeed / skill_modifier)
+	delay *= toolspeed / skill_modifier
 
 
 	// Play tool sound at the beginning of tool usage.

@@ -8,6 +8,9 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_heater
 
+	skillcheck_type = "chemistry"
+	skillcheck_level = 2
+
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
 	var/heater_coefficient = 0.05
@@ -15,14 +18,6 @@
 
 /obj/machinery/chem_heater/Destroy()
 	QDEL_NULL(beaker)
-	return ..()
-
-/obj/machinery/chem_heater/attack_hand(mob/user)
-	var/skill = user?.mind.bay_skills.getRating("chemistry")
-	if(skill < 2)
-		to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
-		if(!do_after(user, (50 / SKILL_CHECK_VALUE(user, "chemistry", 2)), target = src))
-			return
 	return ..()
 
 /obj/machinery/chem_heater/handle_atom_del(atom/A)
