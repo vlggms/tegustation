@@ -40,7 +40,7 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
 	if(!patient.can_inject(user, TRUE))
 		return
-	var/skill_mod = SKILL_CHECK_VALUE(user, "medical", 2)
+	var/skill_mod = SKILL_CHECK_VALUE(user, "medical")
 	if(patient == user)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying [src] on yourself...</span>")
@@ -159,7 +159,7 @@
 		to_chat(user, "<span class='warning'>The bandage currently on [user==M ? "your" : "[M]'s"] [limb.name] is still in good condition!</span>")
 		return
 
-	var/skill_mod = SKILL_CHECK_VALUE(user, "medical", 2)
+	var/skill_mod = SKILL_CHECK_VALUE(user, "medical")
 	user.visible_message("<span class='warning'>[user] begins wrapping the wounds on [M]'s [limb.name] with [src]...</span>", "<span class='warning'>You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]...</span>")
 	if(!do_after(user, (user == M ? self_delay : other_delay) / skill_mod, target=M))
 		return

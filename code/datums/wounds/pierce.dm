@@ -100,7 +100,7 @@
 /// If someone is using a suture to close this puncture
 /datum/wound/pierce/proc/suture(obj/item/stack/medical/suture/I, mob/user)
 	var/self_penalty_mult = (user == victim ? 1.4 : 1)
-	var/skill_mod = SKILL_CHECK_VALUE(user, "medical", 3)
+	var/skill_mod = SKILL_CHECK_VALUE(user, "medical")
 	user.visible_message("<span class='notice'>[user] begins stitching [victim]'s [limb.name] with [I]...</span>", "<span class='notice'>You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
 	if(!do_after(user, base_treat_time * self_penalty_mult / skill_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
@@ -119,7 +119,7 @@
 /datum/wound/pierce/proc/tool_cauterize(obj/item/I, mob/user)
 	var/improv_penalty_mult = (I.tool_behaviour == TOOL_CAUTERY ? 1 : 1.25) // 25% longer and less effective if you don't use a real cautery
 	var/self_penalty_mult = (user == victim ? 1.5 : 1) // 50% longer and less effective if you do it to yourself
-	var/skill_mod = SKILL_CHECK_VALUE(user, "medical", 3)
+	var/skill_mod = SKILL_CHECK_VALUE(user, "medical")
 
 	user.visible_message("<span class='danger'>[user] begins cauterizing [victim]'s [limb.name] with [I]...</span>", "<span class='warning'>You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]...</span>")
 	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult / skill_mod, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))

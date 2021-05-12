@@ -154,6 +154,7 @@
 	name = "Nuclear Operative Leader"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
+	skills_type = /datum/skill_list_bay/syndi/master
 	var/title
 	var/challengeitem = /obj/item/nuclear_challenge
 

@@ -38,7 +38,7 @@
 
 	if(istype(W, /obj/item/gun/energy/plasmacutter))
 		to_chat(user, "<span class='notice'>You start slicing apart the girder...</span>")
-		if(W.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(W.use_tool(src, user, 40, volume=100))
 			to_chat(user, "<span class='notice'>You slice apart the girder.</span>")
 			var/obj/item/stack/sheet/metal/M = new (loc, 2)
 			M.add_fingerprint(user)
@@ -62,7 +62,7 @@
 					to_chat(user, "<span class='warning'>You need at least two rods to create a false wall!</span>")
 					return
 				to_chat(user, "<span class='notice'>You start building a reinforced false wall...</span>")
-				if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -75,7 +75,7 @@
 					to_chat(user, "<span class='warning'>You need at least five rods to add plating!</span>")
 					return
 				to_chat(user, "<span class='notice'>You start adding plating...</span>")
-				if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 5)
 						return
 					S.use(5)
@@ -96,7 +96,7 @@
 					to_chat(user, "<span class='warning'>You need two sheets of metal to create a false wall!</span>")
 					return
 				to_chat(user, "<span class='notice'>You start building a false wall...</span>")
-				if(do_after(user, (20*platingmodifier / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (20*platingmodifier / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -112,7 +112,7 @@
 					to_chat(user, "<span class='warning'>You need two sheets of metal to finish a wall!</span>")
 					return
 				to_chat(user, "<span class='notice'>You start adding plating...</span>")
-				if (do_after(user, (40*platingmodifier / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if (do_after(user, (40*platingmodifier / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -129,7 +129,7 @@
 					to_chat(user, "<span class='warning'>You need at least two sheets to create a false wall!</span>")
 					return
 				to_chat(user, "<span class='notice'>You start building a reinforced false wall...</span>")
-				if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -141,7 +141,7 @@
 				if(S.get_amount() < 1)
 					return
 				to_chat(user, "<span class='notice'>You start finalizing the reinforced wall...</span>")
-				if(do_after(user, (50*platingmodifier / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (50*platingmodifier / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 1)
 						return
 					S.use(1)
@@ -155,7 +155,7 @@
 				if(S.get_amount() < 1)
 					return
 				to_chat(user, "<span class='notice'>You start reinforcing the girder...</span>")
-				if(do_after(user, (60*platingmodifier / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (60*platingmodifier / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 1)
 						return
 					S.use(1)
@@ -175,7 +175,7 @@
 				if(S.get_amount() < 2)
 					to_chat(user, "<span class='warning'>You need at least two sheets to create a false wall!</span>")
 					return
-				if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -188,7 +188,7 @@
 					to_chat(user, "<span class='warning'>You need at least two sheets to add plating!</span>")
 					return
 				to_chat(user, "<span class='notice'>You start adding plating...</span>")
-				if (do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+				if (do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -229,7 +229,7 @@
 		user.visible_message("<span class='warning'>[user] disassembles the girder.</span>",
 			"<span class='notice'>You start to disassemble the girder...</span>",
 			"<span class='hear'>You hear clanking and banging noises.</span>")
-		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(tool.use_tool(src, user, 40, volume=100))
 			if(state != GIRDER_DISPLACED)
 				return
 			state = GIRDER_DISASSEMBLED
@@ -241,7 +241,7 @@
 
 	else if(state == GIRDER_REINF)
 		to_chat(user, "<span class='notice'>You start unsecuring support struts...</span>")
-		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(tool.use_tool(src, user, 40, volume=100))
 			if(state != GIRDER_REINF)
 				return
 			to_chat(user, "<span class='notice'>You unsecure the support struts.</span>")
@@ -250,7 +250,7 @@
 
 	else if(state == GIRDER_REINF_STRUTS)
 		to_chat(user, "<span class='notice'>You start securing support struts...</span>")
-		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(tool.use_tool(src, user, 40, volume=100))
 			if(state != GIRDER_REINF_STRUTS)
 				return
 			to_chat(user, "<span class='notice'>You secure the support struts.</span>")
@@ -262,7 +262,7 @@
 	. = ..()
 	if(state == GIRDER_REINF_STRUTS)
 		to_chat(user, "<span class='notice'>You start removing the inner grille...</span>")
-		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(tool.use_tool(src, user, 40, volume=100))
 			to_chat(user, "<span class='notice'>You remove the inner grille.</span>")
 			new /obj/item/stack/sheet/plasteel(get_turf(src))
 			var/obj/structure/girder/G = new (loc)
@@ -277,7 +277,7 @@
 			to_chat(user, "<span class='warning'>A floor must be present to secure the girder!</span>")
 
 		to_chat(user, "<span class='notice'>You start securing the girder...</span>")
-		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(tool.use_tool(src, user, 40, volume=100))
 			to_chat(user, "<span class='notice'>You secure the girder.</span>")
 			var/obj/structure/girder/G = new (loc)
 			transfer_fingerprints_to(G)
@@ -285,7 +285,7 @@
 		return TRUE
 	else if(state == GIRDER_NORMAL && can_displace)
 		to_chat(user, "<span class='notice'>You start unsecuring the girder...</span>")
-		if(tool.use_tool(src, user, 40, volume=100, difficulty_mod=3))
+		if(tool.use_tool(src, user, 40, volume=100))
 			to_chat(user, "<span class='notice'>You unsecure the girder.</span>")
 			var/obj/structure/girder/displaced/D = new (loc)
 			transfer_fingerprints_to(D)
@@ -351,7 +351,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You start slicing apart the girder...</span>")
-		if(W.use_tool(src, user, 40, volume=50, difficulty_mod=4))
+		if(W.use_tool(src, user, 40, volume=50))
 			to_chat(user, "<span class='notice'>You slice apart the girder.</span>")
 			var/obj/item/stack/sheet/runed_metal/R = new(drop_location(), 1)
 			transfer_fingerprints_to(R)
@@ -363,7 +363,7 @@
 			to_chat(user, "<span class='warning'>You need at least one sheet of runed metal to construct a runed wall!</span>")
 			return
 		user.visible_message("<span class='notice'>[user] begins laying runed metal on [src]...</span>", "<span class='notice'>You begin constructing a runed wall...</span>")
-		if(do_after(user, (50 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+		if(do_after(user, (50 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 			if(R.get_amount() < 1)
 				return
 			user.visible_message("<span class='notice'>[user] plates [src] with runed metal.</span>", "<span class='notice'>You construct a runed wall.</span>")
@@ -418,7 +418,7 @@
 		if(!W.tool_start_check(user, amount = 0))
 			return
 		to_chat(user, "<span class='notice'>You start slicing apart [src]...</span>")
-		if(W.use_tool(src, user, 40, volume=50, difficulty_mod=4))
+		if(W.use_tool(src, user, 40, volume=50))
 			to_chat(user, "<span class='notice'>You slice apart [src].</span>")
 			var/obj/item/stack/tile/bronze/B = new(drop_location(), 2)
 			transfer_fingerprints_to(B)
@@ -430,7 +430,7 @@
 			to_chat(user, "<span class='warning'>You need at least two bronze sheets to build a bronze wall!</span>")
 			return
 		user.visible_message("<span class='notice'>[user] begins plating [src] with bronze...</span>", "<span class='notice'>You begin constructing a bronze wall...</span>")
-		if(do_after(user, (50 / SKILL_CHECK_VALUE(user, "engineering", 4)), target = src))
+		if(do_after(user, (50 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 			if(B.get_amount() < 2)
 				return
 			user.visible_message("<span class='notice'>[user] plates [src] with bronze!</span>", "<span class='notice'>You construct a bronze wall.</span>")

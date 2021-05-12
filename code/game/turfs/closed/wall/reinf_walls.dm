@@ -87,7 +87,7 @@
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, "<span class='notice'>You begin slicing through the metal cover...</span>")
-				if(W.use_tool(src, user, 60, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 60, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != COVER)
 						return TRUE
 					d_state = CUT_COVER
@@ -97,7 +97,7 @@
 
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				to_chat(user, "<span class='notice'>You begin securing the support lines...</span>")
-				if(W.use_tool(src, user, 40, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != COVER)
 						return TRUE
 					d_state = SUPPORT_LINES
@@ -108,7 +108,7 @@
 		if(CUT_COVER)
 			if(W.tool_behaviour == TOOL_CROWBAR)
 				to_chat(user, "<span class='notice'>You struggle to pry off the cover...</span>")
-				if(W.use_tool(src, user, 100, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != CUT_COVER)
 						return TRUE
 					d_state = ANCHOR_BOLTS
@@ -120,7 +120,7 @@
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, "<span class='notice'>You begin welding the metal cover back to the frame...</span>")
-				if(W.use_tool(src, user, 60, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 60, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != CUT_COVER)
 						return TRUE
 					d_state = COVER
@@ -131,7 +131,7 @@
 		if(ANCHOR_BOLTS)
 			if(W.tool_behaviour == TOOL_WRENCH)
 				to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame...</span>")
-				if(W.use_tool(src, user, 40, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 40, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
 						return TRUE
 					d_state = SUPPORT_RODS
@@ -141,7 +141,7 @@
 
 			if(W.tool_behaviour == TOOL_CROWBAR)
 				to_chat(user, "<span class='notice'>You start to pry the cover back into place...</span>")
-				if(W.use_tool(src, user, 20, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 20, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
 						return TRUE
 					d_state = CUT_COVER
@@ -154,7 +154,7 @@
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, "<span class='notice'>You begin slicing through the support rods...</span>")
-				if(W.use_tool(src, user, 100, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SUPPORT_RODS)
 						return TRUE
 					d_state = SHEATH
@@ -165,7 +165,7 @@
 			if(W.tool_behaviour == TOOL_WRENCH)
 				to_chat(user, "<span class='notice'>You start tightening the bolts which secure the support rods to their frame...</span>")
 				W.play_tool_sound(src, 100)
-				if(W.use_tool(src, user, 40, difficulty_mod=4))
+				if(W.use_tool(src, user, 40))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SUPPORT_RODS)
 						return TRUE
 					d_state = ANCHOR_BOLTS
@@ -176,7 +176,7 @@
 		if(SHEATH)
 			if(W.tool_behaviour == TOOL_CROWBAR)
 				to_chat(user, "<span class='notice'>You struggle to pry off the outer sheath...</span>")
-				if(W.use_tool(src, user, 100, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SHEATH)
 						return TRUE
 					to_chat(user, "<span class='notice'>You pry off the outer sheath.</span>")
@@ -187,7 +187,7 @@
 				if(!W.tool_start_check(user, amount=0))
 					return
 				to_chat(user, "<span class='notice'>You begin welding the support rods back together...</span>")
-				if(W.use_tool(src, user, 100, volume=100, difficulty_mod=4))
+				if(W.use_tool(src, user, 100, volume=100))
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != SHEATH)
 						return TRUE
 					d_state = SUPPORT_RODS

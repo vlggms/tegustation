@@ -165,13 +165,13 @@
 	if(!(flags_1 & NODECONSTRUCT_1) && user.a_intent != INTENT_HELP)
 		if(I.tool_behaviour == TOOL_SCREWDRIVER && deconstruction_ready)
 			to_chat(user, "<span class='notice'>You start disassembling [src]...</span>")
-			if(I.use_tool(src, user, 20, volume=50, difficulty_mod=3))
+			if(I.use_tool(src, user, 20, volume=50))
 				deconstruct(TRUE)
 			return
 
 		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready)
 			to_chat(user, "<span class='notice'>You start deconstructing [src]...</span>")
-			if(I.use_tool(src, user, 40, volume=50, difficulty_mod=3))
+			if(I.use_tool(src, user, 40, volume=50))
 				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 				deconstruct(TRUE, 1)
 			return
@@ -518,12 +518,12 @@
 
 		if(deconstruction_ready)
 			to_chat(user, "<span class='notice'>You start strengthening the reinforced table...</span>")
-			if (W.use_tool(src, user, 50, volume=50, difficulty_mod=4))
+			if (W.use_tool(src, user, 50, volume=50))
 				to_chat(user, "<span class='notice'>You strengthen the table.</span>")
 				deconstruction_ready = 0
 		else
 			to_chat(user, "<span class='notice'>You start weakening the reinforced table...</span>")
-			if (W.use_tool(src, user, 50, volume=50, difficulty_mod=4))
+			if (W.use_tool(src, user, 50, volume=50))
 				to_chat(user, "<span class='notice'>You weaken the table.</span>")
 				deconstruction_ready = 1
 	else
@@ -703,7 +703,7 @@
 		return
 	building = TRUE
 	to_chat(user, "<span class='notice'>You start constructing a rack...</span>")
-	if(do_after(user, (50 / SKILL_CHECK_VALUE(user, "engineering", 2)), target = user, progress=TRUE))
+	if(do_after(user, (50 / SKILL_CHECK_VALUE(user, "engineering")), target = user, progress=TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/R = new /obj/structure/rack(user.loc)

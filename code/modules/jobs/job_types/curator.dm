@@ -16,7 +16,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CURATOR
 
-	skills_type = /datum/skill_list_bay/assistant
+	skills_type = /datum/skill_list_bay/curator
 
 /datum/outfit/job/curator
 	name = "Curator"

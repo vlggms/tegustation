@@ -444,3 +444,110 @@
 /obj/item/book/granter/crafting_recipe/pipegun_prime/recoil(mob/living/carbon/user)
 	to_chat(user, "<span class='warning'>The book turns to dust in your hands.</span>")
 	qdel(src)
+
+///BAY-SKILLS///
+
+/obj/item/book/granter/skill
+	name = "simple guide to breaking the game"
+	desc = "You want to know how to break the game? Then this guide is for you!"
+	icon_state = "bookSkill1"
+	/// What skill does it increase?
+	var/skill_type = "engineering"
+	/// You need to have at least this level of skill to understand the book.
+	var/minimum_skill = 0
+	/// This book is useless at this level of skill.
+	var/maximum_skill = 999
+	/// How much skill does it give to you?
+	var/skill_amount = 100
+	/// Congrats! You learned the skill and that's your message.
+	var/greet = "You suddenly understand the whole concept of universe!"
+	/// Obvious. Can you use it once, or more?
+	var/one_use = TRUE
+
+
+/obj/item/book/granter/skill/already_known(mob/user)
+	if(!user.mind || !skill_type)
+		return TRUE
+	var/skill_level = user.mind.bay_skills.getRating(skill_type)
+	if(skill_level < minimum_skill)
+		to_chat(user,"<span class='warning'>You don't understand anything written in [src]...</span>")
+		return TRUE
+	if(skill_level >= maximum_skill)
+		to_chat(user,"<span class='warning'>You know much more about [skill_type] than this book can offer.</span>")
+		return TRUE
+	return FALSE
+
+/obj/item/book/granter/skill/on_reading_start(mob/user)
+	to_chat(user, "<span class='notice'>You start reading about [skill_type]...</span>")
+
+/obj/item/book/granter/skill/on_reading_finished(mob/user)
+	to_chat(user, "[greet]")
+	user.mind.bay_skills.ModifyValue(skill_type, skill_amount)
+	if(one_use)
+		to_chat(user, "<span class='warning'>The book turns to dust in your hands!</span>")
+		qdel(src)
+
+/obj/item/book/granter/skill/random
+	icon_state = "random_book"
+	skill_amount = 1
+
+/obj/item/book/granter/skill/random/Initialize()
+	. = ..()
+	skill_type = pick("unarmed", "melee", "engineering", "chemistry", "medical", "surgery", "crafting", "culinary", "science")
+	var/list/varweight = list("0" = 6, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)
+	minimum_skill = text2num(pickweight(varweight))
+	maximum_skill = minimum_skill + 1
+	var/name_mod = skill_type
+	switch(skill_type)
+		if("unarmed")
+			name_mod = "unarmed combat"
+		if("melee")
+			name_mod = "melee combat"
+	var/string_var = "beginner's guide to"
+	desc = "This is a simple guide to [name_mod], written so even a monkey could understand it."
+	pages_to_mastery = 2
+	switch(minimum_skill)
+		if(1)
+			string_var = "notes on"
+			desc = "A small collection of notes made in regards of [name_mod] by unknown scientist."
+		if(2)
+			string_var = "essay on"
+			desc = "An essay made in Galactic University for these hoping to be proficient in [name_mod]."
+			pages_to_mastery = 3
+		if(3)
+			string_var = "research on"
+			desc = "A heavy book written in scientific language. Only those who are proficient in [name_mod] could learn anything fro it."
+			pages_to_mastery = 3
+		if(4)
+			string_var = "grand book of"
+			desc = "A complicated mess of scientific language and terms. Highly valued among the masters of [name_mod]."
+			pages_to_mastery = 4
+		if(5)
+			string_var = "ancient tome of"
+			desc = "An ancient book explaining the entire concept of [name_mod]. Written by the first Galactic University Professors and even the Wizards' Federation itself."
+			pages_to_mastery = 4
+
+	name = "[string_var] [name_mod]"
+	greet = "You now understand [name_mod] slightly better."
+	icon_state = "bookSkill[maximum_skill]"
+
+/obj/item/book/granter/skill/basic
+	name = "basic level guide"
+	desc = "You aren't supposed to see it..."
+	maximum_skill = 1
+	skill_amount = 1
+	greet = "You suddenly understand the concept of universe a bit more."
+	pages_to_mastery = 2
+
+/obj/item/book/granter/skill/basic/engineer
+	name = "basic engineering guide"
+	desc = "This guide tells you how to use wrench and other useful tools."
+	greet = "You suddenly realize what toolbox is for."
+	remarks = list("So that's what a toolbox is for!", "You hold a wrench like this and then rotate it?", "Wait, what the fuck is plasteel?", "So that's how you are supposed to use welding tools.", "Why can't we just throw in some monkeys to do the job for us?")
+
+/obj/item/book/granter/skill/basic/medical
+	name = "first aid guide"
+	desc = "This guide will show you how to use sutures properly."
+	greet = "You suddenly realize how to apply sutures in a proper way."
+	skill_type = "medical"
+	remarks = list("What do you mean gauze is to be applied on a wound?", "Huh, so it isn't a mummy wrapping?", "So you put it around the limb...", "Wait, what's CPR again?")

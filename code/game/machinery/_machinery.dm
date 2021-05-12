@@ -435,7 +435,7 @@
 	if(ishuman(user) && user.mind) // Don't check AIs and Cyborgs for skills, please.
 		if(skill < skillcheck_level)
 			to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
-			if(!do_after(user, (skillcheck_delay / SKILL_CHECK_VALUE(user, skillcheck_type, skillcheck_level)), target = src))
+			if(!do_after(user, (skillcheck_delay / SKILL_CHECK_VALUE(user, skillcheck_type)), target = src))
 				return
 	return ..()
 
