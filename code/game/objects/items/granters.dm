@@ -451,6 +451,8 @@
 	name = "simple guide to breaking the game"
 	desc = "You want to know how to break the game? Then this guide is for you!"
 	icon_state = "bookSkill1"
+	/// How skill is named to be used in on_reading_start()
+	var/name_mod = "engineering"
 	/// What skill does it increase?
 	var/skill_type = "engineering"
 	/// You need to have at least this level of skill to understand the book.
@@ -478,7 +480,7 @@
 	return FALSE
 
 /obj/item/book/granter/skill/on_reading_start(mob/user)
-	to_chat(user, "<span class='notice'>You start reading about [skill_type]...</span>")
+	to_chat(user, "<span class='notice'>You start reading about [name_mod]...</span>")
 
 /obj/item/book/granter/skill/on_reading_finished(mob/user)
 	to_chat(user, "[greet]")
@@ -497,38 +499,51 @@
 	var/list/varweight = list("0" = 6, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)
 	minimum_skill = text2num(pickweight(varweight))
 	maximum_skill = minimum_skill + 1
-	var/name_mod = skill_type
+	name_mod = skill_type
 	switch(skill_type)
 		if("unarmed")
 			name_mod = "unarmed combat"
 		if("melee")
 			name_mod = "melee combat"
+		if("medical")
+			name_mod = "first aid"
 	var/string_var = "beginner's guide to"
 	desc = "This is a simple guide to [name_mod], written so even a monkey could understand it."
-	pages_to_mastery = 2
+	greet = "You now understand [name_mod] slightly better."
+	pages_to_mastery = 1
+	remarks = list("Hah! Even a monkey could learn it!", "How do you spell [name_mod], again?", "So that's what [name_mod] means, huh?")
 	switch(minimum_skill)
 		if(1)
 			string_var = "notes on"
 			desc = "A small collection of notes made in regards of [name_mod] by unknown scientist."
+			pages_to_mastery = 2
+			remarks = list("I never heard about it before!", "", \
+			"Well, [name_mod] is much more complicated than I thought.")
+			greet = "You now understand [name_mod] much better."
 		if(2)
 			string_var = "essay on"
 			desc = "An essay made in Galactic University for these hoping to be proficient in [name_mod]."
 			pages_to_mastery = 3
+			remarks = list("I never heard about it before!", "Well, [name_mod] is a really interesting thing.", "Who even wrote it? It's genius!", \
+			"Without this I'd probably never get proficient in [name_mod].", "Is there anything more to it?")
+			greet = "You finally understand what [name_mod] means."
 		if(3)
 			string_var = "research on"
-			desc = "A heavy book written in scientific language. Only those who are proficient in [name_mod] could learn anything fro it."
-			pages_to_mastery = 3
+			desc = "A heavy book written in scientific language. Only those who are proficient in [name_mod] could learn anything from it."
+			pages_to_mastery = 4
+			greet = "You realize the true nature of [name_mod]."
 		if(4)
 			string_var = "grand book of"
 			desc = "A complicated mess of scientific language and terms. Highly valued among the masters of [name_mod]."
-			pages_to_mastery = 4
+			pages_to_mastery = 5
+			greet = "You now understand everything about [name_mod]."
 		if(5)
 			string_var = "ancient tome of"
 			desc = "An ancient book explaining the entire concept of [name_mod]. Written by the first Galactic University Professors and even the Wizards' Federation itself."
-			pages_to_mastery = 4
+			pages_to_mastery = 6
+			greet = "Finally! You now undertsand the concept of [name_mod] in the universe!"
 
 	name = "[string_var] [name_mod]"
-	greet = "You now understand [name_mod] slightly better."
 	icon_state = "bookSkill[maximum_skill]"
 
 /obj/item/book/granter/skill/basic
@@ -550,4 +565,5 @@
 	desc = "This guide will show you how to use sutures properly."
 	greet = "You suddenly realize how to apply sutures in a proper way."
 	skill_type = "medical"
+	name_mod = "first aid"
 	remarks = list("What do you mean gauze is to be applied on a wound?", "Huh, so it isn't a mummy wrapping?", "So you put it around the limb...", "Wait, what's CPR again?")
