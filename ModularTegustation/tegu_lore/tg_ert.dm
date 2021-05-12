@@ -37,7 +37,7 @@
 	var/datum/objective/mission
 	role = "Inspector"
 	random_names = FALSE
-	outfit = /datum/outfit/terragov/offical
+	outfit = /datum/outfit/terragov/official
 
 //message on spawn
 
@@ -89,7 +89,7 @@
 /datum/ert/terragov/elite
 	roles = list(/datum/antagonist/ert/terragov/elite)
 	leader_role = /datum/antagonist/ert/terragov/elite
-	rename_team = "TerraGov Soldier"
-	code = "404"
-	mission = "You been taken out of space Afghanistan to deal the station."
-	polldesc = "a TerraGov Military Squadron"
+	rename_team = "TerraGov Animal Control Division"
+	code = "TGMC"
+	mission = "Humanity's biggest threat has come back to haunt SS13, and it's your job to push them back to the brink of extinction."
+	polldesc = "TerraGov Animal control"

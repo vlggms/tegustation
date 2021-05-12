@@ -1,7 +1,7 @@
 //clothes/armbands
 
 
-//officals "weird cia agent"
+//officials "weird cia agent"
 /obj/item/clothing/under/suit_jacket/really_black/terragov
 	name = " terragov suit"
 	desc = "A formal black suit and red tie. Used by non-military Terragov personel."
@@ -51,12 +51,6 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 
-/obj/item/clothing/glasses/hud/terragov/elite
-	name = "elite goggles"
-	desc = "Protects agains flashes while providing top-secret info from Terragov's inteligence agencies."
-	icon_state = "bigsunglasses"
-	darkness_view = 1
-
 //glasses code
 
 /obj/item/clothing/glasses/hud/terragov/dropped(mob/user)
@@ -98,79 +92,15 @@
 
 
 
-/obj/item/clothing/glasses/hud/terragov/elite/Destroy()
+/obj/item/clothing/glasses/hud/terragov/Destroy()
 	remove_sensors()
-	return ..()
-
-// now the advanced hud
-
-/obj/item/clothing/glasses/hud/terragov/elite/dropped(mob/user)
-	..()
-	remove_sensors_elite(user)
-
-/obj/item/clothing/glasses/hud/terragov/elite/equipped(mob/user, slot)
-	..()
-	add_sensors_elite(user, slot)
-
-/obj/item/clothing/glasses/hud/terragov/elite/proc/remove_sensors_elite(mob/user)
-	if(!user)
-		if(ismob(loc))
-			user = loc
-		else
-			return
-	var/datum/atom_hud/gangsensor = GLOB.huds[ANTAG_HUD_GANGSTER]
-	var/datum/atom_hud/cultsensor = GLOB.huds[ANTAG_HUD_CULT]
-	var/datum/atom_hud/revsensor = GLOB.huds[ANTAG_HUD_REV]
-	var/datum/atom_hud/fugsensor = GLOB.huds[ANTAG_HUD_FUGITIVE]
-	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	var/datum/atom_hud/diagsensor = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
-	var/datum/atom_hud/aisensor = GLOB.huds[DATA_HUD_AI_DETECT]
-
-	secsensor.remove_hud_from(user)
-	medsensor.remove_hud_from(user)
-	gangsensor.remove_hud_from(user)
-	revsensor.remove_hud_from(user)
-	fugsensor.remove_hud_from(user)
-	diagsensor.remove_hud_from(user)
-	aisensor.remove_hud_from(user)
-	cultsensor.remove_hud_from(user)
-
-/obj/item/clothing/glasses/hud/terragov/elite/proc/add_sensors_elite(mob/user, slot)
-	if(slot != ITEM_SLOT_EYES)
-		return
-	if(!user)
-		if(ismob(loc))
-			user = loc
-		else
-			return
-	var/datum/atom_hud/gangsensor = GLOB.huds[ANTAG_HUD_GANGSTER]
-	var/datum/atom_hud/cultsensor = GLOB.huds[ANTAG_HUD_CULT]
-	var/datum/atom_hud/revsensor = GLOB.huds[ANTAG_HUD_REV]
-	var/datum/atom_hud/fugsensor = GLOB.huds[ANTAG_HUD_FUGITIVE]
-	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	var/datum/atom_hud/diagsensor = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
-	var/datum/atom_hud/aisensor = GLOB.huds[DATA_HUD_AI_DETECT]
-
-	secsensor.add_hud_to(user)
-	medsensor.add_hud_to(user)
-	gangsensor.add_hud_to(user)
-	revsensor.add_hud_to(user)
-	fugsensor.add_hud_to(user)
-	diagsensor.add_hud_to(user)
-	aisensor.add_hud_to(user)
-	cultsensor.add_hud_to(user)
-
-/obj/item/clothing/glasses/hud/terragov/elite/Destroy()
-	remove_sensors_elite()
 	return ..()
 
 //armbands, for divisions
 
 /obj/item/clothing/accessory/armband/terragov
 	name = "terragov armband"
-	desc = "A armband worn by Terragov officals if they don't want to get involved with Terragov's politics."
+	desc = "A armband worn by Terragov officials if they don't want to get involved with Terragov's politics."
 	icon_state = "terraband"
 	worn_icon_state ="terraband"
 	icon = 'ModularTegustation/Teguicons/tegu_armbands.dmi'
@@ -208,7 +138,7 @@
 	icon_state = "tgruband"
 
 //outfits
-/datum/outfit/terragov/offical
+/datum/outfit/terragov/official
 	name = "Terragov Offical"
 	uniform = /obj/item/clothing/under/suit_jacket/really_black/terragov
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -240,6 +170,38 @@
 		/obj/item/choice_beacon/terragov_sidearm,
 		/obj/item/choice_beacon/terragov_specialist)
 
+/datum/outfit/terragov/sodlier/elite
+	name = "Terragov Animal Control"
+	uniform = /obj/item/clothing/under/terragov/camo
+	shoes = /obj/item/clothing/shoes/combat/swat
+	glasses  = /obj/item/clothing/glasses/hud/terragov
+	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad // /hardsuit/terragov soon :tm:, or maybe even a subtype of the syndicate harsuit?
+	mask = /obj/item/clothing/mask/gas/sechailer/swat
+	suit_store = /obj/item/tank/internals/emergency_oxygen/double
+	r_hand = /obj/item/gun/ballistic/automatic/l6_saw/unrestricted
+	belt = /obj/item/construction/rcd/combat
+	back = /obj/item/storage/backpack
+	gloves = /obj/item/clothing/gloves/combat
+	id = /obj/item/card/id/centcom // for now
+	ears = /obj/item/radio/headset/terragov/alt
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
+		/obj/item/crowbar/power,\
+		/obj/item/choice_beacon/terragov_sidearm,\
+		/obj/item/choice_beacon/terragov_specialist,\
+		/obj/item/ammo_box/magazine/mm712x82=8)
+
+
+// changing id name
+/datum/outfit/terragov/official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "TerraGov Official"
+	W.registered_name = H.real_name
+	W.update_label()
+	..()
+
 // changing id name
 /datum/outfit/terragov/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -251,21 +213,12 @@
 	W.update_label()
 	..()
 
+/datum/outfit/terragov/elite/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
 
-/datum/outfit/terragov/sodlier/elite
-	name = "Terragov Elite"
-	uniform = /obj/item/clothing/under/terragov/camo
-	shoes = /obj/item/clothing/shoes/combat/swat
-	glasses  = /obj/item/clothing/glasses/hud/terragov/elite
-	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad // /hardsuit/terragov soon :tm:, or maybe even a subtype of the syndicate harsuit?
-	suit_store = /obj/item/tank/internals/emergency_oxygen/double
-	r_hand = /obj/item/gun/ballistic/automatic/l6_saw/unrestricted
-	belt = /obj/item/construction/rcd/combat
-	back = /obj/item/storage/backpack
-	gloves = /obj/item/clothing/gloves/combat
-	id = /obj/item/card/id/centcom // for now
-	ears = /obj/item/radio/headset/terragov/alt
-	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/crowbar/power,\
-		/obj/item/choice_beacon/terragov_sidearm,\
-		/obj/item/ammo_box/magazine/mm712x82=10)
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "TerraGov Animal Control"
+	W.registered_name = H.real_name
+	W.update_label()
+	..()
