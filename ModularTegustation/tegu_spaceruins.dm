@@ -297,6 +297,10 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 /area/ruin/has_grav/powered/syndi_science/main
 	name = "Syndicate Research Vessel" // Oh wow, what a twist (no)!
 
+/area/ruin/has_grav/powered/galactic_university
+	name = "Galactic University's Classroom #203-B"
+	icon_state = "yellow"
+
 //DATU
 
 /datum/map_template/ruin/space/tegu_asteroid
@@ -360,3 +364,9 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	suffix = "oldscience.dmm"
 	name = "Abandoned Science Satellite"
 	description = "Seemingly operational small Nanotrasen research satellite, but I wouldn't say it's abandoned..."
+
+/datum/map_template/ruin/space/galactic_university
+	id = "galactic_university"
+	suffix = "galactic_university.dmm"
+	name = "Detached area of Galactic University"
+	description = "A small isolated classroom that was once a part of Galactic University. Recently it lost connection to the main teleporter and it stopped functioning."

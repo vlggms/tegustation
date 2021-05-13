@@ -552,7 +552,7 @@
 	maximum_skill = 1
 	skill_amount = 1
 	greet = "You suddenly understand the concept of universe a bit more."
-	pages_to_mastery = 2
+	pages_to_mastery = 1
 
 /obj/item/book/granter/skill/basic/engineer
 	name = "basic engineering guide"
