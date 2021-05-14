@@ -492,11 +492,11 @@
 /obj/item/book/granter/skill/random
 	icon_state = "random_book"
 	skill_amount = 1
+	var/list/varweight = list("0" = 6, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)
 
 /obj/item/book/granter/skill/random/Initialize()
 	. = ..()
 	skill_type = pick("unarmed", "melee", "engineering", "chemistry", "medical", "surgery", "crafting", "culinary", "science")
-	var/list/varweight = list("0" = 6, "1" = 5, "2" = 4, "3" = 3, "4" = 2, "5" = 1)
 	minimum_skill = text2num(pickweight(varweight))
 	maximum_skill = minimum_skill + 1
 	name_mod = skill_type
@@ -545,6 +545,18 @@
 
 	name = "[string_var] [name_mod]"
 	icon_state = "bookSkill[maximum_skill]"
+
+/obj/item/book/granter/skill/random/low_level // This one is still random, but can only be level 0 or 1.
+	varweight = list("0" = 2, "1" = 1)
+
+/obj/item/book/granter/skill/random/medium_level // Level 2 or 3.
+	varweight = list("2" = 2, "3" = 1)
+
+/obj/item/book/granter/skill/random/high_level // Level 4 only.
+	varweight = list("4" = 2, "5" = 1)
+
+/obj/item/book/granter/skill/random/cargo // Muh balance - can't contain level 5 books.
+	varweight = list("0" = 5, "1" = 4, "2" = 3, "3" = 2, "4" = 1)
 
 /obj/item/book/granter/skill/basic
 	name = "basic level guide"
