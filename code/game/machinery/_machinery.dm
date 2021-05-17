@@ -132,7 +132,7 @@
 	/// Minimum skill level to use it without a delay.
 	var/skillcheck_level = 0
 	/// Normal do_after delay.
-	var/skillcheck_delay = 50
+	var/skillcheck_delay = 60
 
 	// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface

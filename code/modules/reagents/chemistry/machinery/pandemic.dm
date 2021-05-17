@@ -14,7 +14,7 @@
 
 	skillcheck_type = "chemistry"
 	skillcheck_level = 4 // No delay as virologist.
-	skillcheck_delay = 80 // How tf do I use this monstrosity???
+	skillcheck_delay = 100 // How tf do I use this monstrosity???
 
 	var/wait
 	var/datum/symptom/selected_symptom
