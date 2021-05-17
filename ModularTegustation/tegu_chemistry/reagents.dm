@@ -35,9 +35,9 @@
 /datum/reagent/drug/bananium_essence/overdose_process(mob/living/M)
 	M.ForceContractDisease(new /datum/disease/transformation/clown_mutant(), FALSE, TRUE) // Uh oh...
 	M.adjustStaminaLoss(-5, 0) // Overdose has its own benefits.
-	M.adjustBruteLoss(-1, 0)
-	M.adjustFireLoss(-1, 0)
-	M.adjustCloneLoss(2, 0) // And draws...
+	M.adjustBruteLoss(-1.5, 0)
+	M.adjustFireLoss(-1.5, 0)
+	M.adjustCloneLoss(1.5, 0) // And draws...
 	if(prob(30))
 		M.emote(pick("twitch","laugh","smile"))
 		if(prob(50))

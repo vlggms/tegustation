@@ -3,9 +3,9 @@
 	///Name of this addiction
 	var/name = "cringe code"
 	///Higher threshold, when you start being addicted
-	var/addiction_gain_threshold = 600
+	var/addiction_gain_threshold = 400
 	///Lower threshold, when you stop being addicted
-	var/addiction_loss_threshold = 400
+	var/addiction_loss_threshold = 200
 	///Messages for each stage of addictions.
 	var/list/withdrawal_stage_messages = list()
 	///Rates at which you lose addiction (in units/second) if you are not on the drug at that time per stage
