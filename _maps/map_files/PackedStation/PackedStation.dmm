@@ -29424,6 +29424,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"olv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/aft)
 "omi" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/shovel/spade,
@@ -84998,7 +85005,7 @@ bQL
 aCl
 bQL
 bQL
-els
+olv
 dAe
 aDv
 bFh
