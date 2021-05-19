@@ -76,7 +76,7 @@
 	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
 	icon_state = "beret_supply"
 	tegu_item = TRUE
-*/
+
 /datum/outfit/job/deputy
 	name = "Deputy"
 	jobtype = /datum/job/tegu/deputy
