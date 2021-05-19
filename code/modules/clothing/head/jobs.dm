@@ -110,7 +110,7 @@
 	else
 		to_chat(user, "<span class='warning'>You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.</span>")
 
-
+/* tegu edit: check berets.dm
 //Mime
 /obj/item/clothing/head/beret
 	name = "beret"
@@ -149,7 +149,7 @@
 	desc =  "A beret made from durathread, its resilient fibres provide some protection to the wearer."
 	icon_state = "beretdurathread"
 	armor = list(MELEE = 15, BULLET = 5, LASER = 15, ENERGY = 25, BOMB = 10, BIO = 0, RAD = 0, FIRE = 30, ACID = 5, WOUND = 4)
-
+*/ //tegu end
 //Security
 
 /obj/item/clothing/head/hos
@@ -279,12 +279,12 @@
 	icon_state = "centberet"
 
 //Science
-
+/*	//tegu edit, moved to berets.dm
 /obj/item/clothing/head/beret/science
 	name = "science beret"
 	desc = "A science-themed beret for our hardworking scientists."
 	icon_state = "sciberet"
-
+*/
 //Curator
 /obj/item/clothing/head/fedora/curator
 	name = "treasure hunter's fedora"
