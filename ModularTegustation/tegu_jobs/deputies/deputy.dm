@@ -52,15 +52,13 @@
 	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
 	icon_state = "beret_engi"
 	tegu_item = TRUE
-/* //berets.dm
+
 /obj/item/clothing/head/beret/sec/medical
-	name = "medical deputy beret"
+	name = "combat medic's beret"
 	desc = "This proud white-blue beret is a welcome sight when the greytide descends on chemistry."
-	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_worn.dmi'
-	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
-	icon_state = "beret_medbay"
+	icon_state = "beret_brigphys"
 	tegu_item = TRUE
-*/
+
 /obj/item/clothing/head/beret/sec/science
 	name = "science deputy beret"
 	desc = "This loud purple beret screams 'Dont mess with his matter manipulator!'"
