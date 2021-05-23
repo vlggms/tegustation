@@ -1,4 +1,5 @@
 /*** Command ***/
+/// Captain
 /datum/outfit/job/captain/commodore
 	name = "Captain (Commodore)"
 	head = /obj/item/clothing/head/caphat/parade
@@ -13,6 +14,17 @@
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/admiral
 	neck = /obj/item/clothing/neck/cloak/cent/cap // GREEN CLOAK!!
 	shoes = /obj/item/clothing/shoes/jackboots
+/// Chief Medical Officer
+
+/datum/outfit/job/cmo/beret
+	name = "Chief Medical Officer (Surgeon-General)"
+	head = /obj/item/clothing/head/beret/cmo
+
+/// Chief Engineer
+
+/datum/outfit/job/ce/beret
+	name = "Chief Engineer (Senior Chief Engineer)"
+	head = /obj/item/clothing/head/beret/ce
 
 /*** Security ***/
 /// Security Officer
@@ -68,6 +80,10 @@
 	l_pocket = /obj/item/flashlight
 	l_hand = /obj/item/storage/bag/construction
 
+/datum/outfit/job/engineer/beret
+	name = "Station Engineer (Senior Engineer)"
+	head = /obj/item/clothing/head/beret/eng
+
 /// Atmospheric Technician
 /datum/outfit/job/atmos/firefighter
 	name = "Atmospheric Technician (Firefighter)"
@@ -79,6 +95,10 @@
 	name = "Atmospheric Technician (Life Support Specialist)"
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/storage/box/survival=2)
 
+/datum/outfit/job/atmos/beret
+	name = "Atmospheric Technician (Senior Atmospheric Technician)"
+	head = /obj/item/clothing/head/beret/eng/atmos
+
 /// Void Technician
 /datum/outfit/job/voidtech/marine
 	name = "Void Technician (Space Marine)"
@@ -86,9 +106,16 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/voidtech/marine
 
 /*** Supply ***/
+/// Cargo Tech
+
 /datum/outfit/job/cargo_tech/mailroomtechnician
 	name = "Cargo Technician (Mailroom Technician)"
 	backpack_contents = list(/obj/item/storage/box/shipping=1, /obj/item/modular_computer/tablet/preset/cargo=1)
+
+//Shaft Miner
+/datum/outfit/job/miner/beret
+	name = "Shaft Miner (Senior Miner)"
+	head = /obj/item/clothing/head/beret/mining
 
 /*** Service ***/
 /// Cook
