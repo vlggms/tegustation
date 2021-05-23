@@ -64,7 +64,7 @@
 /// Engineering
 /datum/job/chief_engineer
 	alt_titles = list("Chief Atmospheric Technician")
-	enior_title = "Senior Chief Engineer"
+	senior_title = "Senior Chief Engineer"
 /datum/job/engineer
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Telecommunications Specialist")
 	senior_title = "Senior Engineer"
