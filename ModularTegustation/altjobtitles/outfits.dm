@@ -97,7 +97,7 @@
 
 /datum/outfit/job/atmos/beret
 	name = "Atmospheric Technician (Senior Atmospheric Technician)"
-	head = /obj/item/clothing/head/beret/eng/atmos
+	head = /obj/item/clothing/head/beret/atmos
 
 /// Void Technician
 /datum/outfit/job/voidtech/marine
