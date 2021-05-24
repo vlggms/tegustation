@@ -226,6 +226,31 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/highlander/robot/process()
 	loc.layer = LARGE_MOB_LAYER
 
+/obj/item/claymore/bone
+	name = "Bone Sword"
+	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
+	icon_state = "bone_sword"
+	inhand_icon_state = "bone_sword"
+	force = 15
+	throwforce = 10
+	armour_penetration = 15
+	block_chance = 30
+	var/faction_bonus_force = 20
+	var/nemesis_factions = list("mining", "boss") // Deal more damage to lavaland mobs.
+
+/obj/item/claymore/bone/attack(mob/living/target, mob/living/carbon/human/user)
+	var/nemesis_faction = FALSE
+	if(LAZYLEN(nemesis_factions))
+		for(var/F in target.faction)
+			if(F in nemesis_factions)
+				nemesis_faction = TRUE
+				force += faction_bonus_force
+				break
+	. = ..()
+	if(nemesis_faction)
+		playsound(target.loc,'sound/effects/wounds/pierce1.ogg', rand(30,50), TRUE) // Play funny sound to signify additional damage.
+		force -= faction_bonus_force
+
 /obj/item/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20."

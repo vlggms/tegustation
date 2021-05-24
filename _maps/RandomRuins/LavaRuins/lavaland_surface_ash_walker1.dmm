@@ -177,6 +177,9 @@
 /area/ruin/unpowered/ash_walkers)
 "aC" = (
 /obj/structure/stone_tile/block/cracked,
+/obj/item/storage/belt/utility{
+	pixel_y = -6
+	},
 /obj/item/storage/toolbox/syndicate,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -189,7 +192,7 @@
 /obj/item/reagent_containers/blood/random,
 /obj/item/reagent_containers/blood/lizard,
 /obj/item/reagent_containers/blood/lizard,
-/obj/item/stack/sheet/cloth/ten,
+/obj/item/stack/sheet/cotton/cloth/ten,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "aF" = (
@@ -250,6 +253,11 @@
 "aM" = (
 /obj/structure/stone_tile/cracked{
 	dir = 4
+	},
+/obj/item/seeds/cotton,
+/obj/item/seeds/cotton{
+	pixel_x = -4;
+	pixel_y = -4
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -569,10 +577,9 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood{
+	amount = 4
+	},
 /obj/item/seeds/tower,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
@@ -605,6 +612,16 @@
 	},
 /obj/structure/stone_tile/cracked{
 	dir = 8
+	},
+/obj/item/stack/sheet/sinew{
+	amount = 4
+	},
+/obj/item/stack/sheet/bone{
+	amount = 5
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/cotton{
+	amount = 20
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
@@ -695,7 +712,7 @@
 /area/lavaland/surface/outdoors)
 "bP" = (
 /obj/structure/stone_tile/block,
-/obj/item/spear,
+/obj/item/spear/bonespear,
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -867,10 +884,10 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ck" = (
-/obj/item/spear,
 /obj/structure/stone_tile{
 	dir = 4
 	},
+/obj/item/spear/bonespear,
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -881,7 +898,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/obj/item/spear,
+/obj/item/spear/bonespear,
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -985,7 +1002,7 @@
 /obj/structure/stone_tile/cracked{
 	dir = 1
 	},
-/obj/item/spear,
+/obj/item/spear/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "cA" = (
@@ -1028,8 +1045,8 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
-/obj/item/spear,
-/obj/item/storage/belt,
+/obj/item/spear/bonespear,
+/obj/item/storage/belt/mining/primitive,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "cI" = (
@@ -1071,7 +1088,7 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/item/spear,
+/obj/item/spear/bonespear,
 /obj/item/scythe,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
@@ -1084,7 +1101,7 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
-/obj/item/spear,
+/obj/item/spear/bonespear,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "cN" = (
@@ -1099,8 +1116,17 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/item/spear,
-/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/suit/hooded/cloak/goliath{
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 25, "energy" = 35, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80);
+	desc = "An old cape made with goliath plates, rumored to be from the age of greater ashwalkers.";
+	name = "ancient goliath cloak"
+	},
+/obj/item/spear/bonespear,
+/obj/item/spear/bonespear,
+/obj/item/storage/backpack/satchel/explorer{
+	pixel_x = 4;
+	pixel_y = -4
+	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "cO" = (
@@ -1194,8 +1220,8 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dg" = (
-/obj/structure/bonfire/dense,
 /obj/structure/stone_tile/center,
+/obj/structure/bonfire/dense,
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -1265,7 +1291,9 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dq" = (
-/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood{
+	amount = 6
+	},
 /obj/structure/stone_tile{
 	dir = 4
 	},

@@ -591,10 +591,11 @@
 /datum/supply_pack/security/armory/russian
 	name = "Russian Surplus Crate"
 	desc = "Hello Comrade, we have the most modern russian military equipment the black market can offer, for the right price of course. Sadly we couldnt remove the lock so it requires Armory access to open."
-	cost = CARGO_CRATE_VALUE * 12
+	cost = CARGO_CRATE_VALUE * 20 // TEGU EDIT
 	contraband = TRUE
 	contains = list(/obj/item/food/rationpack,
 					/obj/item/ammo_box/a762,
+					/obj/item/ammo_box/magazine/ak47, // TEGU EDIT
 					/obj/item/storage/toolbox/ammo,
 					/obj/item/storage/toolbox/maint_kit,
 					/obj/item/clothing/suit/armor/vest/russian,
@@ -606,6 +607,7 @@
 					/obj/item/clothing/mask/russian_balaclava,
 					/obj/item/clothing/head/helmet/rus_ushanka,
 					/obj/item/clothing/suit/armor/vest/russian_coat,
+					/obj/item/gun/ballistic/automatic/ak47, // TEGU EDIT
 					/obj/item/gun/ballistic/rifle/boltaction,
 					/obj/item/gun/ballistic/rifle/boltaction)
 	crate_name = "surplus military crate"
@@ -2391,6 +2393,15 @@
 					/obj/item/book/random,
 					/obj/item/book/random,
 					/obj/item/book/random)
+	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/misc/skill_books
+	name = "Skill Book Crate"
+	desc = "All your doctors are dead? Don't know how to fix the breach? Want to do some chemistry? We got you: With this crate you'll receive 3 absolutely random skill books that will help you to become a professional \[insert job name\]!"
+	cost = CARGO_CRATE_VALUE * 12
+	contains = list(/obj/item/book/granter/skill/random/low_level, // For "reasons".
+					/obj/item/book/granter/skill/random/cargo,
+					/obj/item/book/granter/skill/random/cargo)
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/misc/paper

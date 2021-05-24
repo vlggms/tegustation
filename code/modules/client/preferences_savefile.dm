@@ -206,6 +206,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["hearted_until"], hearted_until)
 	if(hearted_until > world.realtime)
 		hearted = TRUE
+	//favorite outfits
+	READ_FILE(S["favorite_outfits"], favorite_outfits)
+
+	var/list/parsed_favs = list()
+	for(var/typetext in favorite_outfits)
+		var/datum/outfit/path = text2path(typetext)
+		if(ispath(path)) //whatever typepath fails this check probably doesn't exist anymore
+			parsed_favs += path
+	favorite_outfits = uniqueList(parsed_favs)
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -251,6 +260,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_keybindings(key_bindings)
+	favorite_outfits = SANITIZE_LIST(favorite_outfits)
 
 	if(needs_update >= 0) //save the updated version
 		var/old_default_slot = default_slot
@@ -325,6 +335,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_color"], pda_color)
 	WRITE_FILE(S["key_bindings"], key_bindings)
 	WRITE_FILE(S["hearted_until"], (hearted_until > world.realtime ? hearted_until : null))
+	WRITE_FILE(S["favorite_outfits"], favorite_outfits)
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
@@ -414,6 +425,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
 
+	//Lore
+	READ_FILE(S["terragov_relation"], terragov_relation)
+
 	//Jobs
 	READ_FILE(S["joblessrole"], joblessrole)
 	//Load prefs
@@ -445,13 +459,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if(!features["ethcolor"] || features["ethcolor"] == "#000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
-
-	if(!features["beefcolor"] || features["beefcolor"] == "") // Tegustation Beefmen edit
-		features["beefcolor"] = GLOB.color_list_beefman[pick(GLOB.color_list_beefman)]
-	if(!features["beefeyes"] || features["beefeyes"] == "")
-		features["beefeyes"] = pick(GLOB.eyes_beefman)
-	if(!features["beefmouth"] || features["beefmouth"] == "")
-		features["beefmouth"] = pick(GLOB.mouths_beefman) // Tegustation Beefmen edit
 
 
 	randomise = SANITIZE_LIST(randomise)
@@ -485,9 +492,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	playtime_reward_cloak = sanitize_integer(playtime_reward_cloak)
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
-	features["beefcolor"]	= copytext_char(features["beefcolor"], 1, 7) // Tegustation Beefman edit
-	features["beefeyes"]	= sanitize_inlist(features["beefeyes"], GLOB.eyes_beefman) // Tegustation Beefman edit
-	features["beefmouth"]	= sanitize_inlist(features["beefmouth"], GLOB.mouths_beefman) // Tegustation Beefman edit
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")
 	features["snout"]	= sanitize_inlist(features["snout"], GLOB.snouts_list)
@@ -502,6 +506,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["moth_markings"] 	= sanitize_inlist(features["moth_markings"], GLOB.moth_markings_list, "None")
 
 	persistent_scars = sanitize_integer(persistent_scars)
+
+	//Lore
+	terragov_relation = sanitize_inlist(terragov_relation, GLOB.relationship_prefs, initial(terragov_relation))
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
@@ -560,9 +567,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_moth_wings"]			, features["moth_wings"])
 	WRITE_FILE(S["feature_moth_antennae"]			, features["moth_antennae"])
 	WRITE_FILE(S["feature_moth_markings"]		, features["moth_markings"])
-	WRITE_FILE(S["feature_beefcolor"]					, features["beefcolor"]) // Tegustation Beefmen edit
-	WRITE_FILE(S["feature_beefeyes"]					, features["beefeyes"])
-	WRITE_FILE(S["feature_beefmouth"]					, features["beefmouth"]) // Tegustation Beefmen edit
 	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 
 	//Custom names
@@ -572,6 +576,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
 	WRITE_FILE(S["prefered_security_department"] , prefered_security_department)
+
+	//Lore
+	WRITE_FILE(S["terragov_relation"], terragov_relation)
 
 	//Jobs
 	WRITE_FILE(S["joblessrole"]		, joblessrole)

@@ -49,22 +49,33 @@
 	desc = "Worn by the Head of Personnel. It smells faintly of bureaucracy."
 	icon_state = "hopcloak"
 
+/obj/item/clothing/neck/cloak/cent
+	name = "\improper CentCom cloak"
+	desc = "Worn by the admirals of the Central Command and other high-ranking officials."
+	icon_state = "centcloak"
+
+/obj/item/clothing/neck/cloak/cent/cap
+	name = "rear admiral's cloak"
+	desc = "Worn by those rare captains that ever manage to reach the rank of 'Rear Admiral'."
+
 /obj/item/clothing/suit/hooded/cloak/goliath
 	name = "goliath cloak"
 	icon_state = "goliath_cloak"
 	desc = "A staunch, practical cape made out of numerous monster materials, it is coveted amongst exiles & hermits."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/spear, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat/bone, /obj/item/kitchen/knife/combat/survival)
-	armor = list(MELEE = 35, BULLET = 10, LASER = 25, ENERGY = 35, BOMB = 25, BIO = 0, RAD = 0, FIRE = 60, ACID = 60) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
+	armor = list(MELEE = 35, BULLET = 10, LASER = 25, ENERGY = 35, BOMB = 25, BIO = 0, RAD = 0, FIRE = 80, ACID = 60) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath
 	body_parts_covered = CHEST|GROIN|ARMS
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/hooded/cloakhood/goliath
 	name = "goliath cloak hood"
 	icon_state = "golhood"
 	desc = "A protective & concealing hood."
-	armor = list(MELEE = 35, BULLET = 10, LASER = 25, ENERGY = 35, BOMB = 25, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)
+	armor = list(MELEE = 35, BULLET = 10, LASER = 25, ENERGY = 35, BOMB = 25, BIO = 0, RAD = 0, FIRE = 80, ACID = 60)
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
+	resistance_flags = FIRE_PROOF
 	transparent_protection = HIDEMASK
 
 /obj/item/clothing/suit/hooded/cloak/drake
@@ -89,6 +100,31 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/suit/hooded/cloak/bone
+	name = "heavy bone armor"
+	icon_state = "hbonearmor"
+	blood_overlay_type = "armor"
+	desc = "A tribal armor plate, crafted from animal bone. A heavier variation of standard bone armor."
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife, /obj/item/pickaxe, /obj/item/spear)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	hoodtype = /obj/item/clothing/head/hooded/cloakhood/bone
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
+
+/obj/item/clothing/head/hooded/cloakhood/bone
+	name = "heavy bone helmet"
+	icon_state = "hskull"
+	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
+	armor = list(MELEE = 40, BULLET = 30, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/neck/cloak/skill_reward
 	var/associated_skill_path = /datum/skill
