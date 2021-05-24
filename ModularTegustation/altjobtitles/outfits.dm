@@ -1,3 +1,34 @@
+/*
+HOW ALT TITLES PICK OUTFITS
+
+	It checks the title
+
+"Senior Atmospheric Technician"
+"Surgeon-General"
+
+	it then converts it to text, removing spaces and special characters
+
+"senioratmospherictechnician"
+"surgeongeneral"
+
+	It then checks to see if a outfit exists
+
+/datum/outfit/job/atmos/senioratmospherictechnician
+/datum/outfit/job/cmo/surgeongeneral
+
+
+	So to add outfits, first add the title in altjobtitles.dm, THEN add a subtype of the normal outfit in this file with the simplified name as the path
+	so if you wanted to add a title named
+
+"Sky's number-one fan"
+
+	you would need to add it in altjobtitles.dm then add
+
+/datum/outfit/job/botanist/skysnumberonefan
+	name = "Botanist (Sky's number-one fan)"
+	head = /obj/item/paper
+
+*/
 /*** Command ***/
 /// Captain
 /datum/outfit/job/captain/commodore
@@ -16,15 +47,21 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 /// Chief Medical Officer
 
-/datum/outfit/job/cmo/beret
+/datum/outfit/job/cmo/surgeongeneral
 	name = "Chief Medical Officer (Surgeon-General)"
 	head = /obj/item/clothing/head/beret/cmo
 
 /// Chief Engineer
 
-/datum/outfit/job/ce/beret
+/datum/outfit/job/ce/seniorchiefengineer
 	name = "Chief Engineer (Senior Chief Engineer)"
 	head = /obj/item/clothing/head/beret/ce
+
+//Research Director
+/datum/outfit/job/rd/madscientist
+	name = "Research Director (Mad Scientist)"
+	head = /obj/item/clothing/head/beret/rd
+	suit = /obj/item/clothing/suit/toggle/labcoat/mad
 
 /*** Security ***/
 /// Security Officer
@@ -59,6 +96,12 @@
  	suit_store = null
  	accessory = /obj/item/clothing/accessory/armband/medblue
 
+/// Chemist
+
+/datum/outfit/job/chemist/seniorchemist
+ 	name = "Chemist (Senior Chemist)"
+ 	head = /obj/item/clothing/head/beret/chem
+
 /*** Engineering ***/
 /// Station Engineer
 /datum/outfit/job/engineer/electrician
@@ -80,7 +123,7 @@
 	l_pocket = /obj/item/flashlight
 	l_hand = /obj/item/storage/bag/construction
 
-/datum/outfit/job/engineer/beret
+/datum/outfit/job/engineer/seniorengineer
 	name = "Station Engineer (Senior Engineer)"
 	head = /obj/item/clothing/head/beret/eng
 
@@ -95,12 +138,12 @@
 	name = "Atmospheric Technician (Life Support Specialist)"
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/storage/box/survival=2)
 
-/datum/outfit/job/atmos/beret
+/datum/outfit/job/atmos/senioratmospherictechnician
 	name = "Atmospheric Technician (Senior Atmospheric Technician)"
 	head = /obj/item/clothing/head/beret/atmos
 
 /// Void Technician
-/datum/outfit/job/voidtech/marine
+/datum/outfit/job/voidtech/spacemarine
 	name = "Void Technician (Space Marine)"
 	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/space/hardsuit/voidtech/marine
@@ -113,7 +156,7 @@
 	backpack_contents = list(/obj/item/storage/box/shipping=1, /obj/item/modular_computer/tablet/preset/cargo=1)
 
 //Shaft Miner
-/datum/outfit/job/miner/beret
+/datum/outfit/job/miner/seniorminer
 	name = "Shaft Miner (Senior Miner)"
 	head = /obj/item/clothing/head/beret/mining
 
@@ -125,6 +168,11 @@
 	head = null
 	mask = null
 	r_hand = /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
+
+/// Botanist
+/datum/outfit/job/botanist/mastergardener
+	name = "Botanist (Master Gardener)"
+	head = /obj/item/clothing/head/beret/service
 
 /// Curator
 /datum/outfit/job/curator/journalist
