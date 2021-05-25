@@ -1,7 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol/terragov
 	name = "Makarov PM"
 	desc = "A modern reproduction of the ancient 9mm handgun. Has a threaded barrel for suppressors."
-	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
@@ -26,6 +25,7 @@
 /obj/item/gun/ballistic/automatic/pistol/terragov/ppk
 	name = "Type 64"
 	desc = "The classic Chinese handgun. Chambered in .38."
+	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
 	icon_state = "ppk"
 	mag_type = /obj/item/ammo_box/magazine/m38
