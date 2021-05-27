@@ -35,7 +35,7 @@ const VoteOptions = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     allow_vote_mode,
-	allow_vote_transfer,
+    allow_vote_transfer,
     allow_vote_restart,
     allow_vote_map,
     upper_admin,
