@@ -34,9 +34,13 @@
 	uniform = /obj/item/clothing/under/syndicate/tgmc
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/thermal
 	mask = /obj/item/clothing/mask/gas
+	suit_store = /obj/item/gun/ballistic/automatic/t12
 	back = /obj/item/storage/backpack/ert/security
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1, \
 		/obj/item/crowbar/power, \
+		/obj/item/ammo_box/magazine/t12, \
+		/obj/item/ammo_box/magazine/t12, \
+		/obj/item/ammo_box/magazine/t12, \
 		/obj/item/choice_beacon/terragov_sidearm, \
 		/obj/item/choice_beacon/terragov_specialist)
 

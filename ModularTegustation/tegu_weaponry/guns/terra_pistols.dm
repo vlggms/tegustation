@@ -9,14 +9,16 @@
 
 /obj/item/gun/ballistic/automatic/pistol/terragov/beretta
 	name = "Beretta M9"
-	desc = "A italian 9mm handgun. For use against pineapple on pizza lovers."
+	desc = "An Italian 9mm handgun. For use against pineapple-on-pizza lovers."
+	fire_sound = 'ModularTegustation/Tegusounds/weapons/guns/pistol.ogg'
 	icon_state = "beretta"
 	can_suppress = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/terragov/sig
 	name = "SIG Sauer"
 	desc = "A classic handgun with a larger than average magazine capacity."
-	spread = 20
+	fire_sound = 'ModularTegustation/Tegusounds/weapons/guns/pistol_large.ogg'
+	spread = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "sig"
 	mag_type = /obj/item/ammo_box/magazine/m9mm_aps/sig
@@ -25,8 +27,8 @@
 /obj/item/gun/ballistic/automatic/pistol/terragov/ppk
 	name = "Type 64"
 	desc = "The classic Chinese handgun. Chambered in .38."
+	fire_sound = 'ModularTegustation/Tegusounds/weapons/guns/type64.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
-	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
 	icon_state = "ppk"
 	mag_type = /obj/item/ammo_box/magazine/m38
 	can_suppress = FALSE
