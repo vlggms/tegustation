@@ -1258,7 +1258,7 @@
 "bpn" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Service Maintenance";
-	req_one_access_txt = "12;25;26;35;28;22;37;46;38;70"
+	req_one_access_txt = "35"
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
@@ -2563,7 +2563,7 @@
 /obj/machinery/door/airlock{
 	name = "Service Hall";
 	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28;22;37;46;38;70"
+	req_one_access_txt = "46;35;28;25"
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
@@ -3100,10 +3100,15 @@
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "drk" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/hor)
 "drV" = (
 /obj/machinery/computer/card,
 /turf/open/floor/carpet/red,
@@ -5194,9 +5199,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "fIZ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
+/obj/machinery/door/airlock/maintenance{
+	name = "Service Maintenance";
+	req_one_access_txt = "46;35;28;25"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "fJs" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -5386,6 +5395,9 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -7855,6 +7867,7 @@
 "iGJ" = (
 /obj/structure/closet/crate/wooden/toy,
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "iHz" = (
@@ -10665,12 +10678,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"lxA" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/closed/wall/r_wall,
-/area/crew_quarters/heads/captain/private)
 "lze" = (
 /obj/machinery/holopad,
 /turf/open/floor/circuit/green,
@@ -11525,12 +11532,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"mwQ" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/crew_quarters/heads/captain/private)
 "mxj" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/medical,
@@ -13348,6 +13349,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/medical/virology)
 "oLG" = (
@@ -15679,7 +15681,7 @@
 /area/crew_quarters/toilet/restrooms)
 "rmt" = (
 /obj/machinery/door/poddoor/incinerator_toxmix,
-/turf/open/space/basic,
+/turf/open/floor/engine,
 /area/science/mixing/chamber)
 "rmu" = (
 /obj/structure/chair/comfy/black{
@@ -17964,7 +17966,6 @@
 /obj/item/clothing/mask/fakemoustache,
 /obj/item/clothing/mask/animal/pig,
 /obj/item/bikehorn,
-/obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "tGG" = (
@@ -18215,11 +18216,11 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "tVa" = (
+/obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
 	name = "Service Maintenance";
-	req_one_access_txt = "12;25;26;35;28;22;37;46;38;70"
+	req_one_access_txt = "46;35;28;25"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "tVG" = (
@@ -20888,6 +20889,9 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/science,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/virology)
 "wQr" = (
@@ -21977,6 +21981,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/machinery/light/small,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "xRj" = (
@@ -44671,7 +44676,7 @@ gtd
 dli
 dDX
 vjB
-fIZ
+dDX
 tQk
 dDX
 xgG
@@ -51378,7 +51383,7 @@ evP
 bhU
 mLR
 pBQ
-drk
+pBQ
 pBQ
 pYH
 pYH
@@ -52149,7 +52154,7 @@ rnm
 elp
 aoo
 pBQ
-drk
+pBQ
 pBQ
 pYH
 nyZ
@@ -54984,7 +54989,7 @@ sGU
 ccw
 ccw
 sGU
-ccw
+drk
 qTW
 dSY
 dSY
@@ -56775,7 +56780,7 @@ sLi
 bJI
 pbp
 cWg
-mwQ
+bJI
 vnb
 bks
 gLA
@@ -57032,7 +57037,7 @@ jtV
 bJI
 uDd
 lvs
-mwQ
+bJI
 vnb
 bks
 gLA
@@ -57289,7 +57294,7 @@ jtV
 bJI
 uzz
 lum
-mwQ
+bJI
 vnb
 bks
 uJp
@@ -57544,8 +57549,8 @@ bJI
 bJI
 bJI
 bJI
-lxA
-lxA
+bJI
+bJI
 bJI
 thI
 bks
@@ -58073,7 +58078,7 @@ dAR
 aox
 duo
 gxi
-tVa
+fIZ
 wGp
 wGp
 wGp
