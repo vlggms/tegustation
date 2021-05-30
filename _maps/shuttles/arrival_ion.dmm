@@ -55,6 +55,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
+"y" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/arrival)
 "I" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/titanium,
@@ -138,7 +144,7 @@ W
 (9,1,1) = {"
 s
 W
-m
+y
 W
 s
 "}
