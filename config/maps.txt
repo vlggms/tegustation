@@ -39,6 +39,11 @@ map packedstation
 	votable
 endmap
 
+map ionstation
+	maxplayers 30
+	votable
+endmap
+
 map runtimestation
 endmap
 
