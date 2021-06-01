@@ -3,6 +3,8 @@
 	desc = "An old assault rifle, dating back to 20th century. It is commonly used by various bandits, pirates and colonists due to its cheap production and maintenance cost."
 	icon = 'ModularTegustation/Teguicons/48x32_guns.dmi'
 	icon_state = "ak47"
+	base_pixel_x = -8
+	fire_sound = "ModularTegustation/Tegusounds/weapons/guns/ak47.ogg"
 	burst_size = 1
 	actions_types = list()
 	mag_display = TRUE
@@ -20,13 +22,14 @@
 	icon = 'ModularTegustation/Teguicons/48x32_guns.dmi'
 	icon_state = "aks74u"
 	burst_size = 1
+	actions_types = list()
 	weapon_weight = WEAPON_MEDIUM
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/ak47/aks74u
 
 /obj/item/gun/ballistic/automatic/aks74u/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.18 SECONDS)
 
 //MAGS
 /obj/item/ammo_box/magazine/ak47
@@ -59,10 +62,10 @@
 	projectile_type = /obj/projectile/bullet/a545_39
 
 //BULLETS
-/obj/projectile/bullet/a545_39
-	name = "5.45x39mm bullet"
-	damage = 26
-
 /obj/projectile/bullet/a762_39
 	name = "7.62x39mm bullet"
-	damage = 26
+	damage = 23
+
+/obj/projectile/bullet/a545_39
+	name = "5.45x39mm bullet"
+	damage = 30

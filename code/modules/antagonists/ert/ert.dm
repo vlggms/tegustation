@@ -2,6 +2,11 @@
 /datum/team/ert
 	name = "Emergency Response Team"
 	var/datum/objective/mission //main mission
+	var/ert_frequency
+
+/datum/team/ert/New(starting_members)
+	. = ..()
+	ert_frequency = get_free_team_frequency("cent")
 
 /datum/antagonist/ert
 	name = "Emergency Response Officer"
@@ -18,6 +23,7 @@
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	skills_type = /datum/skill_list_bay/centcom
 
 /datum/antagonist/ert/on_gain()
 	if(random_names)
@@ -26,6 +32,7 @@
 		forge_objectives()
 	if(equip_ert)
 		equipERT()
+	owner.store_memory("Your team's shared tracking beacon frequency is [ert_team.ert_frequency].")
 	. = ..()
 
 /datum/antagonist/ert/get_team()
@@ -65,7 +72,8 @@
 	mission = missionobj
 	objectives |= mission
 
-/datum/antagonist/ert/security // kinda handled by the base template but here for completion
+/datum/antagonist/ert/security
+	skills_type = /datum/skill_list_bay/centcom/security
 
 /datum/antagonist/ert/security/red
 	outfit = /datum/outfit/centcom/ert/security/alert
@@ -73,6 +81,7 @@
 /datum/antagonist/ert/engineer
 	role = "Engineer"
 	outfit = /datum/outfit/centcom/ert/engineer
+	skills_type = /datum/skill_list_bay/centcom/engineer
 
 /datum/antagonist/ert/engineer/red
 	outfit = /datum/outfit/centcom/ert/engineer/alert
@@ -80,6 +89,7 @@
 /datum/antagonist/ert/medic
 	role = "Medical Officer"
 	outfit = /datum/outfit/centcom/ert/medic
+	skills_type = /datum/skill_list_bay/centcom/medical
 
 /datum/antagonist/ert/medic/red
 	outfit = /datum/outfit/centcom/ert/medic/alert
@@ -87,6 +97,7 @@
 /datum/antagonist/ert/commander
 	role = "Commander"
 	outfit = /datum/outfit/centcom/ert/commander
+	skills_type = /datum/skill_list_bay/centcom/security/commander
 
 /datum/antagonist/ert/commander/red
 	outfit = /datum/outfit/centcom/ert/commander/alert
@@ -96,6 +107,7 @@
 	outfit = /datum/outfit/centcom/death_commando
 	role = "Trooper"
 	rip_and_tear = TRUE
+	skills_type = /datum/skill_list_bay/centcom/commando
 
 /datum/antagonist/ert/deathsquad/New()
 	. = ..()
@@ -118,6 +130,7 @@
 /datum/antagonist/ert/chaplain
 	role = "Chaplain"
 	outfit = /datum/outfit/centcom/ert/chaplain
+	skills_type = /datum/skill_list_bay/centcom/security
 
 /datum/antagonist/ert/chaplain/inquisitor
 	outfit = /datum/outfit/centcom/ert/chaplain/inquisitor
@@ -205,6 +218,12 @@
 	if(!istype(H))
 		return
 	H.equipOutfit(outfit)
+	//Set the suits frequency
+	var/obj/item/I = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(I)
+		var/datum/component/tracking_beacon/beacon = I.GetComponent(/datum/component/tracking_beacon)
+		if(beacon)
+			beacon.set_frequency(ert_team.ert_frequency)
 
 
 /datum/antagonist/ert/greet()
@@ -222,6 +241,8 @@
 		missiondesc += "Avoid civilian casualties when possible."
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
+	missiondesc += "<BR><b>Your Shared Tracking Frequency</b> : <i>[ert_team.ert_frequency]</i>"
+
 	to_chat(owner,missiondesc)
 
 

@@ -11,6 +11,7 @@
 	head = /obj/item/clothing/head/caphat/admiral
 	uniform = /obj/item/clothing/under/rank/captain/admiral
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/admiral
+	neck = /obj/item/clothing/neck/cloak/cent/cap // GREEN CLOAK!!
 	shoes = /obj/item/clothing/shoes/jackboots
 
 /*** Security ***/
@@ -77,6 +78,12 @@
 /datum/outfit/job/atmos/lifesupportspecialist
 	name = "Atmospheric Technician (Life Support Specialist)"
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/storage/box/survival=2)
+
+/// Void Technician
+/datum/outfit/job/voidtech/marine
+	name = "Void Technician (Space Marine)"
+	shoes = /obj/item/clothing/shoes/jackboots
+	suit = /obj/item/clothing/suit/space/hardsuit/voidtech/marine
 
 /*** Supply ***/
 /datum/outfit/job/cargo_tech/mailroomtechnician

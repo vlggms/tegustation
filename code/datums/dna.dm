@@ -28,7 +28,8 @@
 			cholder.dna = null
 	holder = null
 
-	QDEL_NULL(species)
+	if(delete_species)
+		QDEL_NULL(species)
 
 	mutations.Cut()					//This only references mutations, just dereference.
 	temporary_mutations.Cut()		//^
@@ -69,6 +70,7 @@
 		mutation_type = HM.type
 	if(get_mutation(mutation_type))
 		return
+	SEND_SIGNAL(holder, COMSIG_CARBON_GAIN_MUTATION, mutation_type, class)
 	return force_give(new mutation_type (class, time, copymut = mutation))
 
 /datum/dna/proc/remove_mutation(mutation_type)

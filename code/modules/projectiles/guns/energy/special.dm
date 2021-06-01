@@ -181,7 +181,7 @@
 /obj/item/gun/energy/plasmacutter/use(amount)
 	return (!QDELETED(cell) && cell.use(amount ? amount * charge_weld : charge_weld))
 
-/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks)
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, difficulty_mod=6)
 	if(amount)
 		. = ..()
 	else
@@ -298,6 +298,7 @@
 /obj/item/gun/energy/printer/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_blocker)
+	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
 
 /obj/item/gun/energy/printer/emp_act()
 	return
@@ -308,7 +309,7 @@
 	desc = "A gun that changes temperatures. Comes with a collapsible stock."
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot)
-	cell_type = "/obj/item/stock_parts/cell/high"
+	cell_type = /obj/item/stock_parts/cell/high
 	pin = null
 
 /obj/item/gun/energy/temperature/security
@@ -375,9 +376,9 @@
 	inhand_icon_state = "tesla"
 	desc = "A gun that shoots balls of \"tesla\", whatever that is."
 	ammo_type = list(/obj/item/ammo_casing/energy/tesla_cannon)
-	shaded_charge = 1
+	shaded_charge = TRUE
 	weapon_weight = WEAPON_HEAVY
 
-/obj/item/gun/energy/tesla_cannon/ComponentInitialize()
+/obj/item/gun/energy/tesla_cannon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)

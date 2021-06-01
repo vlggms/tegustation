@@ -807,9 +807,10 @@
 /datum/crafting_recipe/heavybonearmor
 	name = "Heavy Bone Armor"
 	result = /obj/item/clothing/suit/hooded/cloak/bone
-	time = 60
-	reqs = list(/obj/item/stack/sheet/bone = 8,
-				/obj/item/stack/sheet/sinew = 3)
+	time = 80
+	reqs = list(/obj/item/stack/sheet/bone = 10,
+				/obj/item/stack/sheet/sinew = 3,
+				/obj/item/stack/sheet/animalhide/goliath_hide = 2)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonetalisman
@@ -962,14 +963,6 @@
 	parts = list(/obj/item/grown/log = 5)
 	blacklist = list(/obj/item/grown/log/steel)
 	result = /obj/structure/bonfire
-	category = CAT_PRIMAL
-
-/datum/crafting_recipe/skeleton_key
-	name = "Skeleton Key"
-	time = 30
-	reqs = list(/obj/item/stack/sheet/bone = 5)
-	result = /obj/item/skeleton_key
-	always_available = FALSE
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/rake //Category resorting incoming
