@@ -137,6 +137,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
 "aeG" = (
@@ -2407,6 +2408,13 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"cqy" = (
+/obj/docking_port/stationary/random{
+	id = "pod_lavaland";
+	name = "lavaland"
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "cqE" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/port/fore)
@@ -2463,7 +2471,8 @@
 /area/tcommsat/server)
 "cuy" = (
 /obj/machinery/door/airlock/external{
-	name = "Transport Airlock"
+	name = "Arrival Airlock";
+	safety_mode = 1
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
@@ -3620,6 +3629,10 @@
 /obj/machinery/airalarm/directional/west,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"dBo" = (
+/obj/structure/fans/tiny/invisible,
+/turf/open/space/basic,
+/area/space)
 "dBH" = (
 /obj/structure/tank_dispenser/oxygen,
 /obj/machinery/airalarm/directional/north,
@@ -7418,6 +7431,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery/room_c)
 "hrh" = (
@@ -7693,6 +7707,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
+"hDO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "hDW" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
@@ -8277,6 +8297,18 @@
 	dir = 8
 	},
 /area/chapel/main)
+"ihp" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dir = 8;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_nw";
+	name = "northwest of station";
+	width = 23
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "ihq" = (
 /obj/structure/table,
 /obj/item/folder/white,
@@ -9756,6 +9788,17 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"jxZ" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 2;
+	height = 13;
+	id = "ferry_home";
+	name = "port bay 2";
+	width = 5
+	},
+/turf/open/space/basic,
+/area/space)
 "jyj" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -10524,6 +10567,7 @@
 /obj/item/grenade/chem_grenade/smart_metal_foam,
 /obj/item/grenade/chem_grenade/smart_metal_foam,
 /obj/item/grenade/chem_grenade/smart_metal_foam,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark/side,
 /area/engine/atmos)
 "kkh" = (
@@ -11312,6 +11356,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"kTi" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "kUc" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -12926,7 +12974,8 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "mzG" = (
-/turf/closed/wall/r_wall,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/hallway/primary/aft)
 "mzP" = (
 /obj/machinery/computer/secure_data,
@@ -14558,6 +14607,12 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"oue" = (
+/obj/machinery/door/airlock/external{
+	name = "Transport Airlock"
+	},
+/turf/open/floor/plating,
+/area/space)
 "ouq" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/table,
@@ -15504,7 +15559,6 @@
 /area/crew_quarters/kitchen)
 "phJ" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery/room_c)
 "phL" = (
@@ -16858,6 +16912,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
+"qDr" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod One"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "qFd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 4
@@ -18167,6 +18227,16 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"rRR" = (
+/obj/docking_port/stationary{
+	dwidth = 1;
+	height = 4;
+	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
+	width = 3
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/space/basic,
+/area/space)
 "rSr" = (
 /obj/machinery/airalarm/directional/south,
 /obj/structure/reagent_dispensers/fueltank,
@@ -18965,6 +19035,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/storage)
+"sBq" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/maintenance/port/fore)
 "sCr" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -19356,6 +19429,10 @@
 /obj/machinery/air_sensor/atmos/nitrous_tank,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
+"sVO" = (
+/obj/effect/landmark/carpspawn,
+/turf/open/space/basic,
+/area/space)
 "sVW" = (
 /obj/machinery/hydroponics/soil,
 /obj/effect/turf_decal/tile/green{
@@ -20116,6 +20193,10 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"tHv" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
 "tHB" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -20589,17 +20670,11 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	areastring = "/area/medical/pharmacy";
-	dir = 1;
-	name = "Pharmacy APC";
-	pixel_x = -26;
-	pixel_y = 0
-	},
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/glasses/science,
+/obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel/white,
 /area/medical/pharmacy)
 "ueo" = (
@@ -21910,6 +21985,9 @@
 	dir = 4
 	},
 /area/science/lab)
+"vwz" = (
+/turf/open/floor/plating,
+/area/space)
 "vxw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -22834,6 +22912,12 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"wrK" = (
+/obj/machinery/door/airlock/external{
+	name = "Transport Airlock"
+	},
+/turf/open/floor/plating,
+/area/hallway/primary/aft)
 "wsK" = (
 /obj/item/assembly/prox_sensor{
 	pixel_x = -4;
@@ -23225,6 +23309,7 @@
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/engine,
 /area/science/misc_lab/range)
 "wKL" = (
@@ -24819,6 +24904,10 @@
 	},
 /turf/open/floor/engine,
 /area/science/misc_lab/range)
+"yaP" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/space)
 "yaW" = (
 /obj/machinery/computer/security{
 	dir = 1
@@ -39087,7 +39176,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -39558,7 +39647,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+ihp
 gYi
 gYi
 gYi
@@ -40154,7 +40243,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -40362,7 +40451,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -41161,7 +41250,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -43942,7 +44031,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -46588,7 +46677,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -48657,7 +48746,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -49333,7 +49422,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 pDV
 gbR
@@ -50111,7 +50200,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 gYi
 gYi
 gYi
@@ -50368,7 +50457,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 gYi
 gYi
 gYi
@@ -50625,10 +50714,10 @@ gYi
 gYi
 gYi
 gYi
-gYi
-gYi
-gYi
-gYi
+sBq
+kXD
+kXD
+kXD
 cqE
 cqE
 oUP
@@ -50884,9 +50973,9 @@ gYi
 gYi
 gYi
 gYi
-gYi
-gYi
-cqE
+dBo
+kTi
+fKZ
 bNW
 kBB
 lEg
@@ -51137,13 +51226,13 @@ gYi
 gYi
 gYi
 gYi
+cqy
 gYi
 gYi
 gYi
-gYi
-gYi
-gYi
-cqE
+rRR
+hDO
+qDr
 izy
 kBB
 izy
@@ -51398,8 +51487,8 @@ gYi
 gYi
 gYi
 gYi
-gYi
-gYi
+dBo
+baq
 fKZ
 izy
 kBB
@@ -51653,11 +51742,11 @@ gYi
 gYi
 gYi
 gYi
-gYi
-gYi
-gYi
-gYi
-fKZ
+sBq
+kXD
+kXD
+kXD
+cqE
 izy
 kBB
 izy
@@ -51913,7 +52002,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 rJO
 kBB
@@ -52170,7 +52259,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -52264,7 +52353,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -52427,7 +52516,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -52684,7 +52773,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -52941,7 +53030,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -53198,7 +53287,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -53455,7 +53544,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -53712,7 +53801,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -53969,7 +54058,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -54226,7 +54315,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -54483,7 +54572,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -54740,7 +54829,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 izy
 kBB
@@ -54997,7 +55086,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 fKZ
 rJO
 kBB
@@ -55254,7 +55343,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 cqE
 izy
 kBB
@@ -55511,7 +55600,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 cqE
 fHp
 kBB
@@ -55768,7 +55857,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 cqE
 kXD
 gup
@@ -57054,7 +57143,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 yka
 atm
 rWZ
@@ -57311,7 +57400,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 yka
 aMG
 aMG
@@ -57401,7 +57490,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -57565,10 +57654,10 @@ gYi
 gYi
 gYi
 gYi
+sVO
 gYi
 gYi
-gYi
-gYi
+pBQ
 yka
 aMG
 atm
@@ -57825,7 +57914,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+pBQ
 yka
 aMG
 atm
@@ -60495,7 +60584,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -61930,7 +62019,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 yka
@@ -63083,7 +63172,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -63989,7 +64078,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -65546,7 +65635,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 iSo
 woV
@@ -68381,7 +68470,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -68740,7 +68829,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -69945,7 +70034,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -70001,7 +70090,7 @@ tRq
 lnV
 mzG
 mzG
-mzG
+wrK
 gsd
 gsd
 gsd
@@ -70256,12 +70345,12 @@ nuT
 nuT
 oHX
 lnV
-gYi
-gYi
-gYi
-gYi
-gYi
-gYi
+tHv
+yaP
+vwz
+yaP
+tHv
+tHv
 gYi
 gYi
 gYi
@@ -70513,11 +70602,11 @@ ulJ
 ulJ
 vbk
 lnV
-gYi
-gYi
-gYi
-gYi
-gYi
+tHv
+yaP
+oue
+yaP
+tHv
 gYi
 gYi
 gYi
@@ -70772,7 +70861,7 @@ gbs
 lnV
 gYi
 gYi
-gYi
+jxZ
 gYi
 gYi
 gYi
@@ -73612,7 +73701,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -76374,7 +76463,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -76419,7 +76508,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -79466,7 +79555,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -80776,7 +80865,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
@@ -83846,7 +83935,7 @@ gYi
 gYi
 gYi
 gYi
-gYi
+sVO
 gYi
 gYi
 gYi
