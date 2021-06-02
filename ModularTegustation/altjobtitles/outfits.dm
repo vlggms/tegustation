@@ -47,7 +47,7 @@ HOW ALT TITLES PICK OUTFITS
 	shoes = /obj/item/clothing/shoes/jackboots
 /// Chief Medical Officer
 
-/datum/outfit/job/cmo/surgeon-general
+/datum/outfit/job/cmo/surgeongeneral
 	name = "Chief Medical Officer (Surgeon-General)"
 	head = /obj/item/clothing/head/beret/tegu/cmo
 
