@@ -47,6 +47,7 @@
 	icon_state = "mallcop_skirt"
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	body_parts_covered = CHEST|GROIN|ARMS
+
 /obj/item/clothing/head/beret/sec/engineering
 	name = "engineering deputy beret"
 	desc = "Perhaps the only thing standing between the supermatter and a station-wide explosive sabotage."
@@ -56,9 +57,11 @@
 	tegu_item = TRUE
 
 /obj/item/clothing/head/beret/sec/medical
-	name = "combat medic's beret"
+	name = "medical deputy beret"
 	desc = "This proud white-blue beret is a welcome sight when the greytide descends on chemistry."
-	icon_state = "beret_brigphys"
+	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
+	icon_state = "beret_medbay"
 	tegu_item = TRUE
 
 /obj/item/clothing/head/beret/sec/science

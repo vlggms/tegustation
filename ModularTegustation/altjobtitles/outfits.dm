@@ -47,20 +47,20 @@ HOW ALT TITLES PICK OUTFITS
 	shoes = /obj/item/clothing/shoes/jackboots
 /// Chief Medical Officer
 
-/datum/outfit/job/cmo/surgeongeneral
+/datum/outfit/job/cmo/surgeon-general
 	name = "Chief Medical Officer (Surgeon-General)"
-	head = /obj/item/clothing/head/beret/cmo
+	head = /obj/item/clothing/head/beret/tegu/cmo
 
 /// Chief Engineer
 
 /datum/outfit/job/ce/seniorchiefengineer
 	name = "Chief Engineer (Senior Chief Engineer)"
-	head = /obj/item/clothing/head/beret/ce
+	head = /obj/item/clothing/head/beret/tegu/ce
 
 //Research Director
 /datum/outfit/job/rd/madscientist
 	name = "Research Director (Mad Scientist)"
-	head = /obj/item/clothing/head/beret/rd
+	head = /obj/item/clothing/head/beret/tegu/rd
 	suit = /obj/item/clothing/suit/toggle/labcoat/mad
 
 /*** Security ***/
@@ -75,6 +75,7 @@ HOW ALT TITLES PICK OUTFITS
 /// Scientist
 /datum/outfit/job/scientist/professor
 	name = "Scientist (Professor)"
+	head = /obj/item/clothing/head/beret/tegu/science
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/toggle/labcoat
@@ -100,7 +101,7 @@ HOW ALT TITLES PICK OUTFITS
 
 /datum/outfit/job/chemist/seniorchemist
  	name = "Chemist (Senior Chemist)"
- 	head = /obj/item/clothing/head/beret/chem
+ 	head = /obj/item/clothing/head/beret/tegu/chem
 
 /*** Engineering ***/
 /// Station Engineer
@@ -125,7 +126,7 @@ HOW ALT TITLES PICK OUTFITS
 
 /datum/outfit/job/engineer/seniorengineer
 	name = "Station Engineer (Senior Engineer)"
-	head = /obj/item/clothing/head/beret/eng
+	head = /obj/item/clothing/head/beret/tegu/eng
 
 /// Atmospheric Technician
 /datum/outfit/job/atmos/firefighter
@@ -140,7 +141,7 @@ HOW ALT TITLES PICK OUTFITS
 
 /datum/outfit/job/atmos/senioratmospherictechnician
 	name = "Atmospheric Technician (Senior Atmospheric Technician)"
-	head = /obj/item/clothing/head/beret/atmos
+	head = /obj/item/clothing/head/beret/tegu/atmos
 
 /// Void Technician
 /datum/outfit/job/voidtech/spacemarine
@@ -150,15 +151,14 @@ HOW ALT TITLES PICK OUTFITS
 
 /*** Supply ***/
 /// Cargo Tech
-
 /datum/outfit/job/cargo_tech/mailroomtechnician
 	name = "Cargo Technician (Mailroom Technician)"
 	backpack_contents = list(/obj/item/storage/box/shipping=1, /obj/item/modular_computer/tablet/preset/cargo=1)
 
-//Shaft Miner
+/// Shaft Miner
 /datum/outfit/job/miner/seniorminer
 	name = "Shaft Miner (Senior Miner)"
-	head = /obj/item/clothing/head/beret/mining
+	head = /obj/item/clothing/head/beret/tegu/mining
 
 /*** Service ***/
 /// Cook
@@ -172,7 +172,7 @@ HOW ALT TITLES PICK OUTFITS
 /// Botanist
 /datum/outfit/job/botanist/mastergardener
 	name = "Botanist (Master Gardener)"
-	head = /obj/item/clothing/head/beret/service
+	head = /obj/item/clothing/head/beret/tegu/service
 
 /// Curator
 /datum/outfit/job/curator/journalist
@@ -210,6 +210,7 @@ HOW ALT TITLES PICK OUTFITS
 
 /datum/outfit/job/assistant/assistinator
 	name = "Assistant (Assistinator)"
+	head = /obj/item/clothing/head/beret/tegu/grey
 	uniform = /obj/item/clothing/under/color/grey/ancient
 	mask = /obj/item/clothing/mask/gas
 

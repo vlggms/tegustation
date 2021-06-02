@@ -29,6 +29,7 @@
 /datum/job/tegu/deputy
 	alt_titles = list("Cadet")
 	senior_title = "Mall Cop"
+
 /// Science
 /datum/job/rd
 	alt_titles = list("Research Supervisor", "Research Manager")
@@ -65,6 +66,7 @@
 /datum/job/chief_engineer
 	alt_titles = list("Chief Atmospheric Technician")
 	senior_title = "Senior Chief Engineer"
+
 /datum/job/engineer
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Telecommunications Specialist")
 	senior_title = "Senior Engineer"
@@ -77,7 +79,6 @@
 	ultra_senior_title = "Space Marine"
 
 /// Supply
-
 /datum/job/qm
 	alt_titles = list("Supply Chief", "Requisitions Officer")
 
