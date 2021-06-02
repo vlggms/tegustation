@@ -286,6 +286,13 @@
 	desc = "A dark-green beret worn by CentCom officers and high-ranking soldiers."
 	icon_state = "centberet"
 
+//Science
+
+/obj/item/clothing/head/beret/science
+	name = "science beret"
+	desc = "A science-themed beret for our hardworking scientists."
+	icon_state = "sciberet"
+
 //Curator
 /obj/item/clothing/head/fedora/curator
 	name = "treasure hunter's fedora"
