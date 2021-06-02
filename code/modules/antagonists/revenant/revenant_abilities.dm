@@ -1,10 +1,10 @@
 
 /mob/living/simple_animal/revenant/ClickOn(atom/A, params) //revenants can't interact with the world directly.
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"])
+	if(LAZYACCESS(modifiers, SHIFT_CLICK))
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"])
+	if(LAZYACCESS(modifiers, ALT_CLICK))
 		AltClickNoInteract(src, A)
 		return
 
@@ -310,6 +310,9 @@
 			if(prob(50))
 				new /obj/effect/temp_visual/revenant(thing.loc)
 			thing.emag_act(null)
+		else
+			if(!istype(thing, /obj/machinery/clonepod))
+				thing.emp_act(EMP_HEAVY)
 	for(var/mob/living/silicon/robot/S in T) //Only works on cyborgs, not AI
 		playsound(S, 'sound/machines/warning-buzzer.ogg', 50, TRUE)
 		new /obj/effect/temp_visual/revenant(S.loc)
