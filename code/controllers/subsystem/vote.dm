@@ -77,19 +77,10 @@ SUBSYSTEM_DEF(vote)
 					choices[preferred_map] += 1
 					greatest_votes = max(greatest_votes, choices[preferred_map])
 			else if(mode == "transfer")
-				var/factor = 1 // factor defines how non-voters are weighted towards calling the shuttle
-				switch(world.time / (1 MINUTES))
-					if(0 to 60)
-						factor = 0.5
-					if(61 to 120)
-						factor = 0.8
-					if(121 to 240)
-						factor = 1
-					if(241 to 300)
-						factor = 1.2
-					else
-						factor = 1.4
-				choices["Initiate Crew Transfer"] += round(non_voters.len * factor)
+				choices["Continue Playing"] += non_voters.len
+				if(choices["Continue Playing"] >= greatest_votes)
+					greatest_votes = choices["Continue Playing"]
+
 	. = list()
 	if(greatest_votes)
 		for(var/option in choices)
@@ -151,6 +142,7 @@ SUBSYSTEM_DEF(vote)
 					priority_announce("The shift has come to an end and the shuttle called. [GLOB.security_level == SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [SSshuttle.emergency.timeLeft(600)] minutes.", null, ANNOUNCER_SHUTTLECALLED, "Priority")
 					log_game("Round end vote passed. Shuttle has been auto-called.")
 					message_admins("Round end vote passed. Shuttle has been auto-called.")
+					SSautotransfer.transfered = TRUE // Shuttle destination changed to hub.
 
 					var/obj/machinery/computer/communications/C = locate() in GLOB.machines
 					if(C)
