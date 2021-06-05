@@ -17249,11 +17249,12 @@
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "oue" = (
-/obj/machinery/door/airlock/external{
-	name = "Transport Airlock"
+/obj/machinery/light{
+	dir = 8
 	},
-/turf/open/floor/plating,
-/area/space)
+/mob/living/simple_animal/sloth/citrus,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ouq" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/table,
@@ -23893,10 +23894,6 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"tHv" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "tHB" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -25955,7 +25952,7 @@
 /area/science/lab)
 "vwz" = (
 /turf/open/floor/plating,
-/area/space)
+/area/hallway/primary/aft)
 "vxw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -29391,10 +29388,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"yaP" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/space)
 "yaW" = (
 /obj/machinery/computer/security{
 	dir = 1
@@ -68636,7 +68629,7 @@ vsk
 mfj
 nDd
 uNK
-vsk
+oue
 iTA
 jhF
 jhF
@@ -74867,12 +74860,12 @@ nuT
 nuT
 oHX
 lnV
-tHv
-yaP
+pBQ
+mzG
 vwz
-yaP
-tHv
-tHv
+mzG
+pBQ
+pBQ
 gYi
 gYi
 gYi
@@ -75124,11 +75117,11 @@ ulJ
 ulJ
 vbk
 lnV
-tHv
-yaP
-oue
-yaP
-tHv
+pBQ
+mzG
+wrK
+mzG
+pBQ
 gYi
 gYi
 gYi
