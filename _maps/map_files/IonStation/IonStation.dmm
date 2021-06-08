@@ -29517,7 +29517,7 @@
 "uGa" = (
 /obj/docking_port/stationary{
 	dir = 4;
-	dwidth = 4;
+	dwidth = 3;
 	height = 7;
 	id = "supply_home";
 	name = "Cargo Bay";
