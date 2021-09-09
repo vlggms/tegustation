@@ -13,6 +13,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Operative" = 'icons/hud/screen_operative.dmi',
 	"Clockwork" = 'icons/hud/screen_clockwork.dmi',
 	"Glass" = 'icons/hud/screen_glass.dmi'
+	"Eris" = 'ModularTegustation/Teguicons/screen_eris.dmi'
 ))
 
 /proc/ui_style2icon(ui_style)
