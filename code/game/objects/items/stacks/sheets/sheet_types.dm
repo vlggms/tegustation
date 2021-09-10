@@ -382,6 +382,7 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	desc = "A long soft material. This one is made from cotton rather than spidersilk."
 	singular_name = "Silk Sheet"
 	icon_state = "sheet-silk"
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/silk
 
