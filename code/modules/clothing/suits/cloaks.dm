@@ -101,31 +101,6 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-/obj/item/clothing/suit/hooded/cloak/bone
-	name = "heavy bone armor"
-	icon_state = "hbonearmor"
-	blood_overlay_type = "armor"
-	desc = "A tribal armor plate, crafted from animal bone. A heavier variation of standard bone armor."
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/ballistic, /obj/item/gun/energy, /obj/item/kitchen/knife, /obj/item/pickaxe, /obj/item/spear)
-	armor = list(MELEE = 40, BULLET = 30, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
-	hoodtype = /obj/item/clothing/head/hooded/cloakhood/bone
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF
-	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
-
-/obj/item/clothing/head/hooded/cloakhood/bone
-	name = "heavy bone helmet"
-	icon_state = "hskull"
-	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
-	armor = list(MELEE = 40, BULLET = 30, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
-	heat_protection = HEAD
-	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
-	flags_cover = HEADCOVERSEYES
-
 /obj/item/clothing/neck/cloak/skill_reward
 	var/associated_skill_path = /datum/skill
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE

@@ -313,6 +313,7 @@
 		/obj/item/key/lasso
 		))
 
+
 /obj/item/storage/belt/mining/vendor
 	contents = newlist(/obj/item/survivalcapsule)
 
