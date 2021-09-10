@@ -67,6 +67,10 @@
 	icon_state = "bone_axe0"
 	name = "bone axe"
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_left.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_right.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 	var/faction_bonus_force = 26
 	var/nemesis_factions = list("mining", "boss") // Deal more damage to lavaland mobs.
 

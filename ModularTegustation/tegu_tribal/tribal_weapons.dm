@@ -40,7 +40,7 @@
 	name = "Bone Bow"
 	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
 	icon_state = "ashenbow"
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_guns.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_left.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_right.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
@@ -51,7 +51,7 @@
 /obj/item/gun/ballistic/bow/pipe
 	name = "Pipe Bow"
 	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_guns.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_left.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_right.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'

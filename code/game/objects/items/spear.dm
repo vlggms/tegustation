@@ -169,6 +169,10 @@
 	icon_state = "bone_spear0"
 	name = "bone spear"
 	desc = "A haphazardly-constructed yet still deadly weapon. The pinnacle of modern technology."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_left.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/tribal_inhands_right.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 	force = 12
 	throwforce = 22
 	armour_penetration = 15				//Enhanced armor piercing
