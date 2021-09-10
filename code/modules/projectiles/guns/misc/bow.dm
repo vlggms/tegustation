@@ -54,21 +54,6 @@
 /obj/item/gun/ballistic/bow/shoot_with_empty_chamber(mob/living/user)
 	return //so clicking sounds please
 
-/obj/item/gun/ballistic/bow/ashen
-	name = "Bone Bow"
-	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
-	icon_state = "ashenbow"
-	inhand_icon_state = "ashenbow"
-	worn_icon_state = "ashenbow"
-	force = 8
-
-/obj/item/gun/ballistic/bow/pipe
-	name = "Pipe Bow"
-	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
-	icon_state = "pipebow"
-	inhand_icon_state = "pipebow"
-	force = 7
-
 /obj/item/ammo_casing/caseless/arrow/despawning/dropped()
 	. = ..()
 	addtimer(CALLBACK(src, .proc/floor_vanish), 5 SECONDS)

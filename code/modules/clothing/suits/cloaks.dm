@@ -3,7 +3,8 @@
 /obj/item/clothing/neck/cloak
 	name = "brown cloak"
 	desc = "It's a cape that can be worn around your neck."
-	icon = 'icons/obj/clothing/cloaks.dmi'
+	icon = 'ModularTegustation/Teguicons/teguclothing.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 	icon_state = "qmcloak"
 	inhand_icon_state = "qmcloak"
 	w_class = WEIGHT_CLASS_SMALL

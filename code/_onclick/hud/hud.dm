@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Slimecore" = 'icons/hud/screen_slimecore.dmi',
 	"Operative" = 'icons/hud/screen_operative.dmi',
 	"Clockwork" = 'icons/hud/screen_clockwork.dmi',
-	"Glass" = 'icons/hud/screen_glass.dmi'
+	"Glass" = 'icons/hud/screen_glass.dmi',
 	"Eris" = 'ModularTegustation/Teguicons/screen_eris.dmi'
 ))
 
