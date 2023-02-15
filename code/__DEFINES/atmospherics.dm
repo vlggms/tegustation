@@ -202,6 +202,11 @@
 /// for fire helmet quality items (red and white hardhats)
 #define FIRE_HELM_MAX_TEMP_PROTECT			30000
 
+/// for cadet suits
+#define CADET_JUMPSUIT_MIN_TEMP_PROTECT			60
+/// IDEK if this will really do anything even im just throwin shit at the wall and seeing if it sticks
+#define CADET_JUMPSUIT_MAX_TEMP_PROTECT			500
+
 /// what max_heat_protection_temperature is set to for firesuit quality suits and helmets. MUST NOT BE 0.
 #define FIRE_IMMUNITY_MAX_TEMP_PROTECT	35000
 

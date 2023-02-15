@@ -227,3 +227,14 @@
 	icon_state = "rainbow_skirt"
 	inhand_icon_state = "rainbow"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/color/cadet
+	name = "standard issue jumpsuit"
+	desc = "A snazzy blue jumpsuit, woven with environmentally durable fabric. Typically issued to cadets."
+	icon_state = "darkblue"
+	inhand_icon_state = "darkblue"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 5, RAD = 5, FIRE = 5, ACID = 0, WOUND = 5)
+	heat_protection = CHEST|GROIN|LEGS|ARMS
+	max_heat_protection_temperature = CADET_JUMPSUIT_MAX_TEMP_PROTECT
+	cold_protection = CHEST|GROIN|LEGS|ARMS
+	min_cold_protection_temperature = CADET_JUMPSUIT_MIN_TEMP_PROTECT
