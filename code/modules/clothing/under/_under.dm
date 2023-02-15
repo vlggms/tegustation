@@ -291,6 +291,3 @@
 					for(var/part in zone2body_parts_covered(zone))
 						body_parts_covered &= part
 	return adjusted
-
-/obj/item/clothing/under/rank
-	dying_key = DYE_REGISTRY_UNDER
